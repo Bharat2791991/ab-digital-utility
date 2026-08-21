@@ -53,71 +53,71 @@ function openTool(tool) {
 
     /* ================= JPG TO PDF ================= */
 
-    if (tool === "jpgPdf") {
+   if (tool === "pdfTools") {
 
-        content.innerHTML = `
+    content.innerHTML = `
 
-            <h2>PDF Tools</h2>
+        <h2>📑 PDF Tools</h2>
 
-            <p>
-                Choose a PDF or image tool.
-            </p>
+        <p>
+            All PDF tools in one place.
+        </p>
 
-            <div class="tools-grid">
+        <div class="tools-grid">
 
-                <button onclick="showJPGToPDF()">
-                    🖼️ JPG to PDF
-                </button>
+            <button onclick="openTool('jpgPdf')">
+                🖼️ JPG → PDF
+            </button>
 
-                <button onclick="showPDFToJPG()">
-                    📄 PDF to JPG
-                </button>
+            <button onclick="openTool('pdfJpg')">
+                📄 PDF → JPG
+            </button>
 
-                <button onclick="showMergePDF()">
-                    🔗 Merge PDF
-                </button>
+            <button onclick="openTool('wordPdf')">
+                📝 Word → PDF
+            </button>
 
-                <button onclick="showSplitPDF()">
-                    ✂️ Split PDF
-                </button>
+            <button onclick="openTool('pdfWord')">
+                📄 PDF → Word
+            </button>
 
-                <button onclick="showRemovePDFPages()">
-                    🗑️ Remove PDF Pages
-                </button>
+            <button onclick="openTool('pptPdf')">
+                📊 PowerPoint → PDF
+            </button>
 
-                <button onclick="showHTMLToPDF()">
-                    🌐 HTML to PDF
-                </button>
+            <button onclick="openTool('pdfPpt')">
+                📄 PDF → PowerPoint
+            </button>
 
-                <button onclick="showComingSoon('Word to PDF')">
-                    📝 Word to PDF
-                </button>
+            <button onclick="openTool('excelPdf')">
+                📊 Excel → PDF
+            </button>
 
-                <button onclick="showComingSoon('PDF to Word')">
-                    📄 PDF to Word
-                </button>
+            <button onclick="openTool('pdfExcel')">
+                📄 PDF → Excel
+            </button>
 
-                <button onclick="showComingSoon('PowerPoint to PDF')">
-                    📊 PowerPoint to PDF
-                </button>
+            <button onclick="openTool('htmlPdf')">
+                🌐 HTML → PDF
+            </button>
 
-                <button onclick="showComingSoon('PDF to PowerPoint')">
-                    📊 PDF to PowerPoint
-                </button>
+            <button onclick="openTool('mergePdf')">
+                🔗 Merge PDF
+            </button>
 
-                <button onclick="showComingSoon('Excel to PDF')">
-                    📊 Excel to PDF
-                </button>
+            <button onclick="openTool('splitPdf')">
+                ✂️ Split PDF
+            </button>
 
-                <button onclick="showComingSoon('PDF to Excel')">
-                    📊 PDF to Excel
-                </button>
+            <button onclick="openTool('removePdfPages')">
+                🗑️ Remove PDF Pages
+            </button>
 
-            </div>
+        </div>
 
-            <div id="pdfToolArea"></div>
-        `;
-    }
+    `;
+
+}
 
 
     /* ================= QR ================= */
