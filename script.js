@@ -152,37 +152,26 @@ function openPDFTool(tool) {
 
     if (tool === "wordToPdf") {
 
-        setContent(`
+    content.innerHTML = `
+        <h2>Word to PDF Converter</h2>
 
-            <h2>📝 Word to PDF</h2>
+        <p>Select a Microsoft Word (.docx) file.</p>
 
-            <p>
-                Convert DOCX Word documents into PDF.
-            </p>
+        <input
+            id="wordFile"
+            type="file"
+            accept=".docx"
+        >
 
-            <input
-                id="wordToPdfFile"
-                type="file"
-                accept=".docx"
-            >
+        <br><br>
 
-            <br><br>
+        <button onclick="convertWordToPDF()">
+            Convert Word to PDF
+        </button>
 
-            <button onclick="wordToPDF()">
-                Convert Word to PDF
-            </button>
-
-            <div
-                id="wordToPdfResult"
-                class="result">
-            </div>
-
-        `);
-
-        scrollWorkspace();
-
-        return;
-    }
+        <div id="wordResult" class="result"></div>
+    `;
+}
 
 
     /* =====================================================
@@ -1683,144 +1672,178 @@ async function pdfToJPG() {
    WORD TO PDF
 ========================================================= */
 
-async function wordToPDF() {
+async function convertWordToPDF() {
 
-    var input =
-        get("wordToPdfFile");
+    const input = document.getElementById("wordFile");
+    const result = document.getElementById("wordResult");
 
-    var result =
-        get("wordToPdfResult");
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
-            "Please select a DOCX file.";
+            "Please select a Word (.docx) file.";
 
         return;
     }
 
+    const file = input.files[0];
+
+    if (!file.name.toLowerCase().endsWith(".docx")) {
+
+        result.innerHTML =
+            "Please select a valid .docx Word file.";
+
+        return;
+    }
+
+    if (typeof mammoth === "undefined") {
+
+        result.innerHTML =
+            "Word conversion library failed to load. Please refresh the page.";
+
+        return;
+    }
 
     if (
-        typeof mammoth ===
-        "undefined"
+        typeof window.jspdf === "undefined" ||
+        typeof window.jspdf.jsPDF === "undefined"
     ) {
 
         result.innerHTML =
-            "Word library not loaded.";
+            "PDF library failed to load. Please refresh the page.";
 
         return;
     }
 
+    result.innerHTML =
+        "⏳ Converting Word document...";
 
     try {
 
-        result.innerHTML =
-            "Reading Word document...";
+        const arrayBuffer =
+            await file.arrayBuffer();
 
+        /* DOCX → HTML */
 
-        var buffer =
-            await input.files[0]
-                .arrayBuffer();
-
-
-        var converted =
+        const mammothResult =
             await mammoth.convertToHtml({
-                arrayBuffer:
-                    buffer
+                arrayBuffer: arrayBuffer
             });
 
+        const html =
+            mammothResult.value;
 
-        var container =
-            document.createElement(
-                "div"
+        if (!html || !html.trim()) {
+
+            throw new Error(
+                "Word document contains no readable text."
             );
+        }
 
+        /* Create temporary document */
 
-        container.style.position =
-            "fixed";
+        const tempDiv =
+            document.createElement("div");
 
-        container.style.left =
-            "-10000px";
+        tempDiv.style.position = "absolute";
+        tempDiv.style.left = "-99999px";
+        tempDiv.style.top = "0";
+        tempDiv.style.width = "180mm";
+        tempDiv.style.padding = "10mm";
+        tempDiv.style.background = "white";
+        tempDiv.style.color = "black";
+        tempDiv.style.fontFamily = "Arial, sans-serif";
+        tempDiv.style.fontSize = "12px";
+        tempDiv.style.lineHeight = "1.5";
 
-        container.style.width =
-            "180mm";
+        tempDiv.innerHTML = html;
 
-        container.style.padding =
-            "10mm";
+        document.body.appendChild(tempDiv);
 
-        container.style.background =
-            "white";
+        /* Add basic formatting */
 
-        container.style.color =
-            "black";
+        tempDiv.querySelectorAll("h1").forEach(function(el) {
+            el.style.fontSize = "24px";
+            el.style.marginBottom = "12px";
+        });
 
+        tempDiv.querySelectorAll("h2").forEach(function(el) {
+            el.style.fontSize = "20px";
+            el.style.marginBottom = "10px";
+        });
 
-        container.innerHTML =
-            converted.value;
+        tempDiv.querySelectorAll("h3").forEach(function(el) {
+            el.style.fontSize = "17px";
+            el.style.marginBottom = "8px";
+        });
 
+        tempDiv.querySelectorAll("p").forEach(function(el) {
+            el.style.marginBottom = "8px";
+        });
 
-        document.body.appendChild(
-            container
-        );
+        /* Create PDF */
 
+        const jsPDF =
+            window.jspdf.jsPDF;
 
-        var pdf =
-            new window.jspdf.jsPDF(
-                "p",
-                "mm",
-                "a4"
-            );
+        const pdf =
+            new jsPDF({
+                orientation: "portrait",
+                unit: "mm",
+                format: "a4"
+            });
 
+        await pdf.html(tempDiv, {
 
-        await pdf.html(
-            container,
-            {
+            margin: [10, 10, 10, 10],
 
-                callback:
-                    function(pdf) {
+            autoPaging: "text",
 
-                        pdf.save(
-                            "AB-Digital-Utility-Word-to-PDF.pdf"
-                        );
+            html2canvas: {
+                scale: 0.8,
+                useCORS: true,
+                backgroundColor: "#ffffff"
+            },
 
-                    },
+            callback: function(pdf) {
 
-                x: 10,
-
-                y: 10,
-
-                width: 190,
-
-                autoPaging:
-                    "text",
-
-                margin:
-                    [10,10,10,10]
-
+                pdf.save(
+                    file.name.replace(
+                        /\.docx$/i,
+                        ""
+                    ) + "-converted.pdf"
+                );
             }
+
+        });
+
+        document.body.removeChild(tempDiv);
+
+        result.innerHTML = `
+            <strong>
+                ✅ Word successfully converted to PDF!
+            </strong>
+            <br><br>
+            Your PDF download should start automatically.
+        `;
+
+    } catch (error) {
+
+        console.error(
+            "Word to PDF error:",
+            error
         );
 
+        result.innerHTML = `
+            <strong>
+                ❌ Word conversion failed.
+            </strong>
 
-        document.body.removeChild(
-            container
-        );
+            <br><br>
 
-
-        result.innerHTML =
-            "<strong>✅ Word converted to PDF!</strong>";
-
+            Please make sure you are uploading a
+            valid <strong>.docx</strong> Word file.
+        `;
     }
-
-    catch (error) {
-
-        console.error(error);
-
-        result.innerHTML =
-            "❌ Word conversion failed.";
-
-    }
-
 }
 
 
