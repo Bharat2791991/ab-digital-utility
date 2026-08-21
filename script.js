@@ -1,168 +1,79 @@
 /* =========================================================
    AB DIGITAL UTILITY
    COMPLETE SCRIPT.JS
-   ========================================================= */
+========================================================= */
 
 
 /* =========================================================
-   OPEN TOOL
-   ========================================================= */
+   GLOBAL HELPERS
+========================================================= */
 
-function openTool(tool) {
-
-    const workspace =
-        document.getElementById("workspace");
-
-    const content =
-        document.getElementById("toolContent");
+function get(id) {
+    return document.getElementById(id);
+}
 
 
-    if (!workspace || !content) {
-        return;
+function showWorkspace() {
+
+    var workspace = get("workspace");
+
+    if (workspace) {
+        workspace.style.display = "block";
     }
+}
 
 
-    workspace.style.display = "block";
+function setContent(html) {
+
+    var content = get("toolContent");
+
+    if (content) {
+        content.innerHTML = html;
+    }
+}
 
 
-    /* =====================================================
-       PDF TOOLS
-       ===================================================== */
+function scrollWorkspace() {
 
-    if (tool === "pdfTools") {
+    var workspace = get("workspace");
 
-        content.innerHTML = `
+    if (workspace) {
 
-            <div class="pdf-core">
-
-                <h2>📄 PDF Tools</h2>
-
-                <p>
-                    Convert, merge, split and manage PDF files.
-                </p>
-
-
-                <div class="pdf-tools-grid">
-
-
-                    <button
-                        onclick="openTool('jpgPdf')">
-
-                        🖼️ JPG to PDF
-
-                    </button>
-
-
-                    <button
-                        onclick="openTool('pdfJpg')">
-
-                        📄 PDF to JPG
-
-                    </button>
-
-
-                    <button
-                        onclick="openTool('mergePdf')">
-
-                        🔗 Merge PDF
-
-                    </button>
-
-
-                    <button
-                        onclick="openTool('splitPdf')">
-
-                        ✂️ Split PDF
-
-                    </button>
-
-
-                    <button
-                        onclick="openTool('removePdf')">
-
-                        🗑️ Remove Pages
-
-                    </button>
-
-
-                    <button
-                        onclick="openTool('wordPdf')">
-
-                        📝 Word to PDF
-
-                    </button>
-
-
-                    <button
-                        onclick="openTool('pdfWord')">
-
-                        📄 PDF to Word
-
-                    </button>
-
-
-                    <button
-                        onclick="openTool('excelPdf')">
-
-                        📊 Excel to PDF
-
-                    </button>
-
-
-                    <button
-                        onclick="openTool('pdfExcel')">
-
-                        📄 PDF to Excel
-
-                    </button>
-
-
-                    <button
-                        onclick="openTool('pptPdf')">
-
-                        📽️ PowerPoint to PDF
-
-                    </button>
-
-
-                    <button
-                        onclick="openTool('pdfPpt')">
-
-                        📄 PDF to PowerPoint
-
-                    </button>
-
-
-                    <button
-                        onclick="openTool('htmlPdf')">
-
-                        🌐 HTML to PDF
-
-                    </button>
-
-
-                </div>
-
-            </div>
-
-        `;
+        workspace.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
     }
+}
 
+
+/* =========================================================
+   OPEN PDF TOOL
+========================================================= */
+
+function openPDFTool(tool) {
+
+    showWorkspace();
 
     /* =====================================================
        JPG TO PDF
-       ===================================================== */
+    ===================================================== */
 
     if (tool === "jpgPdf") {
 
-        content.innerHTML = `
+        setContent(`
 
-            <h2>🖼️ JPG to PDF</h2>
+            <div class="tool-header">
 
-            <p>
-                Convert multiple JPG or PNG images into one PDF.
-            </p>
+                <h2>📄 JPG to PDF</h2>
+
+                <p>
+                    Convert multiple JPG or PNG images
+                    into one PDF file.
+                </p>
+
+            </div>
 
 
             <input
@@ -172,41 +83,42 @@ function openTool(tool) {
                 multiple
             >
 
-
             <br><br>
 
-
-            <button
-                onclick="convertToPDF()">
-
+            <button onclick="convertToPDF()">
                 Convert to PDF
-
             </button>
-
 
             <div
                 id="jpgResult"
                 class="result">
             </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
        PDF TO JPG
-       ===================================================== */
+    ===================================================== */
 
-    if (tool === "pdfJpg") {
+    if (tool === "pdfToJpg") {
 
-        content.innerHTML = `
+        setContent(`
 
-            <h2>📄 PDF to JPG</h2>
+            <div class="tool-header">
 
-            <p>
-                Convert PDF pages into JPG images.
-            </p>
+                <h2>🖼️ PDF to JPG</h2>
+
+                <p>
+                    Convert every PDF page into JPG images.
+                </p>
+
+            </div>
 
 
             <input
@@ -215,255 +127,110 @@ function openTool(tool) {
                 accept="application/pdf"
             >
 
-
             <br><br>
 
-
-            <button
-                onclick="convertPdfToJpg()">
-
+            <button onclick="pdfToJPG()">
                 Convert to JPG
-
             </button>
-
 
             <div
                 id="pdfToJpgResult"
                 class="result">
             </div>
 
-        `;
+        `);
 
-    }
+        scrollWorkspace();
 
-
-    /* =====================================================
-       MERGE PDF
-       ===================================================== */
-
-    if (tool === "mergePdf") {
-
-        content.innerHTML = `
-
-            <h2>🔗 Merge PDF</h2>
-
-            <p>
-                Combine multiple PDF files into one PDF.
-            </p>
-
-
-            <input
-                id="mergePdfFiles"
-                type="file"
-                accept="application/pdf"
-                multiple
-            >
-
-
-            <br><br>
-
-
-            <button
-                onclick="mergePDF()">
-
-                Merge PDFs
-
-            </button>
-
-
-            <div
-                id="mergePdfResult"
-                class="result">
-            </div>
-
-        `;
-
-    }
-
-
-    /* =====================================================
-       SPLIT PDF
-       ===================================================== */
-
-    if (tool === "splitPdf") {
-
-        content.innerHTML = `
-
-            <h2>✂️ Split PDF</h2>
-
-            <p>
-                Extract selected pages from a PDF.
-            </p>
-
-
-            <input
-                id="splitPdfFile"
-                type="file"
-                accept="application/pdf"
-            >
-
-
-            <br><br>
-
-
-            <input
-                id="splitPages"
-                type="text"
-                placeholder="Pages e.g. 1,3,5"
-            >
-
-
-            <br><br>
-
-
-            <button
-                onclick="splitPDF()">
-
-                Split PDF
-
-            </button>
-
-
-            <div
-                id="splitPdfResult"
-                class="result">
-            </div>
-
-        `;
-
-    }
-
-
-    /* =====================================================
-       REMOVE PDF PAGES
-       ===================================================== */
-
-    if (tool === "removePdf") {
-
-        content.innerHTML = `
-
-            <h2>🗑️ Remove PDF Pages</h2>
-
-            <p>
-                Remove selected pages from a PDF.
-            </p>
-
-
-            <input
-                id="removePdfFile"
-                type="file"
-                accept="application/pdf"
-            >
-
-
-            <br><br>
-
-
-            <input
-                id="removePages"
-                type="text"
-                placeholder="Pages to remove e.g. 2,4"
-            >
-
-
-            <br><br>
-
-
-            <button
-                onclick="removePdfPages()">
-
-                Remove Pages
-
-            </button>
-
-
-            <div
-                id="removePdfResult"
-                class="result">
-            </div>
-
-        `;
-
+        return;
     }
 
 
     /* =====================================================
        WORD TO PDF
-       ===================================================== */
+    ===================================================== */
 
-    if (tool === "wordPdf") {
+    if (tool === "wordToPdf") {
 
-        content.innerHTML = `
+        setContent(`
 
             <h2>📝 Word to PDF</h2>
 
             <p>
-                Word to PDF conversion module.
+                Convert DOCX Word documents into PDF.
             </p>
 
             <input
+                id="wordToPdfFile"
                 type="file"
-                accept=".doc,.docx"
+                accept=".docx"
             >
 
             <br><br>
 
-            <button
-                onclick="showComingSoon('Word to PDF')">
-
-                Convert to PDF
-
+            <button onclick="wordToPDF()">
+                Convert Word to PDF
             </button>
 
-            <div class="result"></div>
+            <div
+                id="wordToPdfResult"
+                class="result">
+            </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
        PDF TO WORD
-       ===================================================== */
+    ===================================================== */
 
-    if (tool === "pdfWord") {
+    if (tool === "pdfToWord") {
 
-        content.innerHTML = `
+        setContent(`
 
-            <h2>📄 PDF to Word</h2>
+            <h2>📝 PDF to Word</h2>
 
             <p>
-                Convert PDF documents into editable Word files.
+                Extract readable PDF text into a DOCX file.
             </p>
 
             <input
+                id="pdfToWordFile"
                 type="file"
-                accept=".pdf"
+                accept="application/pdf"
             >
 
             <br><br>
 
-            <button
-                onclick="showComingSoon('PDF to Word')">
-
-                Convert to Word
-
+            <button onclick="pdfToWord()">
+                Convert PDF to Word
             </button>
 
-            <div class="result"></div>
+            <div
+                id="pdfToWordResult"
+                class="result">
+            </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
        EXCEL TO PDF
-       ===================================================== */
+    ===================================================== */
 
-    if (tool === "excelPdf") {
+    if (tool === "excelToPdf") {
 
-        content.innerHTML = `
+        setContent(`
 
             <h2>📊 Excel to PDF</h2>
 
@@ -472,324 +239,816 @@ function openTool(tool) {
             </p>
 
             <input
+                id="excelToPdfFile"
                 type="file"
-                accept=".xls,.xlsx"
+                accept=".xlsx,.xls"
             >
 
             <br><br>
 
-            <button
-                onclick="showComingSoon('Excel to PDF')">
-
-                Convert to PDF
-
+            <button onclick="excelToPDF()">
+                Convert Excel to PDF
             </button>
 
-            <div class="result"></div>
+            <div
+                id="excelToPdfResult"
+                class="result">
+            </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
        PDF TO EXCEL
-       ===================================================== */
+    ===================================================== */
 
-    if (tool === "pdfExcel") {
+    if (tool === "pdfToExcel") {
 
-        content.innerHTML = `
+        setContent(`
 
-            <h2>📄 PDF to Excel</h2>
+            <h2>📊 PDF to Excel</h2>
 
             <p>
-                Convert PDF tables into Excel spreadsheets.
+                Extract PDF text into an Excel workbook.
             </p>
 
             <input
+                id="pdfToExcelFile"
                 type="file"
-                accept=".pdf"
+                accept="application/pdf"
             >
 
             <br><br>
 
-            <button
-                onclick="showComingSoon('PDF to Excel')">
-
-                Convert to Excel
-
+            <button onclick="pdfToExcel()">
+                Convert PDF to Excel
             </button>
 
-            <div class="result"></div>
+            <div
+                id="pdfToExcelResult"
+                class="result">
+            </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
        POWERPOINT TO PDF
-       ===================================================== */
+    ===================================================== */
 
-    if (tool === "pptPdf") {
+    if (tool === "pptToPdf") {
 
-        content.innerHTML = `
+        setContent(`
 
             <h2>📽️ PowerPoint to PDF</h2>
 
             <p>
-                Convert PowerPoint presentations into PDF.
+                Convert readable PowerPoint slide content
+                into PDF.
             </p>
 
             <input
+                id="pptToPdfFile"
                 type="file"
-                accept=".ppt,.pptx"
+                accept=".pptx"
             >
 
             <br><br>
 
-            <button
-                onclick="showComingSoon('PowerPoint to PDF')">
-
-                Convert to PDF
-
+            <button onclick="pptToPDF()">
+                Convert PowerPoint to PDF
             </button>
 
-            <div class="result"></div>
+            <div
+                id="pptToPdfResult"
+                class="result">
+            </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
        PDF TO POWERPOINT
-       ===================================================== */
+    ===================================================== */
 
-    if (tool === "pdfPpt") {
+    if (tool === "pdfToPpt") {
 
-        content.innerHTML = `
+        setContent(`
 
-            <h2>📄 PDF to PowerPoint</h2>
+            <h2>📽️ PDF to PowerPoint</h2>
 
             <p>
                 Convert PDF pages into PowerPoint slides.
             </p>
 
             <input
+                id="pdfToPptFile"
                 type="file"
-                accept=".pdf"
+                accept="application/pdf"
             >
 
             <br><br>
 
-            <button
-                onclick="showComingSoon('PDF to PowerPoint')">
-
-                Convert to PowerPoint
-
+            <button onclick="pdfToPPT()">
+                Convert PDF to PowerPoint
             </button>
 
-            <div class="result"></div>
+            <div
+                id="pdfToPptResult"
+                class="result">
+            </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
        HTML TO PDF
-       ===================================================== */
+    ===================================================== */
 
-    if (tool === "htmlPdf") {
+    if (tool === "htmlToPdf") {
 
-        content.innerHTML = `
+        setContent(`
 
             <h2>🌐 HTML to PDF</h2>
 
             <p>
-                Enter HTML content and create a PDF.
+                Enter HTML code and convert it into PDF.
             </p>
-
 
             <textarea
-                id="htmlInput"
-                rows="10"
-                placeholder="<h1>Hello</h1>">
-            </textarea>
-
+                id="htmlToPdfInput"
+                rows="12"
+                placeholder="<h1>AB Digital Utility</h1>
+<p>Your content here...</p>"
+            ></textarea>
 
             <br><br>
 
-
-            <button
-                onclick="convertHtmlToPDF()">
-
-                Create PDF
-
+            <button onclick="htmlToPDF()">
+                Convert HTML to PDF
             </button>
 
-
             <div
-                id="htmlPdfResult"
+                id="htmlToPdfResult"
                 class="result">
             </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
-       QR CODE
-       ===================================================== */
+       MERGE PDF
+    ===================================================== */
 
-    if (tool === "qr") {
+    if (tool === "merge") {
 
-        content.innerHTML = `
+        setContent(`
 
-            <h2>🔳 QR Code Generator</h2>
+            <h2>🔗 Merge PDF</h2>
 
             <p>
-                Enter text or website URL.
+                Combine multiple PDF files into one PDF.
             </p>
 
+            <input
+                id="mergeFiles"
+                type="file"
+                accept="application/pdf"
+                multiple
+            >
+
+            <br><br>
+
+            <button onclick="mergePDF()">
+                Merge PDFs
+            </button>
+
+            <div
+                id="mergeResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       SPLIT PDF
+    ===================================================== */
+
+    if (tool === "split") {
+
+        setContent(`
+
+            <h2>✂️ Split PDF</h2>
+
+            <p>
+                Extract selected pages from a PDF.
+            </p>
 
             <input
-                id="qrText"
+                id="splitFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+            <br><br>
+
+            <input
+                id="splitPages"
                 type="text"
-                placeholder="Enter text or URL"
+                placeholder="Example: 1,3,5-7"
             >
-
 
             <br><br>
 
-
-            <button
-                onclick="generateQR()">
-
-                Generate QR
-
+            <button onclick="splitPDF()">
+                Split PDF
             </button>
 
-
             <div
-                id="qrResult"
+                id="splitResult"
                 class="result">
             </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
-       GST
-       ===================================================== */
+       REMOVE PAGES
+    ===================================================== */
 
-    if (tool === "gst") {
+    if (tool === "removePages") {
 
-        content.innerHTML = `
+        setContent(`
 
-            <h2>🧾 GST Calculator</h2>
-
-
-            <input
-                id="gstAmount"
-                type="number"
-                placeholder="Enter amount"
-            >
-
+            <h2>🗑️ Remove PDF Pages</h2>
 
             <input
-                id="gstRate"
-                type="number"
-                placeholder="GST rate %"
+                id="removeFile"
+                type="file"
+                accept="application/pdf"
             >
-
 
             <br><br>
 
+            <input
+                id="removePagesInput"
+                type="text"
+                placeholder="Pages to remove: 2,4,6"
+            >
 
-            <button
-                onclick="calculateGST()">
+            <br><br>
 
-                Calculate GST
-
+            <button onclick="removePDFPages()">
+                Remove Pages
             </button>
 
-
             <div
-                id="gstResult"
+                id="removeResult"
                 class="result">
             </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
-       PERCENTAGE
-       ===================================================== */
+       EXTRACT PAGES
+    ===================================================== */
 
-    if (tool === "percentage") {
+    if (tool === "extractPages") {
 
-        content.innerHTML = `
+        setContent(`
 
-            <h2>% Percentage Calculator</h2>
-
-
-            <input
-                id="percentageValue"
-                type="number"
-                placeholder="Value"
-            >
-
+            <h2>📑 Extract PDF Pages</h2>
 
             <input
-                id="percentageTotal"
-                type="number"
-                placeholder="Total"
+                id="extractFile"
+                type="file"
+                accept="application/pdf"
             >
-
 
             <br><br>
 
+            <input
+                id="extractPagesInput"
+                type="text"
+                placeholder="Example: 1,3,5-7"
+            >
 
-            <button
-                onclick="calculatePercentage()">
+            <br><br>
 
-                Calculate
-
+            <button onclick="extractPDFPages()">
+                Extract Pages
             </button>
 
-
             <div
-                id="percentageResult"
+                id="extractResult"
                 class="result">
             </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       ROTATE PDF
+    ===================================================== */
+
+    if (tool === "rotate") {
+
+        setContent(`
+
+            <h2>🔄 Rotate PDF</h2>
+
+            <input
+                id="rotateFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+            <br><br>
+
+            <select id="rotateAngle">
+
+                <option value="90">
+                    90°
+                </option>
+
+                <option value="180">
+                    180°
+                </option>
+
+                <option value="270">
+                    270°
+                </option>
+
+            </select>
+
+            <br><br>
+
+            <button onclick="rotatePDF()">
+                Rotate PDF
+            </button>
+
+            <div
+                id="rotateResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       REORDER
+    ===================================================== */
+
+    if (tool === "reorder") {
+
+        setContent(`
+
+            <h2>↕️ Reorder PDF Pages</h2>
+
+            <input
+                id="reorderFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+            <br><br>
+
+            <input
+                id="reorderPagesInput"
+                type="text"
+                placeholder="Example: 3,1,2,4"
+            >
+
+            <br><br>
+
+            <button onclick="reorderPDF()">
+                Reorder Pages
+            </button>
+
+            <div
+                id="reorderResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       DUPLICATE
+    ===================================================== */
+
+    if (tool === "duplicate") {
+
+        setContent(`
+
+            <h2>📄 Duplicate PDF Pages</h2>
+
+            <input
+                id="duplicateFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+            <br><br>
+
+            <input
+                id="duplicatePagesInput"
+                type="text"
+                placeholder="Example: 1,3,3,4"
+            >
+
+            <br><br>
+
+            <button onclick="duplicatePDF()">
+                Create PDF
+            </button>
+
+            <div
+                id="duplicateResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       PAGE NUMBERS
+    ===================================================== */
+
+    if (tool === "pageNumbers") {
+
+        setContent(`
+
+            <h2>🔢 Add Page Numbers</h2>
+
+            <input
+                id="pageNumberFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+            <br><br>
+
+            <select id="pageNumberPosition">
+
+                <option value="bottom-center">
+                    Bottom Center
+                </option>
+
+                <option value="bottom-left">
+                    Bottom Left
+                </option>
+
+                <option value="bottom-right">
+                    Bottom Right
+                </option>
+
+                <option value="top-center">
+                    Top Center
+                </option>
+
+            </select>
+
+            <br><br>
+
+            <button onclick="addPageNumbers()">
+                Add Page Numbers
+            </button>
+
+            <div
+                id="pageNumberResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       WATERMARK
+    ===================================================== */
+
+    if (tool === "watermark") {
+
+        setContent(`
+
+            <h2>💧 Watermark PDF</h2>
+
+            <input
+                id="watermarkFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+            <br><br>
+
+            <input
+                id="watermarkText"
+                type="text"
+                placeholder="Watermark text"
+            >
+
+            <br><br>
+
+            <button onclick="watermarkPDF()">
+                Add Watermark
+            </button>
+
+            <div
+                id="watermarkResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       COMPRESS
+    ===================================================== */
+
+    if (tool === "compressPdf") {
+
+        setContent(`
+
+            <h2>🗜️ Compress PDF</h2>
+
+            <p>
+                Reduce PDF file size where possible.
+            </p>
+
+            <input
+                id="compressPdfFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+            <br><br>
+
+            <button onclick="compressPDF()">
+                Compress PDF
+            </button>
+
+            <div
+                id="compressPdfResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       OCR
+    ===================================================== */
+
+    if (tool === "ocr") {
+
+        setContent(`
+
+            <h2>🔎 OCR PDF</h2>
+
+            <p>
+                Extract text from scanned PDF pages.
+            </p>
+
+            <input
+                id="ocrFile"
+                type="file"
+                accept="application/pdf,image/*"
+            >
+
+            <br><br>
+
+            <button onclick="ocrPDF()">
+                Start OCR
+            </button>
+
+            <div
+                id="ocrResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       PROTECT
+    ===================================================== */
+
+    if (tool === "protect") {
+
+        setContent(`
+
+            <h2>🔐 Protect PDF</h2>
+
+            <p>
+                Add password protection to your PDF.
+            </p>
+
+            <input
+                id="protectFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+            <br><br>
+
+            <input
+                id="protectPassword"
+                type="password"
+                placeholder="Password"
+            >
+
+            <br><br>
+
+            <button onclick="protectPDF()">
+                Protect PDF
+            </button>
+
+            <div
+                id="protectResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       UNLOCK
+    ===================================================== */
+
+    if (tool === "unlock") {
+
+        setContent(`
+
+            <h2>🔓 Unlock PDF</h2>
+
+            <p>
+                Process a PDF when you have the correct password.
+            </p>
+
+            <input
+                id="unlockFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+            <br><br>
+
+            <input
+                id="unlockPassword"
+                type="password"
+                placeholder="PDF password"
+            >
+
+            <br><br>
+
+            <button onclick="unlockPDF()">
+                Unlock PDF
+            </button>
+
+            <div
+                id="unlockResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       PREVIEW
+    ===================================================== */
+
+    if (tool === "preview") {
+
+        setContent(`
+
+            <h2>👁️ PDF Preview</h2>
+
+            <input
+                id="previewFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+            <br><br>
+
+            <button onclick="previewPDF()">
+                Preview PDF
+            </button>
+
+            <div
+                id="previewResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
        IMAGE COMPRESSOR
-       ===================================================== */
+    ===================================================== */
 
     if (tool === "compress") {
 
-        content.innerHTML = `
+        setContent(`
 
             <h2>🗜️ Image Compressor</h2>
-
-
-            <p>
-                Reduce image file size.
-            </p>
-
 
             <input
                 id="compressFile"
@@ -797,17 +1056,13 @@ function openTool(tool) {
                 accept="image/jpeg,image/png"
             >
 
-
             <br><br>
 
-
             <label>
-                Compression Quality
+                Quality
             </label>
 
-
             <br>
-
 
             <input
                 id="quality"
@@ -818,38 +1073,34 @@ function openTool(tool) {
                 step="0.1"
             >
 
-
             <br><br>
 
-
-            <button
-                onclick="compressImage()">
-
+            <button onclick="compressImage()">
                 Compress Image
-
             </button>
-
 
             <div
                 id="compressResult"
                 class="result">
             </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
        IMAGE RESIZER
-       ===================================================== */
+    ===================================================== */
 
     if (tool === "resize") {
 
-        content.innerHTML = `
+        setContent(`
 
             <h2>📐 Image Resizer</h2>
-
 
             <input
                 id="resizeFile"
@@ -857,236 +1108,337 @@ function openTool(tool) {
                 accept="image/*"
             >
 
-
             <br><br>
-
 
             <input
                 id="resizeWidth"
                 type="number"
-                placeholder="Width in pixels"
-            >
-
+                placeholder="Width">
 
             <input
                 id="resizeHeight"
                 type="number"
-                placeholder="Height in pixels"
-            >
-
+                placeholder="Height">
 
             <br><br>
 
-
-            <button
-                onclick="resizeImage()">
-
+            <button onclick="resizeImage()">
                 Resize Image
-
             </button>
-
 
             <div
                 id="resizeResult"
                 class="result">
             </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       QR
+    ===================================================== */
+
+    if (tool === "qr") {
+
+        setContent(`
+
+            <h2>🔳 QR Code Generator</h2>
+
+            <input
+                id="qrText"
+                type="text"
+                placeholder="Enter text or URL">
+
+            <br><br>
+
+            <button onclick="generateQR()">
+                Generate QR
+            </button>
+
+            <div
+                id="qrResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       GST
+    ===================================================== */
+
+    if (tool === "gst") {
+
+        setContent(`
+
+            <h2>🧾 GST Calculator</h2>
+
+            <input
+                id="gstAmount"
+                type="number"
+                placeholder="Amount">
+
+            <input
+                id="gstRate"
+                type="number"
+                placeholder="GST %">
+
+            <br><br>
+
+            <button onclick="calculateGST()">
+                Calculate GST
+            </button>
+
+            <div
+                id="gstResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
+    }
+
+
+    /* =====================================================
+       PERCENTAGE
+    ===================================================== */
+
+    if (tool === "percentage") {
+
+        setContent(`
+
+            <h2>% Percentage Calculator</h2>
+
+            <input
+                id="percentageValue"
+                type="number"
+                placeholder="Value">
+
+            <input
+                id="percentageTotal"
+                type="number"
+                placeholder="Total">
+
+            <br><br>
+
+            <button onclick="calculatePercentage()">
+                Calculate
+            </button>
+
+            <div
+                id="percentageResult"
+                class="result">
+            </div>
+
+        `);
+
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
        AGE
-       ===================================================== */
+    ===================================================== */
 
     if (tool === "age") {
 
-        content.innerHTML = `
+        setContent(`
 
             <h2>🎂 Age Calculator</h2>
 
-
-            <p>
-                Enter your date of birth.
-            </p>
-
-
             <input
                 id="birthDate"
-                type="date"
-            >
-
+                type="date">
 
             <br><br>
 
-
-            <button
-                onclick="calculateAge()">
-
+            <button onclick="calculateAge()">
                 Calculate Age
-
             </button>
-
 
             <div
                 id="ageResult"
                 class="result">
             </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
 
 
     /* =====================================================
        EMI
-       ===================================================== */
+    ===================================================== */
 
     if (tool === "emi") {
 
-        content.innerHTML = `
+        setContent(`
 
             <h2>₹ EMI Calculator</h2>
-
 
             <input
                 id="loanAmount"
                 type="number"
-                placeholder="Loan amount"
-            >
-
+                placeholder="Loan amount">
 
             <input
                 id="interestRate"
                 type="number"
-                placeholder="Annual interest rate %"
-            >
-
+                placeholder="Annual interest %">
 
             <input
                 id="loanYears"
                 type="number"
-                placeholder="Loan period in years"
-            >
-
+                placeholder="Loan period in years">
 
             <br><br>
 
-
-            <button
-                onclick="calculateEMI()">
-
+            <button onclick="calculateEMI()">
                 Calculate EMI
-
             </button>
-
 
             <div
                 id="emiResult"
                 class="result">
             </div>
 
-        `;
+        `);
 
+        scrollWorkspace();
+
+        return;
     }
-
-
-    workspace.scrollIntoView({
-        behavior: "smooth"
-    });
 
 }
 
 
 /* =========================================================
    CLOSE TOOL
-   ========================================================= */
+========================================================= */
 
 function closeTool() {
 
-    const workspace =
-        document.getElementById("workspace");
+    var workspace = get("workspace");
 
-    const content =
-        document.getElementById("toolContent");
+    var content = get("toolContent");
 
 
-    workspace.style.display =
-        "none";
+    if (workspace) {
+        workspace.style.display = "none";
+    }
 
 
-    content.innerHTML =
-        "";
+    if (content) {
+        content.innerHTML = "";
+    }
 
 }
 
 
 /* =========================================================
    JPG TO PDF
-   ========================================================= */
+========================================================= */
 
 async function convertToPDF() {
 
-    const input =
-        document.getElementById("jpgFiles");
+    var input = get("jpgFiles");
 
-    const result =
-        document.getElementById("jpgResult");
+    var result = get("jpgResult");
 
 
-    const files =
-        input.files;
-
-
-    if (!files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select at least one image.";
 
         return;
-
     }
 
 
     if (
-        typeof window.jspdf === "undefined"
+        !window.jspdf ||
+        !window.jspdf.jsPDF
     ) {
 
         result.innerHTML =
-            "PDF library load nahi hui. Page refresh karein.";
+            "PDF library not loaded.";
 
         return;
-
     }
-
-
-    const jsPDF =
-        window.jspdf.jsPDF;
-
-
-    const pdf =
-        new jsPDF(
-            "p",
-            "mm",
-            "a4"
-        );
 
 
     try {
 
+        var jsPDF =
+            window.jspdf.jsPDF;
+
+
+        var pdf =
+            new jsPDF(
+                "p",
+                "mm",
+                "a4"
+            );
+
+
         for (
-            let i = 0;
-            i < files.length;
+            var i = 0;
+            i < input.files.length;
             i++
         ) {
 
             result.innerHTML =
-                Converting image ${i + 1} of ${files.length}...;
+                "Converting image " +
+                (i + 1) +
+                " of " +
+                input.files.length +
+                "...";
 
 
-            const image =
-                await loadImage(files[i]);
+            var file =
+                input.files[i];
+
+
+            var url =
+                URL.createObjectURL(file);
+
+
+            var image =
+                new Image();
+
+
+            await new Promise(
+                function(resolve, reject) {
+
+                    image.onload =
+                        resolve;
+
+                    image.onerror =
+                        reject;
+
+                    image.src =
+                        url;
+
+                }
+            );
 
 
             if (i > 0) {
@@ -1094,52 +1446,44 @@ async function convertToPDF() {
             }
 
 
-            const pageWidth =
-                210;
+            var pageWidth = 210;
 
-            const pageHeight =
-                297;
+            var pageHeight = 297;
 
-            const margin =
-                10;
+            var margin = 10;
 
-
-            const maxWidth =
+            var maxWidth =
                 pageWidth -
                 margin * 2;
 
-
-            const maxHeight =
+            var maxHeight =
                 pageHeight -
                 margin * 2;
 
 
-            const ratio =
+            var ratio =
                 Math.min(
                     maxWidth / image.width,
                     maxHeight / image.height
                 );
 
 
-            const width =
+            var width =
                 image.width * ratio;
 
-
-            const height =
+            var height =
                 image.height * ratio;
 
 
-            const x =
+            var x =
                 (pageWidth - width) / 2;
 
-
-            const y =
+            var y =
                 (pageHeight - height) / 2;
 
 
-            const format =
-                files[i].type ===
-                "image/png"
+            var format =
+                file.type === "image/png"
                     ? "PNG"
                     : "JPEG";
 
@@ -1152,6 +1496,9 @@ async function convertToPDF() {
                 width,
                 height
             );
+
+
+            URL.revokeObjectURL(url);
 
         }
 
@@ -1179,71 +1526,16 @@ async function convertToPDF() {
 
 
 /* =========================================================
-   IMAGE LOADER
-   ========================================================= */
-
-function loadImage(file) {
-
-    return new Promise(
-        function(resolve, reject) {
-
-            const url =
-                URL.createObjectURL(file);
-
-
-            const image =
-                new Image();
-
-
-            image.onload =
-                function() {
-
-                    URL.revokeObjectURL(url);
-
-                    resolve(image);
-
-                };
-
-
-            image.onerror =
-                function() {
-
-                    URL.revokeObjectURL(url);
-
-                    reject(
-                        new Error(
-                            "Image loading failed."
-                        )
-                    );
-
-                };
-
-
-            image.src =
-                url;
-
-        }
-    );
-
-}
-
-
-/* =========================================================
    PDF TO JPG
-   ========================================================= */
+========================================================= */
 
-async function convertPdfToJpg() {
+async function pdfToJPG() {
 
-    const input =
-        document.getElementById(
-            "pdfToJpgFile"
-        );
+    var input =
+        get("pdfToJpgFile");
 
-
-    const result =
-        document.getElementById(
-            "pdfToJpgResult"
-        );
+    var result =
+        get("pdfToJpgResult");
 
 
     if (!input.files.length) {
@@ -1252,80 +1544,72 @@ async function convertPdfToJpg() {
             "Please select a PDF file.";
 
         return;
-
     }
 
 
     if (
-        typeof pdfjsLib === "undefined"
+        typeof pdfjsLib ===
+        "undefined"
     ) {
 
         result.innerHTML =
-            "PDF.js library load nahi hui.";
+            "PDF.js library not loaded.";
 
         return;
-
     }
 
 
     try {
 
-        const file =
-            input.files[0];
+        var buffer =
+            await input.files[0]
+                .arrayBuffer();
 
 
-        const data =
-            await file.arrayBuffer();
-
-
-        const pdf =
+        var pdf =
             await pdfjsLib
                 .getDocument({
-                    data: data
+                    data: buffer
                 })
                 .promise;
 
 
-        let output = "";
+        var html =
+            "<strong>✅ Conversion complete</strong><br><br>";
 
 
         for (
-            let pageNumber = 1;
-            pageNumber <= pdf.numPages;
-            pageNumber++
+            var i = 1;
+            i <= pdf.numPages;
+            i++
         ) {
 
             result.innerHTML =
-                Converting page ${pageNumber} of ${pdf.numPages}...;
+                "Converting page " +
+                i +
+                " of " +
+                pdf.numPages +
+                "...";
 
 
-            const page =
-                await pdf.getPage(
-                    pageNumber
-                );
+            var page =
+                await pdf.getPage(i);
 
 
-            const viewport =
+            var viewport =
                 page.getViewport({
                     scale: 1.5
                 });
 
 
-            const canvas =
+            var canvas =
                 document.createElement(
                     "canvas"
                 );
 
 
-            const context =
-                canvas.getContext(
-                    "2d"
-                );
-
-
             canvas.width =
                 viewport.width;
-
 
             canvas.height =
                 viewport.height;
@@ -1333,50 +1617,41 @@ async function convertPdfToJpg() {
 
             await page.render({
                 canvasContext:
-                    context,
+                    canvas.getContext(
+                        "2d"
+                    ),
                 viewport:
                     viewport
             }).promise;
 
 
-            const image =
+            var image =
                 canvas.toDataURL(
                     "image/jpeg",
                     0.9
                 );
 
 
-            output += `
+            html += `
 
-                <div
-                    style="
-                        margin:20px 0;
-                    "
-                >
+                <div class="pdf-result-item">
 
-                    <strong>
-                        Page ${pageNumber}
-                    </strong>
-
-                    <br><br>
+                    <h4>
+                        Page ${i}
+                    </h4>
 
                     <img
                         src="${image}"
-                        style="
-                            max-width:100%;
-                            border-radius:8px;
-                        "
-                    >
+                        class="pdf-preview-image">
 
-                    <br><br>
+                    <br>
 
                     <a
                         class="download"
                         href="${image}"
-                        download="page-${pageNumber}.jpg"
-                    >
+                        download="AB-Digital-Utility-Page-${i}.jpg">
 
-                        Download Page ${pageNumber}
+                        Download Page ${i}
 
                     </a>
 
@@ -1387,13 +1662,8 @@ async function convertPdfToJpg() {
         }
 
 
-        result.innerHTML = `
-            <strong>
-                ✅ PDF converted successfully
-            </strong>
-
-            ${output}
-        `;
+        result.innerHTML =
+            html;
 
     }
 
@@ -1410,69 +1680,1143 @@ async function convertPdfToJpg() {
 
 
 /* =========================================================
-   MERGE PDF
-   ========================================================= */
+   WORD TO PDF
+========================================================= */
 
-async function mergePDF() {
+async function wordToPDF() {
 
-    const input =
-        document.getElementById(
-            "mergePdfFiles"
-        );
+    var input =
+        get("wordToPdfFile");
 
-
-    const result =
-        document.getElementById(
-            "mergePdfResult"
-        );
+    var result =
+        get("wordToPdfResult");
 
 
     if (!input.files.length) {
 
         result.innerHTML =
-            "Please select PDF files.";
+            "Please select a DOCX file.";
 
         return;
-
     }
 
 
     if (
-        typeof PDFLib === "undefined"
+        typeof mammoth ===
+        "undefined"
     ) {
 
         result.innerHTML =
-            "PDF library load nahi hui.";
+            "Word library not loaded.";
 
         return;
-
     }
 
 
     try {
 
-        const mergedPdf =
-            await PDFLib
-                .PDFDocument
+        result.innerHTML =
+            "Reading Word document...";
+
+
+        var buffer =
+            await input.files[0]
+                .arrayBuffer();
+
+
+        var converted =
+            await mammoth.convertToHtml({
+                arrayBuffer:
+                    buffer
+            });
+
+
+        var container =
+            document.createElement(
+                "div"
+            );
+
+
+        container.style.position =
+            "fixed";
+
+        container.style.left =
+            "-10000px";
+
+        container.style.width =
+            "180mm";
+
+        container.style.padding =
+            "10mm";
+
+        container.style.background =
+            "white";
+
+        container.style.color =
+            "black";
+
+
+        container.innerHTML =
+            converted.value;
+
+
+        document.body.appendChild(
+            container
+        );
+
+
+        var pdf =
+            new window.jspdf.jsPDF(
+                "p",
+                "mm",
+                "a4"
+            );
+
+
+        await pdf.html(
+            container,
+            {
+
+                callback:
+                    function(pdf) {
+
+                        pdf.save(
+                            "AB-Digital-Utility-Word-to-PDF.pdf"
+                        );
+
+                    },
+
+                x: 10,
+
+                y: 10,
+
+                width: 190,
+
+                autoPaging:
+                    "text",
+
+                margin:
+                    [10,10,10,10]
+
+            }
+        );
+
+
+        document.body.removeChild(
+            container
+        );
+
+
+        result.innerHTML =
+            "<strong>✅ Word converted to PDF!</strong>";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ Word conversion failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   PDF TO WORD
+========================================================= */
+
+async function pdfToWord() {
+
+    var input =
+        get("pdfToWordFile");
+
+    var result =
+        get("pdfToWordResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF.";
+
+        return;
+    }
+
+
+    if (
+        typeof pdfjsLib ===
+        "undefined"
+    ) {
+
+        result.innerHTML =
+            "PDF.js library not loaded.";
+
+        return;
+    }
+
+
+    if (
+        typeof docx ===
+        "undefined"
+    ) {
+
+        result.innerHTML =
+            "DOCX library not loaded.";
+
+        return;
+    }
+
+
+    try {
+
+        var buffer =
+            await input.files[0]
+                .arrayBuffer();
+
+
+        var pdf =
+            await pdfjsLib
+                .getDocument({
+                    data: buffer
+                })
+                .promise;
+
+
+        var paragraphs = [];
+
+
+        for (
+            var i = 1;
+            i <= pdf.numPages;
+            i++
+        ) {
+
+            result.innerHTML =
+                "Extracting page " +
+                i +
+                "...";
+
+
+            var page =
+                await pdf.getPage(i);
+
+
+            var text =
+                await page.getTextContent();
+
+
+            var pageText =
+                text.items
+                    .map(
+                        function(item) {
+                            return item.str;
+                        }
+                    )
+                    .join(" ")
+                    .trim();
+
+
+            if (pageText) {
+
+                paragraphs.push(
+                    new docx.Paragraph({
+
+                        children: [
+                            new docx.TextRun({
+                                text:
+                                    pageText
+                            })
+                        ],
+
+                        spacing: {
+                            after: 200
+                        }
+
+                    })
+                );
+
+            }
+
+        }
+
+
+        var documentFile =
+            new docx.Document({
+
+                sections: [
+                    {
+                        children:
+                            paragraphs
+                    }
+                ]
+
+            });
+
+
+        var blob =
+            await docx.Packer
+                .toBlob(
+                    documentFile
+                );
+
+
+        saveAs(
+            blob,
+            "AB-Digital-Utility-PDF-to-Word.docx"
+        );
+
+
+        result.innerHTML =
+            "<strong>✅ PDF converted to Word!</strong>";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ PDF to Word failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   EXCEL TO PDF
+========================================================= */
+
+async function excelToPDF() {
+
+    var input =
+        get("excelToPdfFile");
+
+    var result =
+        get("excelToPdfResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select an Excel file.";
+
+        return;
+    }
+
+
+    if (
+        typeof XLSX ===
+        "undefined"
+    ) {
+
+        result.innerHTML =
+            "Excel library not loaded.";
+
+        return;
+    }
+
+
+    try {
+
+        var buffer =
+            await input.files[0]
+                .arrayBuffer();
+
+
+        var workbook =
+            XLSX.read(
+                buffer,
+                {
+                    type:
+                        "array"
+                }
+            );
+
+
+        var html = "";
+
+
+        workbook.SheetNames
+            .forEach(
+                function(name) {
+
+                    var sheet =
+                        workbook.Sheets[
+                            name
+                        ];
+
+
+                    html +=
+                        "<h2>" +
+                        name +
+                        "</h2>";
+
+
+                    html +=
+                        XLSX.utils
+                            .sheet_to_html(
+                                sheet
+                            );
+
+                }
+            );
+
+
+        var container =
+            document.createElement(
+                "div"
+            );
+
+
+        container.style.position =
+            "fixed";
+
+        container.style.left =
+            "-10000px";
+
+        container.style.width =
+            "180mm";
+
+        container.style.background =
+            "white";
+
+        container.style.color =
+            "black";
+
+        container.innerHTML =
+            `
+
+            <style>
+
+            table {
+                width:100%;
+                border-collapse:collapse;
+                font-size:10px;
+            }
+
+            td, th {
+                border:1px solid #888;
+                padding:5px;
+            }
+
+            </style>
+
+            ${html}
+
+            `;
+
+
+        document.body.appendChild(
+            container
+        );
+
+
+        var pdf =
+            new window.jspdf.jsPDF(
+                "p",
+                "mm",
+                "a4"
+            );
+
+
+        await pdf.html(
+            container,
+            {
+
+                callback:
+                    function(pdf) {
+
+                        pdf.save(
+                            "AB-Digital-Utility-Excel-to-PDF.pdf"
+                        );
+
+                    },
+
+                x: 10,
+
+                y: 10,
+
+                width: 190,
+
+                autoPaging:
+                    "text",
+
+                margin:
+                    [10,10,10,10]
+
+            }
+        );
+
+
+        document.body.removeChild(
+            container
+        );
+
+
+        result.innerHTML =
+            "<strong>✅ Excel converted to PDF!</strong>";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ Excel conversion failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   PDF TO EXCEL
+========================================================= */
+
+async function pdfToExcel() {
+
+    var input =
+        get("pdfToExcelFile");
+
+    var result =
+        get("pdfToExcelResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF.";
+
+        return;
+    }
+
+
+    try {
+
+        var buffer =
+            await input.files[0]
+                .arrayBuffer();
+
+
+        var pdf =
+            await pdfjsLib
+                .getDocument({
+                    data: buffer
+                })
+                .promise;
+
+
+        var rows = [
+            [
+                "Page",
+                "Text"
+            ]
+        ];
+
+
+        for (
+            var i = 1;
+            i <= pdf.numPages;
+            i++
+        ) {
+
+            var page =
+                await pdf.getPage(i);
+
+
+            var text =
+                await page.getTextContent();
+
+
+            text.items.forEach(
+                function(item) {
+
+                    if (
+                        item.str &&
+                        item.str.trim()
+                    ) {
+
+                        rows.push([
+                            i,
+                            item.str.trim()
+                        ]);
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        var sheet =
+            XLSX.utils
+                .aoa_to_sheet(
+                    rows
+                );
+
+
+        var workbook =
+            XLSX.utils.book_new();
+
+
+        XLSX.utils.book_append_sheet(
+            workbook,
+            sheet,
+            "PDF Data"
+        );
+
+
+        XLSX.writeFile(
+            workbook,
+            "AB-Digital-Utility-PDF-to-Excel.xlsx"
+        );
+
+
+        result.innerHTML =
+            "<strong>✅ PDF converted to Excel!</strong>";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ PDF to Excel failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   POWERPOINT TO PDF
+========================================================= */
+
+async function pptToPDF() {
+
+    var input =
+        get("pptToPdfFile");
+
+    var result =
+        get("pptToPdfResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PPTX file.";
+
+        return;
+    }
+
+
+    try {
+
+        var buffer =
+            await input.files[0]
+                .arrayBuffer();
+
+
+        var zip =
+            await JSZip.loadAsync(
+                buffer
+            );
+
+
+        var slides =
+            Object.keys(
+                zip.files
+            )
+            .filter(
+                function(name) {
+
+                    return /^ppt\/slides\/slide\d+\.xml$/
+                        .test(name);
+
+                }
+            );
+
+
+        slides.sort(
+            function(a,b) {
+
+                return (
+                    parseInt(
+                        a.match(
+                            /slide(\d+)/
+                        )[1]
+                    )
+                    -
+                    parseInt(
+                        b.match(
+                            /slide(\d+)/
+                        )[1]
+                    )
+                );
+
+            }
+        );
+
+
+        var pdf =
+            new window.jspdf.jsPDF(
+                "landscape",
+                "mm",
+                "a4"
+            );
+
+
+        for (
+            var i = 0;
+            i < slides.length;
+            i++
+        ) {
+
+            if (i > 0) {
+                pdf.addPage();
+            }
+
+
+            var xml =
+                await zip.files[
+                    slides[i]
+                ].async(
+                    "string"
+                );
+
+
+            var parser =
+                new DOMParser();
+
+
+            var doc =
+                parser.parseFromString(
+                    xml,
+                    "application/xml"
+                );
+
+
+            var nodes =
+                doc.getElementsByTagName(
+                    "a:t"
+                );
+
+
+            var text = "";
+
+
+            for (
+                var j = 0;
+                j < nodes.length;
+                j++
+            ) {
+
+                text +=
+                    nodes[j]
+                        .textContent +
+                    " ";
+
+            }
+
+
+            pdf.setFontSize(20);
+
+            pdf.text(
+                "PowerPoint Slide " +
+                (i + 1),
+                20,
+                25
+            );
+
+
+            pdf.setFontSize(13);
+
+
+            var lines =
+                pdf.splitTextToSize(
+                    text.trim(),
+                    240
+                );
+
+
+            pdf.text(
+                lines,
+                20,
+                45
+            );
+
+        }
+
+
+        pdf.save(
+            "AB-Digital-Utility-PowerPoint-to-PDF.pdf"
+        );
+
+
+        result.innerHTML =
+            "<strong>✅ PowerPoint converted to PDF!</strong>";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ PowerPoint conversion failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   PDF TO POWERPOINT
+========================================================= */
+
+async function pdfToPPT() {
+
+    var input =
+        get("pdfToPptFile");
+
+    var result =
+        get("pdfToPptResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF.";
+
+        return;
+    }
+
+
+    if (
+        typeof PptxGenJS ===
+        "undefined"
+    ) {
+
+        result.innerHTML =
+            "PowerPoint library not loaded.";
+
+        return;
+    }
+
+
+    try {
+
+        var buffer =
+            await input.files[0]
+                .arrayBuffer();
+
+
+        var pdf =
+            await pdfjsLib
+                .getDocument({
+                    data: buffer
+                })
+                .promise;
+
+
+        var ppt =
+            new PptxGenJS();
+
+
+        ppt.layout =
+            "LAYOUT_WIDE";
+
+
+        for (
+            var i = 1;
+            i <= pdf.numPages;
+            i++
+        ) {
+
+            result.innerHTML =
+                "Creating slide " +
+                i +
+                " of " +
+                pdf.numPages +
+                "...";
+
+
+            var page =
+                await pdf.getPage(i);
+
+
+            var viewport =
+                page.getViewport({
+                    scale: 1.5
+                });
+
+
+            var canvas =
+                document.createElement(
+                    "canvas"
+                );
+
+
+            canvas.width =
+                viewport.width;
+
+            canvas.height =
+                viewport.height;
+
+
+            await page.render({
+
+                canvasContext:
+                    canvas.getContext(
+                        "2d"
+                    ),
+
+                viewport:
+                    viewport
+
+            }).promise;
+
+
+            var image =
+                canvas.toDataURL(
+                    "image/jpeg",
+                    0.85
+                );
+
+
+            var slide =
+                ppt.addSlide();
+
+
+            slide.background = {
+                color: "FFFFFF"
+            };
+
+
+            slide.addImage({
+
+                data:
+                    image,
+
+                x: 0,
+
+                y: 0,
+
+                w: 13.333,
+
+                h: 7.5
+
+            });
+
+        }
+
+
+        await ppt.writeFile({
+            fileName:
+                "AB-Digital-Utility-PDF-to-PowerPoint.pptx"
+        });
+
+
+        result.innerHTML =
+            "<strong>✅ PDF converted to PowerPoint!</strong>";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ PDF to PowerPoint failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   HTML TO PDF
+========================================================= */
+
+async function htmlToPDF() {
+
+    var input =
+        get("htmlToPdfInput");
+
+    var result =
+        get("htmlToPdfResult");
+
+
+    var html =
+        input.value.trim();
+
+
+    if (!html) {
+
+        result.innerHTML =
+            "Please enter HTML code.";
+
+        return;
+    }
+
+
+    try {
+
+        var container =
+            document.createElement(
+                "div"
+            );
+
+
+        container.style.position =
+            "fixed";
+
+        container.style.left =
+            "-10000px";
+
+        container.style.width =
+            "180mm";
+
+        container.style.padding =
+            "10mm";
+
+        container.style.background =
+            "white";
+
+        container.style.color =
+            "black";
+
+        container.innerHTML =
+            html;
+
+
+        document.body.appendChild(
+            container
+        );
+
+
+        var pdf =
+            new window.jspdf.jsPDF(
+                "p",
+                "mm",
+                "a4"
+            );
+
+
+        await pdf.html(
+            container,
+            {
+
+                callback:
+                    function(pdf) {
+
+                        pdf.save(
+                            "AB-Digital-Utility-HTML.pdf"
+                        );
+
+                    },
+
+                x: 10,
+
+                y: 10,
+
+                width: 190,
+
+                autoPaging:
+                    "text",
+
+                margin:
+                    [10,10,10,10]
+
+            }
+        );
+
+
+        document.body.removeChild(
+            container
+        );
+
+
+        result.innerHTML =
+            "<strong>✅ HTML converted to PDF!</strong>";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ HTML conversion failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   MERGE PDF
+========================================================= */
+
+async function mergePDF() {
+
+    var input =
+        get("mergeFiles");
+
+    var result =
+        get("mergeResult");
+
+
+    if (
+        !input ||
+        input.files.length < 2
+    ) {
+
+        result.innerHTML =
+            "Please select at least 2 PDF files.";
+
+        return;
+    }
+
+
+    try {
+
+        var merged =
+            await PDFLib.PDFDocument
                 .create();
 
 
         for (
-            const file of input.files
+            var i = 0;
+            i < input.files.length;
+            i++
         ) {
 
-            const bytes =
-                await file.arrayBuffer();
+            result.innerHTML =
+                "Merging PDF " +
+                (i + 1) +
+                "...";
 
 
-            const pdf =
-                await PDFLib
-                    .PDFDocument
+            var bytes =
+                await input.files[i]
+                    .arrayBuffer();
+
+
+            var pdf =
+                await PDFLib.PDFDocument
                     .load(bytes);
 
 
-            const pages =
-                await mergedPdf.copyPages(
+            var pages =
+                await merged.copyPages(
                     pdf,
                     pdf.getPageIndices()
                 );
@@ -1481,7 +2825,7 @@ async function mergePDF() {
             pages.forEach(
                 function(page) {
 
-                    mergedPdf.addPage(page);
+                    merged.addPage(page);
 
                 }
             );
@@ -1489,8 +2833,8 @@ async function mergePDF() {
         }
 
 
-        const output =
-            await mergedPdf.save();
+        var output =
+            await merged.save();
 
 
         downloadBlob(
@@ -1510,7 +2854,7 @@ async function mergePDF() {
         console.error(error);
 
         result.innerHTML =
-            "❌ Unable to merge PDFs.";
+            "❌ Merge failed.";
 
     }
 
@@ -1519,143 +2863,91 @@ async function mergePDF() {
 
 /* =========================================================
    SPLIT PDF
-   ========================================================= */
+========================================================= */
 
 async function splitPDF() {
 
-    const fileInput =
-        document.getElementById(
-            "splitPdfFile"
-        );
+    var input =
+        get("splitFile");
+
+    var result =
+        get("splitResult");
+
+    var pageText =
+        get("splitPages").value;
 
 
-    const pagesInput =
-        document.getElementById(
-            "splitPages"
-        );
-
-
-    const result =
-        document.getElementById(
-            "splitPdfResult"
-        );
-
-
-    if (!fileInput.files.length) {
+    if (!input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
 
         return;
-
-    }
-
-
-    const pageText =
-        pagesInput.value.trim();
-
-
-    if (!pageText) {
-
-        result.innerHTML =
-            "Enter page numbers like 1,3,5.";
-
-        return;
-
-    }
-
-
-    if (
-        typeof PDFLib === "undefined"
-    ) {
-
-        result.innerHTML =
-            "PDF library load nahi hui.";
-
-        return;
-
     }
 
 
     try {
 
-        const bytes =
-            await fileInput.files[0]
-                .arrayBuffer();
+        var pages =
+            parsePageList(
+                pageText
+            );
 
 
-        const sourcePdf =
-            await PDFLib
-                .PDFDocument
-                .load(bytes);
+        var source =
+            await PDFLib.PDFDocument
+                .load(
+                    await input.files[0]
+                        .arrayBuffer()
+                );
 
 
-        const outputPdf =
-            await PDFLib
-                .PDFDocument
+        var output =
+            await PDFLib.PDFDocument
                 .create();
 
 
-        const pages =
-            pageText
-                .split(",")
-                .map(
-                    function(value) {
+        var indexes =
+            pages
+                .filter(
+                    function(n) {
 
                         return (
-                            parseInt(
-                                value.trim(),
-                                10
-                            ) - 1
+                            n >= 1 &&
+                            n <= source.getPageCount()
                         );
 
                     }
                 )
-                .filter(
-                    function(page) {
-
-                        return (
-                            page >= 0 &&
-                            page <
-                            sourcePdf.getPageCount()
-                        );
-
+                .map(
+                    function(n) {
+                        return n - 1;
                     }
                 );
 
 
-        if (!pages.length) {
-
-            result.innerHTML =
-                "No valid pages found.";
-
-            return;
-
-        }
-
-
-        const copiedPages =
-            await outputPdf.copyPages(
-                sourcePdf,
-                pages
+        var copied =
+            await output.copyPages(
+                source,
+                indexes
             );
 
 
-        copiedPages.forEach(
+        copied.forEach(
             function(page) {
 
-                outputPdf.addPage(page);
+                output.addPage(page);
 
             }
         );
 
 
-        const output =
-            await outputPdf.save();
+        var bytes =
+            await output.save();
 
 
         downloadBlob(
-            output,
+            bytes,
             "AB-Digital-Utility-Split.pdf",
             "application/pdf"
         );
@@ -1671,7 +2963,7 @@ async function splitPDF() {
         console.error(error);
 
         result.innerHTML =
-            "❌ Unable to split PDF.";
+            "❌ Split failed.";
 
     }
 
@@ -1679,160 +2971,83 @@ async function splitPDF() {
 
 
 /* =========================================================
-   REMOVE PDF PAGES
-   ========================================================= */
+   REMOVE PAGES
+========================================================= */
 
-async function removePdfPages() {
+async function removePDFPages() {
 
-    const fileInput =
-        document.getElementById(
-            "removePdfFile"
-        );
+    var input =
+        get("removeFile");
 
-
-    const pagesInput =
-        document.getElementById(
-            "removePages"
-        );
+    var result =
+        get("removeResult");
 
 
-    const result =
-        document.getElementById(
-            "removePdfResult"
-        );
-
-
-    if (!fileInput.files.length) {
+    if (!input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
 
         return;
-
-    }
-
-
-    const pageText =
-        pagesInput.value.trim();
-
-
-    if (!pageText) {
-
-        result.innerHTML =
-            "Enter pages like 2,4.";
-
-        return;
-
-    }
-
-
-    if (
-        typeof PDFLib === "undefined"
-    ) {
-
-        result.innerHTML =
-            "PDF library load nahi hui.";
-
-        return;
-
     }
 
 
     try {
 
-        const bytes =
-            await fileInput.files[0]
-                .arrayBuffer();
-
-
-        const sourcePdf =
-            await PDFLib
-                .PDFDocument
-                .load(bytes);
-
-
-        const outputPdf =
-            await PDFLib
-                .PDFDocument
-                .create();
-
-
-        const removePages =
-            new Set(
-                pageText
-                    .split(",")
-                    .map(
-                        function(value) {
-
-                            return parseInt(
-                                value.trim(),
-                                10
-                            );
-
-                        }
-                    )
-                    .filter(
-                        function(value) {
-
-                            return !isNaN(value);
-
-                        }
-                    )
+        var remove =
+            parsePageList(
+                get("removePagesInput")
+                    .value
             );
 
 
-        const keepPages = [];
+        var source =
+            await PDFLib.PDFDocument
+                .load(
+                    await input.files[0]
+                        .arrayBuffer()
+                );
+
+
+        var output =
+            await PDFLib.PDFDocument
+                .create();
 
 
         for (
-            let i = 0;
-            i < sourcePdf.getPageCount();
+            var i = 0;
+            i < source.getPageCount();
             i++
         ) {
 
             if (
-                !removePages.has(i + 1)
+                remove.indexOf(
+                    i + 1
+                ) === -1
             ) {
 
-                keepPages.push(i);
+                var copied =
+                    await output.copyPages(
+                        source,
+                        [i]
+                    );
+
+
+                output.addPage(
+                    copied[0]
+                );
 
             }
 
         }
 
 
-        if (!keepPages.length) {
-
-            result.innerHTML =
-                "You cannot remove all pages.";
-
-            return;
-
-        }
-
-
-        const pages =
-            await outputPdf.copyPages(
-                sourcePdf,
-                keepPages
-            );
-
-
-        pages.forEach(
-            function(page) {
-
-                outputPdf.addPage(page);
-
-            }
-        );
-
-
-        const output =
-            await outputPdf.save();
+        var bytes =
+            await output.save();
 
 
         downloadBlob(
-            output,
+            bytes,
             "AB-Digital-Utility-Pages-Removed.pdf",
             "application/pdf"
         );
@@ -1856,219 +3071,1476 @@ async function removePdfPages() {
 
 
 /* =========================================================
-   HTML TO PDF
-   ========================================================= */
+   EXTRACT
+========================================================= */
 
-function convertHtmlToPDF() {
+async function extractPDFPages() {
 
-    const html =
-        document.getElementById(
-            "htmlInput"
-        ).value.trim();
+    var input =
+        get("extractFile");
 
-
-    const result =
-        document.getElementById(
-            "htmlPdfResult"
-        );
+    var result =
+        get("extractResult");
 
 
-    if (!html) {
+    if (!input.files.length) {
 
         result.innerHTML =
-            "Please enter HTML.";
+            "Please select a PDF.";
 
         return;
-
     }
 
 
-    if (
-        typeof window.jspdf === "undefined"
-    ) {
+    try {
 
-        result.innerHTML =
-            "PDF library load nahi hui.";
-
-        return;
-
-    }
+        var pages =
+            parsePageList(
+                get("extractPagesInput")
+                    .value
+            );
 
 
-    const jsPDF =
-        window.jspdf.jsPDF;
+        var source =
+            await PDFLib.PDFDocument
+                .load(
+                    await input.files[0]
+                        .arrayBuffer()
+                );
 
 
-    const pdf =
-        new jsPDF();
+        var output =
+            await PDFLib.PDFDocument
+                .create();
 
 
-    const temp =
-        document.createElement(
-            "div"
+        var indexes =
+            pages
+                .filter(
+                    function(n) {
+
+                        return (
+                            n >= 1 &&
+                            n <= source.getPageCount()
+                        );
+
+                    }
+                )
+                .map(
+                    function(n) {
+                        return n - 1;
+                    }
+                );
+
+
+        var copied =
+            await output.copyPages(
+                source,
+                indexes
+            );
+
+
+        copied.forEach(
+            function(page) {
+
+                output.addPage(page);
+
+            }
         );
 
 
-    temp.innerHTML =
-        html;
+        var bytes =
+            await output.save();
 
 
-    document.body.appendChild(
-        temp
-    );
+        downloadBlob(
+            bytes,
+            "AB-Digital-Utility-Extracted-Pages.pdf",
+            "application/pdf"
+        );
 
 
-    pdf.html(
-        temp,
-        {
-            callback:
-                function(doc) {
+        result.innerHTML =
+            "<strong>✅ Pages extracted!</strong>";
 
-                    doc.save(
-                        "AB-Digital-Utility-HTML.pdf"
-                    );
+    }
 
+    catch (error) {
 
-                    temp.remove();
+        console.error(error);
 
+        result.innerHTML =
+            "❌ Extraction failed.";
 
-                    result.innerHTML =
-                        "<strong>✅ PDF created successfully!</strong>";
-
-                },
-
-            margin: 10,
-
-            autoPaging: "text",
-
-            x: 10,
-
-            y: 10,
-
-            width: 190
-
-        }
-    );
+    }
 
 }
 
 
 /* =========================================================
-   COMING SOON
-   ========================================================= */
+   ROTATE
+========================================================= */
 
-function showComingSoon(name) {
+async function rotatePDF() {
 
-    const results =
-        document.querySelectorAll(
-            ".result"
+    var input =
+        get("rotateFile");
+
+    var result =
+        get("rotateResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF.";
+
+        return;
+    }
+
+
+    try {
+
+        var angle =
+            Number(
+                get("rotateAngle")
+                    .value
+            );
+
+
+        var pdf =
+            await PDFLib.PDFDocument
+                .load(
+                    await input.files[0]
+                        .arrayBuffer()
+                );
+
+
+        pdf.getPages()
+            .forEach(
+                function(page) {
+
+                    page.setRotation(
+                        PDFLib.degrees(
+                            angle
+                        )
+                    );
+
+                }
+            );
+
+
+        var bytes =
+            await pdf.save();
+
+
+        downloadBlob(
+            bytes,
+            "AB-Digital-Utility-Rotated.pdf",
+            "application/pdf"
         );
 
 
-    const result =
-        results[results.length - 1];
+        result.innerHTML =
+            "<strong>✅ PDF rotated successfully!</strong>";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ Rotation failed.";
+
+    }
+
+}
 
 
-    if (result) {
+/* =========================================================
+   REORDER
+========================================================= */
+
+async function reorderPDF() {
+
+    var input =
+        get("reorderFile");
+
+    var result =
+        get("reorderResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF.";
+
+        return;
+    }
+
+
+    try {
+
+        var order =
+            parsePageList(
+                get("reorderPagesInput")
+                    .value
+            );
+
+
+        var source =
+            await PDFLib.PDFDocument
+                .load(
+                    await input.files[0]
+                        .arrayBuffer()
+                );
+
+
+        var output =
+            await PDFLib.PDFDocument
+                .create();
+
+
+        var indexes =
+            order
+                .filter(
+                    function(n) {
+
+                        return (
+                            n >= 1 &&
+                            n <= source.getPageCount()
+                        );
+
+                    }
+                )
+                .map(
+                    function(n) {
+                        return n - 1;
+                    }
+                );
+
+
+        var pages =
+            await output.copyPages(
+                source,
+                indexes
+            );
+
+
+        pages.forEach(
+            function(page) {
+
+                output.addPage(page);
+
+            }
+        );
+
+
+        var bytes =
+            await output.save();
+
+
+        downloadBlob(
+            bytes,
+            "AB-Digital-Utility-Reordered.pdf",
+            "application/pdf"
+        );
+
+
+        result.innerHTML =
+            "<strong>✅ Pages reordered!</strong>";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ Reorder failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   DUPLICATE
+========================================================= */
+
+async function duplicatePDF() {
+
+    var input =
+        get("duplicateFile");
+
+    var result =
+        get("duplicateResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF.";
+
+        return;
+    }
+
+
+    try {
+
+        var order =
+            parsePageList(
+                get("duplicatePagesInput")
+                    .value
+            );
+
+
+        var source =
+            await PDFLib.PDFDocument
+                .load(
+                    await input.files[0]
+                        .arrayBuffer()
+                );
+
+
+        var output =
+            await PDFLib.PDFDocument
+                .create();
+
+
+        var indexes =
+            order
+                .filter(
+                    function(n) {
+
+                        return (
+                            n >= 1 &&
+                            n <= source.getPageCount()
+                        );
+
+                    }
+                )
+                .map(
+                    function(n) {
+                        return n - 1;
+                    }
+                );
+
+
+        var pages =
+            await output.copyPages(
+                source,
+                indexes
+            );
+
+
+        pages.forEach(
+            function(page) {
+
+                output.addPage(page);
+
+            }
+        );
+
+
+        var bytes =
+            await output.save();
+
+
+        downloadBlob(
+            bytes,
+            "AB-Digital-Utility-Duplicated.pdf",
+            "application/pdf"
+        );
+
+
+        result.innerHTML =
+            "<strong>✅ New PDF created!</strong>";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ Duplicate failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   PAGE NUMBERS
+========================================================= */
+
+async function addPageNumbers() {
+
+    var input =
+        get("pageNumberFile");
+
+    var result =
+        get("pageNumberResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF.";
+
+        return;
+    }
+
+
+    try {
+
+        var pdf =
+            await PDFLib.PDFDocument
+                .load(
+                    await input.files[0]
+                        .arrayBuffer()
+                );
+
+
+        var position =
+            get("pageNumberPosition")
+                .value;
+
+
+        pdf.getPages()
+            .forEach(
+                function(page, index) {
+
+                    var size =
+                        page.getSize();
+
+
+                    var x =
+                        size.width / 2;
+
+
+                    if (
+                        position ===
+                        "bottom-left"
+                    ) {
+
+                        x = 25;
+
+                    }
+
+                    if (
+                        position ===
+                        "bottom-right"
+                    ) {
+
+                        x =
+                            size.width - 40;
+
+                    }
+
+                    if (
+                        position ===
+                        "top-center"
+                    ) {
+
+                        page.drawText(
+                            String(index + 1),
+                            {
+                                x:
+                                    x - 5,
+
+                                y:
+                                    size.height - 25,
+
+                                size:
+                                    10
+                            }
+                        );
+
+                    }
+
+                    else {
+
+                        page.drawText(
+                            String(index + 1),
+                            {
+                                x:
+                                    x - 5,
+
+                                y:
+                                    15,
+
+                                size:
+                                    10
+                            }
+                        );
+
+                    }
+
+                }
+            );
+
+
+        var bytes =
+            await pdf.save();
+
+
+        downloadBlob(
+            bytes,
+            "AB-Digital-Utility-Page-Numbers.pdf",
+            "application/pdf"
+        );
+
+
+        result.innerHTML =
+            "<strong>✅ Page numbers added!</strong>";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ Unable to add page numbers.";
+
+    }
+
+}
+
+
+/* =========================================================
+   WATERMARK
+========================================================= */
+
+async function watermarkPDF() {
+
+    var input =
+        get("watermarkFile");
+
+    var result =
+        get("watermarkResult");
+
+    var text =
+        get("watermarkText")
+            .value
+            .trim();
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF.";
+
+        return;
+    }
+
+
+    if (!text) {
+
+        result.innerHTML =
+            "Please enter watermark text.";
+
+        return;
+    }
+
+
+    try {
+
+        var pdf =
+            await PDFLib.PDFDocument
+                .load(
+                    await input.files[0]
+                        .arrayBuffer()
+                );
+
+
+        pdf.getPages()
+            .forEach(
+                function(page) {
+
+                    var size =
+                        page.getSize();
+
+
+                    page.drawText(
+                        text,
+                        {
+                            x:
+                                size.width / 2 -
+                                60,
+
+                            y:
+                                size.height / 2,
+
+                            size:
+                                35,
+
+                            opacity:
+                                0.25,
+
+                            rotate:
+                                PDFLib.degrees(
+                                    45
+                                )
+                        }
+                    );
+
+                }
+            );
+
+
+        var bytes =
+            await pdf.save();
+
+
+        downloadBlob(
+            bytes,
+            "AB-Digital-Utility-Watermarked.pdf",
+            "application/pdf"
+        );
+
+
+        result.innerHTML =
+            "<strong>✅ Watermark added!</strong>";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ Watermark failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   COMPRESS PDF
+========================================================= */
+
+async function compressPDF() {
+
+    var input =
+        get("compressPdfFile");
+
+    var result =
+        get("compressPdfResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF.";
+
+        return;
+    }
+
+
+    try {
+
+        var original =
+            input.files[0];
+
+
+        var pdf =
+            await PDFLib.PDFDocument
+                .load(
+                    await original
+                        .arrayBuffer()
+                );
+
+
+        var bytes =
+            await pdf.save({
+                useObjectStreams:
+                    true
+            });
+
+
+        var oldSize =
+            (original.size / 1024)
+                .toFixed(1);
+
+
+        var newSize =
+            (bytes.length / 1024)
+                .toFixed(1);
+
+
+        downloadBlob(
+            bytes,
+            "AB-Digital-Utility-Compressed.pdf",
+            "application/pdf"
+        );
+
 
         result.innerHTML = `
 
             <strong>
-                🚧 ${name}
+                ✅ PDF processed!
             </strong>
 
             <br><br>
 
-            This converter will be added in
-            the next version.
+            Original:
+            ${oldSize} KB
+
+            <br>
+
+            Output:
+            ${newSize} KB
+
+            <br><br>
+
+            Note: PDF-lib can optimize PDF structure,
+            but it cannot guarantee a smaller file for
+            every PDF, especially image-heavy files.
 
         `;
 
     }
 
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ Compression failed.";
+
+    }
+
 }
 
 
 /* =========================================================
-   DOWNLOAD BLOB
-   ========================================================= */
+   OCR PDF
+========================================================= */
 
-function downloadBlob(
-    data,
-    filename,
-    type
-) {
+async function ocrPDF() {
 
-    const blob =
-        new Blob(
-            [data],
-            {
-                type: type
+    var input =
+        get("ocrFile");
+
+    var result =
+        get("ocrResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF or image.";
+
+        return;
+    }
+
+
+    if (
+        typeof Tesseract ===
+        "undefined"
+    ) {
+
+        result.innerHTML =
+            "OCR library not loaded.";
+
+        return;
+    }
+
+
+    try {
+
+        result.innerHTML =
+            "Starting OCR...";
+
+
+        var file =
+            input.files[0];
+
+
+        if (
+            file.type.startsWith(
+                "image/"
+            )
+        ) {
+
+            var output =
+                await Tesseract.recognize(
+                    file,
+                    "eng",
+                    {
+                        logger:
+                            function(info) {
+
+                                if (
+                                    info.status
+                                ) {
+
+                                    result.innerHTML =
+                                        info.status +
+                                        "<br>" +
+                                        Math.round(
+                                            (
+                                                info.progress ||
+                                                0
+                                            ) *
+                                            100
+                                        ) +
+                                        "%";
+
+                                }
+
+                            }
+                    }
+                );
+
+
+            result.innerHTML = `
+
+                <strong>
+                    ✅ OCR Complete
+                </strong>
+
+                <br><br>
+
+                <textarea
+                    rows="15"
+                    style="width:100%;">
+
+${escapeHTML(
+    output.data.text
+)}
+
+                </textarea>
+
+            `;
+
+            return;
+
+        }
+
+
+        if (
+            file.type ===
+            "application/pdf"
+        ) {
+
+            var buffer =
+                await file.arrayBuffer();
+
+
+            var pdf =
+                await pdfjsLib
+                    .getDocument({
+                        data:
+                            buffer
+                    })
+                    .promise;
+
+
+            var allText = "";
+
+
+            for (
+                var i = 1;
+                i <= pdf.numPages;
+                i++
+            ) {
+
+                result.innerHTML =
+                    "Rendering page " +
+                    i +
+                    " of " +
+                    pdf.numPages +
+                    "...";
+
+
+                var page =
+                    await pdf.getPage(i);
+
+
+                var viewport =
+                    page.getViewport({
+                        scale: 1.5
+                    });
+
+
+                var canvas =
+                    document.createElement(
+                        "canvas"
+                    );
+
+
+                canvas.width =
+                    viewport.width;
+
+                canvas.height =
+                    viewport.height;
+
+
+                await page.render({
+
+                    canvasContext:
+                        canvas.getContext(
+                            "2d"
+                        ),
+
+                    viewport:
+                        viewport
+
+                }).promise;
+
+
+                var output =
+                    await Tesseract.recognize(
+                        canvas,
+                        "eng"
+                    );
+
+
+                allText +=
+                    "\n\n--- PAGE " +
+                    i +
+                    " ---\n\n" +
+                    output.data.text;
+
             }
+
+
+            result.innerHTML = `
+
+                <strong>
+                    ✅ OCR Complete
+                </strong>
+
+                <br><br>
+
+                <textarea
+                    rows="20"
+                    style="width:100%;">
+
+${escapeHTML(allText)}
+
+                </textarea>
+
+            `;
+
+            return;
+
+        }
+
+
+        result.innerHTML =
+            "Unsupported file type.";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ OCR failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   PROTECT PDF
+========================================================= */
+
+async function protectPDF() {
+
+    var input =
+        get("protectFile");
+
+    var result =
+        get("protectResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF.";
+
+        return;
+    }
+
+
+    var password =
+        get("protectPassword")
+            .value;
+
+
+    if (!password) {
+
+        result.innerHTML =
+            "Please enter a password.";
+
+        return;
+    }
+
+
+    result.innerHTML = `
+
+        <strong>
+            Browser-only password encryption is not
+            supported by the current PDF library.
+        </strong>
+
+        <br><br>
+
+        The PDF has NOT been falsely marked as protected.
+
+        <br><br>
+
+        We can add true encryption after integrating
+        a server-side PDF encryption engine.
+
+    `;
+
+}
+
+
+/* =========================================================
+   UNLOCK PDF
+========================================================= */
+
+async function unlockPDF() {
+
+    var input =
+        get("unlockFile");
+
+    var result =
+        get("unlockResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF.";
+
+        return;
+    }
+
+
+    result.innerHTML = `
+
+        <strong>
+            Password-protected PDFs require the correct
+            password and a PDF encryption engine.
+        </strong>
+
+        <br><br>
+
+        This browser-only version will not bypass
+        or crack PDF passwords.
+
+    `;
+
+}
+
+
+/* =========================================================
+   PDF PREVIEW
+========================================================= */
+
+async function previewPDF() {
+
+    var input =
+        get("previewFile");
+
+    var result =
+        get("previewResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select a PDF.";
+
+        return;
+    }
+
+
+    try {
+
+        var buffer =
+            await input.files[0]
+                .arrayBuffer();
+
+
+        var pdf =
+            await pdfjsLib
+                .getDocument({
+                    data:
+                        buffer
+                })
+                .promise;
+
+
+        var html = "";
+
+
+        for (
+            var i = 1;
+            i <= pdf.numPages;
+            i++
+        ) {
+
+            var page =
+                await pdf.getPage(i);
+
+
+            var viewport =
+                page.getViewport({
+                    scale:
+                        0.7
+                });
+
+
+            var canvas =
+                document.createElement(
+                    "canvas"
+                );
+
+
+            canvas.width =
+                viewport.width;
+
+            canvas.height =
+                viewport.height;
+
+
+            await page.render({
+
+                canvasContext:
+                    canvas.getContext(
+                        "2d"
+                    ),
+
+                viewport:
+                    viewport
+
+            }).promise;
+
+
+            html += `
+
+                <div
+                class="pdf-preview-page">
+
+                    <h4>
+                        Page ${i}
+                    </h4>
+
+                    <img
+                    src="${canvas.toDataURL(
+                        "image/jpeg"
+                    )}"
+                    class="pdf-preview-image">
+
+                </div>
+
+            `;
+
+        }
+
+
+        result.innerHTML =
+            html;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+            "❌ Preview failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   IMAGE COMPRESSOR
+========================================================= */
+
+function compressImage() {
+
+    var input =
+        get("compressFile");
+
+    var result =
+        get("compressResult");
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select an image.";
+
+        return;
+    }
+
+
+    var quality =
+        Number(
+            get("quality").value
         );
 
 
-    const url =
-        URL.createObjectURL(
-            blob
-        );
+    var reader =
+        new FileReader();
 
 
-    const link =
-        document.createElement(
-            "a"
-        );
+    reader.onload =
+        function(event) {
+
+            var image =
+                new Image();
 
 
-    link.href =
-        url;
+            image.onload =
+                function() {
+
+                    var canvas =
+                        document.createElement(
+                            "canvas"
+                        );
 
 
-    link.download =
-        filename;
+                    canvas.width =
+                        image.width;
+
+                    canvas.height =
+                        image.height;
 
 
-    document.body.appendChild(
-        link
-    );
+                    canvas.getContext(
+                        "2d"
+                    ).drawImage(
+                        image,
+                        0,
+                        0
+                    );
 
 
-    link.click();
+                    canvas.toBlob(
+
+                        function(blob) {
+
+                            var url =
+                                URL.createObjectURL(
+                                    blob
+                                );
 
 
-    link.remove();
+                            result.innerHTML = `
+
+                                Original:
+                                ${(input.files[0].size / 1024).toFixed(1)}
+                                KB
+
+                                <br>
+
+                                Compressed:
+                                ${(blob.size / 1024).toFixed(1)}
+                                KB
+
+                                <br><br>
+
+                                <a
+                                class="download"
+                                href="${url}"
+                                download="AB-Digital-Utility-compressed.jpg">
+
+                                Download Compressed Image
+
+                                </a>
+
+                            `;
+
+                        },
+
+                        "image/jpeg",
+
+                        quality
+
+                    );
+
+                };
 
 
-    setTimeout(
-        function() {
+            image.src =
+                event.target.result;
 
-            URL.revokeObjectURL(
-                url
-            );
+        };
 
-        },
-        1000
+
+    reader.readAsDataURL(
+        input.files[0]
     );
 
 }
 
 
 /* =========================================================
-   QR CODE
-   ========================================================= */
+   IMAGE RESIZER
+========================================================= */
+
+function resizeImage() {
+
+    var input =
+        get("resizeFile");
+
+    var result =
+        get("resizeResult");
+
+
+    var width =
+        Number(
+            get("resizeWidth")
+                .value
+        );
+
+
+    var height =
+        Number(
+            get("resizeHeight")
+                .value
+        );
+
+
+    if (!input.files.length) {
+
+        result.innerHTML =
+            "Please select an image.";
+
+        return;
+    }
+
+
+    if (!width || !height) {
+
+        result.innerHTML =
+            "Please enter width and height.";
+
+        return;
+    }
+
+
+    var reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(event) {
+
+            var image =
+                new Image();
+
+
+            image.onload =
+                function() {
+
+                    var canvas =
+                        document.createElement(
+                            "canvas"
+                        );
+
+
+                    canvas.width =
+                        width;
+
+                    canvas.height =
+                        height;
+
+
+                    canvas.getContext(
+                        "2d"
+                    ).drawImage(
+                        image,
+                        0,
+                        0,
+                        width,
+                        height
+                    );
+
+
+                    canvas.toBlob(
+                        function(blob) {
+
+                            var url =
+                                URL.createObjectURL(
+                                    blob
+                                );
+
+
+                            result.innerHTML = `
+
+                                <strong>
+                                    ✅ Image resized!
+                                </strong>
+
+                                <br><br>
+
+                                <a
+                                class="download"
+                                href="${url}"
+                                download="AB-Digital-Utility-resized.jpg">
+
+                                Download Resized Image
+
+                                </a>
+
+                            `;
+
+                        },
+
+                        "image/jpeg",
+
+                        0.9
+
+                    );
+
+                };
+
+
+            image.src =
+                event.target.result;
+
+        };
+
+
+    reader.readAsDataURL(
+        input.files[0]
+    );
+
+}
+
+
+/* =========================================================
+   QR
+========================================================= */
 
 function generateQR() {
 
-    const text =
-        document.getElementById(
-            "qrText"
-        ).value.trim();
+    var text =
+        get("qrText")
+            .value
+            .trim();
 
-
-    const result =
-        document.getElementById(
-            "qrResult"
-        );
+    var result =
+        get("qrResult");
 
 
     if (!text) {
@@ -2077,32 +4549,35 @@ function generateQR() {
             "Please enter text or URL.";
 
         return;
-
     }
 
 
-    result.innerHTML =
-        "";
+    result.innerHTML = "";
 
 
     if (
-        typeof QRCode === "undefined"
+        typeof QRCode ===
+        "undefined"
     ) {
 
         result.innerHTML =
-            "QR library load nahi hui.";
+            "QR library not loaded.";
 
         return;
-
     }
 
 
     new QRCode(
         result,
         {
-            text: text,
-            width: 220,
-            height: 220
+            text:
+                text,
+
+            width:
+                220,
+
+            height:
+                220
         }
     );
 
@@ -2111,30 +4586,26 @@ function generateQR() {
 
 /* =========================================================
    GST
-   ========================================================= */
+========================================================= */
 
 function calculateGST() {
 
-    const amount =
+    var amount =
         Number(
-            document.getElementById(
-                "gstAmount"
-            ).value
+            get("gstAmount")
+                .value
         );
 
 
-    const rate =
+    var rate =
         Number(
-            document.getElementById(
-                "gstRate"
-            ).value
+            get("gstRate")
+                .value
         );
 
 
-    const result =
-        document.getElementById(
-            "gstResult"
-        );
+    var result =
+        get("gstResult");
 
 
     if (
@@ -2143,19 +4614,21 @@ function calculateGST() {
     ) {
 
         result.innerHTML =
-            "Please enter valid amount and GST rate.";
+            "Please enter valid values.";
 
         return;
-
     }
 
 
-    const gst =
-        amount * rate / 100;
+    var gst =
+        amount *
+        rate /
+        100;
 
 
-    const total =
-        amount + gst;
+    var total =
+        amount +
+        gst;
 
 
     result.innerHTML = `
@@ -2179,30 +4652,26 @@ function calculateGST() {
 
 /* =========================================================
    PERCENTAGE
-   ========================================================= */
+========================================================= */
 
 function calculatePercentage() {
 
-    const value =
+    var value =
         Number(
-            document.getElementById(
-                "percentageValue"
-            ).value
+            get("percentageValue")
+                .value
         );
 
 
-    const total =
+    var total =
         Number(
-            document.getElementById(
-                "percentageTotal"
-            ).value
+            get("percentageTotal")
+                .value
         );
 
 
-    const result =
-        document.getElementById(
-            "percentageResult"
-        );
+    var result =
+        get("percentageResult");
 
 
     if (total <= 0) {
@@ -2211,12 +4680,13 @@ function calculatePercentage() {
             "Please enter a valid total.";
 
         return;
-
     }
 
 
-    const percentage =
-        (value / total) * 100;
+    var percentage =
+        value /
+        total *
+        100;
 
 
     result.innerHTML = `
@@ -2231,314 +4701,18 @@ function calculatePercentage() {
 
 
 /* =========================================================
-   IMAGE COMPRESSOR
-   ========================================================= */
-
-function compressImage() {
-
-    const file =
-        document.getElementById(
-            "compressFile"
-        ).files[0];
-
-
-    const quality =
-        Number(
-            document.getElementById(
-                "quality"
-            ).value
-        );
-
-
-    const result =
-        document.getElementById(
-            "compressResult"
-        );
-
-
-    if (!file) {
-
-        result.innerHTML =
-            "Please select an image.";
-
-        return;
-
-    }
-
-
-    const reader =
-        new FileReader();
-
-
-    reader.onload =
-        function(event) {
-
-            const image =
-                new Image();
-
-
-            image.onload =
-                function() {
-
-                    const canvas =
-                        document.createElement(
-                            "canvas"
-                        );
-
-
-                    canvas.width =
-                        image.width;
-
-
-                    canvas.height =
-                        image.height;
-
-
-                    const ctx =
-                        canvas.getContext(
-                            "2d"
-                        );
-
-
-                    ctx.drawImage(
-                        image,
-                        0,
-                        0
-                    );
-
-
-                    canvas.toBlob(
-                        function(blob) {
-
-                            const url =
-                                URL.createObjectURL(
-                                    blob
-                                );
-
-
-                            const originalSize =
-                                (
-                                    file.size / 1024
-                                ).toFixed(1);
-
-
-                            const newSize =
-                                (
-                                    blob.size / 1024
-                                ).toFixed(1);
-
-
-                            result.innerHTML = `
-
-                                Original:
-                                <strong>
-                                    ${originalSize} KB
-                                </strong>
-
-                                <br>
-
-                                Compressed:
-                                <strong>
-                                    ${newSize} KB
-                                </strong>
-
-                                <br><br>
-
-                                <a
-                                    class="download"
-                                    href="${url}"
-                                    download="AB-Digital-Utility-compressed.jpg">
-
-                                    Download Image
-
-                                </a>
-
-                            `;
-
-                        },
-                        "image/jpeg",
-                        quality
-                    );
-
-                };
-
-
-            image.src =
-                event.target.result;
-
-        };
-
-
-    reader.readAsDataURL(
-        file
-    );
-
-}
-
-
-/* =========================================================
-   IMAGE RESIZER
-   ========================================================= */
-
-function resizeImage() {
-
-    const file =
-        document.getElementById(
-            "resizeFile"
-        ).files[0];
-
-
-    const width =
-        Number(
-            document.getElementById(
-                "resizeWidth"
-            ).value
-        );
-
-
-    const height =
-        Number(
-            document.getElementById(
-                "resizeHeight"
-            ).value
-        );
-
-
-    const result =
-        document.getElementById(
-            "resizeResult"
-        );
-
-
-    if (!file) {
-
-        result.innerHTML =
-            "Please select an image.";
-
-        return;
-
-    }
-
-
-    if (
-        width <= 0 ||
-        height <= 0
-    ) {
-
-        result.innerHTML =
-            "Please enter valid dimensions.";
-
-        return;
-
-    }
-
-
-    const reader =
-        new FileReader();
-
-
-    reader.onload =
-        function(event) {
-
-            const image =
-                new Image();
-
-
-            image.onload =
-                function() {
-
-                    const canvas =
-                        document.createElement(
-                            "canvas"
-                        );
-
-
-                    canvas.width =
-                        width;
-
-
-                    canvas.height =
-                        height;
-
-
-                    const ctx =
-                        canvas.getContext(
-                            "2d"
-                        );
-
-
-                    ctx.drawImage(
-                        image,
-                        0,
-                        0,
-                        width,
-                        height
-                    );
-
-
-                    canvas.toBlob(
-                        function(blob) {
-
-                            const url =
-                                URL.createObjectURL(
-                                    blob
-                                );
-
-
-                            result.innerHTML = `
-
-                                Image resized successfully.
-
-                                <br><br>
-
-                                <a
-                                    class="download"
-                                    href="${url}"
-                                    download="AB-Digital-Utility-resized.jpg">
-
-                                    Download Resized Image
-
-                                </a>
-
-                            `;
-
-                        },
-                        "image/jpeg",
-                        0.9
-                    );
-
-                };
-
-
-            image.src =
-                event.target.result;
-
-        };
-
-
-    reader.readAsDataURL(
-        file
-    );
-
-}
-
-
-/* =========================================================
-   AGE CALCULATOR
-   ========================================================= */
+   AGE
+========================================================= */
 
 function calculateAge() {
 
-    const value =
-        document.getElementById(
-            "birthDate"
-        ).value;
+    var value =
+        get("birthDate")
+            .value;
 
 
-    const result =
-        document.getElementById(
-            "ageResult"
-        );
+    var result =
+        get("ageResult");
 
 
     if (!value) {
@@ -2547,43 +4721,38 @@ function calculateAge() {
             "Please select your date of birth.";
 
         return;
-
     }
 
 
-    const birth =
+    var birth =
         new Date(value);
 
 
-    const today =
+    var today =
         new Date();
 
 
     if (birth > today) {
 
         result.innerHTML =
-            "Date of birth cannot be in the future.";
+            "Date cannot be in the future.";
 
         return;
-
     }
 
 
-    let years =
-        today.getFullYear()
-        -
+    var years =
+        today.getFullYear() -
         birth.getFullYear();
 
 
-    let months =
-        today.getMonth()
-        -
+    var months =
+        today.getMonth() -
         birth.getMonth();
 
 
-    let days =
-        today.getDate()
-        -
+    var days =
+        today.getDate() -
         birth.getDate();
 
 
@@ -2592,7 +4761,7 @@ function calculateAge() {
         months--;
 
 
-        const previousMonth =
+        var previous =
             new Date(
                 today.getFullYear(),
                 today.getMonth(),
@@ -2601,7 +4770,7 @@ function calculateAge() {
 
 
         days +=
-            previousMonth.getDate();
+            previous.getDate();
 
     }
 
@@ -2617,12 +4786,14 @@ function calculateAge() {
 
     result.innerHTML = `
 
-        Your age is:
+        Your age:
 
         <strong>
+
             ${years} years,
             ${months} months,
             ${days} days
+
         </strong>
 
     `;
@@ -2632,38 +4803,33 @@ function calculateAge() {
 
 /* =========================================================
    EMI
-   ========================================================= */
+========================================================= */
 
 function calculateEMI() {
 
-    const principal =
+    var principal =
         Number(
-            document.getElementById(
-                "loanAmount"
-            ).value
+            get("loanAmount")
+                .value
         );
 
 
-    const annualRate =
+    var annualRate =
         Number(
-            document.getElementById(
-                "interestRate"
-            ).value
+            get("interestRate")
+                .value
         );
 
 
-    const years =
+    var years =
         Number(
-            document.getElementById(
-                "loanYears"
-            ).value
+            get("loanYears")
+                .value
         );
 
 
-    const result =
-        document.getElementById(
-            "emiResult"
-        );
+    var result =
+        get("emiResult");
 
 
     if (
@@ -2676,25 +4842,29 @@ function calculateEMI() {
             "Please enter valid loan details.";
 
         return;
-
     }
 
 
-    const months =
+    var months =
         years * 12;
 
 
-    const monthlyRate =
-        annualRate / 12 / 100;
+    var monthlyRate =
+        annualRate /
+        12 /
+        100;
 
 
-    let emi;
+    var emi;
 
 
-    if (monthlyRate === 0) {
+    if (
+        monthlyRate === 0
+    ) {
 
         emi =
-            principal / months;
+            principal /
+            months;
 
     }
 
@@ -2718,12 +4888,14 @@ function calculateEMI() {
     }
 
 
-    const totalPayment =
-        emi * months;
+    var total =
+        emi *
+        months;
 
 
-    const totalInterest =
-        totalPayment - principal;
+    var interest =
+        total -
+        principal;
 
 
     result.innerHTML = `
@@ -2736,12 +4908,12 @@ function calculateEMI() {
         <br>
 
         Total Interest:
-        ₹${totalInterest.toFixed(2)}
+        ₹${interest.toFixed(2)}
 
         <br>
 
         Total Payment:
-        ₹${totalPayment.toFixed(2)}
+        ₹${total.toFixed(2)}
 
     `;
 
@@ -2750,30 +4922,26 @@ function calculateEMI() {
 
 /* =========================================================
    QUICK GST
-   ========================================================= */
+========================================================= */
 
 function quickGST() {
 
-    const amount =
+    var amount =
         Number(
-            document.getElementById(
-                "quickGSTAmount"
-            ).value
+            get("quickGSTAmount")
+                .value
         );
 
 
-    const rate =
+    var rate =
         Number(
-            document.getElementById(
-                "quickGSTRate"
-            ).value
+            get("quickGSTRate")
+                .value
         );
 
 
-    const result =
-        document.getElementById(
-            "quickGSTResult"
-        );
+    var result =
+        get("quickGSTResult");
 
 
     if (
@@ -2785,27 +4953,28 @@ function quickGST() {
             "Enter valid values.";
 
         return;
-
     }
 
 
-    const gst =
-        amount * rate / 100;
-
-
-    const total =
-        amount + gst;
+    var gst =
+        amount *
+        rate /
+        100;
 
 
     result.innerHTML = `
 
-        GST: ₹${gst.toFixed(2)}
+        GST:
+        ₹${gst.toFixed(2)}
 
         <br>
 
         Total:
         <strong>
-            ₹${total.toFixed(2)}
+            ₹${(
+                amount +
+                gst
+            ).toFixed(2)}
         </strong>
 
     `;
@@ -2815,30 +4984,26 @@ function quickGST() {
 
 /* =========================================================
    QUICK PERCENTAGE
-   ========================================================= */
+========================================================= */
 
 function quickPercentage() {
 
-    const value =
+    var value =
         Number(
-            document.getElementById(
-                "quickPercentValue"
-            ).value
+            get("quickPercentValue")
+                .value
         );
 
 
-    const total =
+    var total =
         Number(
-            document.getElementById(
-                "quickPercentTotal"
-            ).value
+            get("quickPercentTotal")
+                .value
         );
 
 
-    const result =
-        document.getElementById(
-            "quickPercentResult"
-        );
+    var result =
+        get("quickPercentResult");
 
 
     if (total <= 0) {
@@ -2847,20 +5012,288 @@ function quickPercentage() {
             "Enter valid values.";
 
         return;
-
     }
 
 
-    const percentage =
-        value / total * 100;
-
-
-    result.innerHTML = `
-
-        <strong>
-            ${percentage.toFixed(2)}%
-        </strong>
-
-    `;
+    result.innerHTML =
+        "<strong>" +
+        (
+            value /
+            total *
+            100
+        ).toFixed(2) +
+        "%</strong>";
 
 }
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        var search =
+            get("searchInput");
+
+
+        if (!search) {
+            return;
+        }
+
+
+        search.addEventListener(
+            "input",
+            function() {
+
+                var query =
+                    search.value
+                        .toLowerCase()
+                        .trim();
+
+
+                var cards =
+                    document.querySelectorAll(
+                        ".tool-card"
+                    );
+
+
+                cards.forEach(
+                    function(card) {
+
+                        var text =
+                            (
+                                card.innerText +
+                                " " +
+                                (
+                                    card.dataset.search ||
+                                    ""
+                                )
+                            )
+                            .toLowerCase();
+
+
+                        card.style.display =
+                            !query ||
+                            text.includes(query)
+                                ? ""
+                                : "none";
+
+                    }
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   UTILITY FUNCTIONS
+========================================================= */
+
+function downloadBlob(
+    bytes,
+    filename,
+    type
+) {
+
+    var blob =
+        new Blob(
+            [bytes],
+            {
+                type:
+                    type
+            }
+        );
+
+
+    var url =
+        URL.createObjectURL(
+            blob
+        );
+
+
+    var a =
+        document.createElement(
+            "a"
+        );
+
+
+    a.href =
+        url;
+
+    a.download =
+        filename;
+
+
+    document.body.appendChild(
+        a
+    );
+
+
+    a.click();
+
+
+    document.body.removeChild(
+        a
+    );
+
+
+    setTimeout(
+        function() {
+
+            URL.revokeObjectURL(
+                url
+            );
+
+        },
+        1000
+    );
+
+}
+
+
+/* =========================================================
+   PAGE LIST PARSER
+========================================================= */
+
+function parsePageList(value) {
+
+    if (!value) {
+        return [];
+    }
+
+
+    var result = [];
+
+
+    value
+        .split(",")
+        .forEach(
+            function(part) {
+
+                part =
+                    part.trim();
+
+
+                if (
+                    part.includes("-")
+                ) {
+
+                    var range =
+                        part.split("-");
+
+
+                    var start =
+                        parseInt(
+                            range[0]
+                        );
+
+
+                    var end =
+                        parseInt(
+                            range[1]
+                        );
+
+
+                    if (
+                        !isNaN(start) &&
+                        !isNaN(end)
+                    ) {
+
+                        var step =
+                            start <= end
+                                ? 1
+                                : -1;
+
+
+                        for (
+                            var i =
+                                start;
+                            step > 0
+                                ? i <= end
+                                : i >= end;
+                            i += step
+                        ) {
+
+                            result.push(
+                                i
+                            );
+
+                        }
+
+                    }
+
+                }
+
+                else {
+
+                    var number =
+                        parseInt(
+                            part
+                        );
+
+
+                    if (
+                        !isNaN(number)
+                    ) {
+
+                        result.push(
+                            number
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+
+    return result;
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   STARTUP
+========================================================= */
+
+console.log(
+    "AB Digital Utility loaded successfully."
+);
