@@ -1723,35 +1723,40 @@ async function pdfToWord() {
     var result = get("pdfToWordResult");
 
     if (!input || !input.files.length) {
-
-        result.innerHTML =
-            "Please select a PDF.";
-
-        return;
-    }
-
-    if (typeof pdfjsLib === "undefined") {
-
-        result.innerHTML =
-            "PDF library not loaded.";
-
-        return;
-    }
-
-    if (typeof docx === "undefined") {
-
-        result.innerHTML =
-            "DOCX library not loaded. Please refresh the page.";
-
+        result.innerHTML = "Please select a PDF.";
         return;
     }
 
     try {
 
-        result.innerHTML =
-            "Reading PDF... Please wait.";
+        result.innerHTML = "Checking PDF → Word libraries...";
+
+        if (typeof pdfjsLib === "undefined") {
+            result.innerHTML = "❌ PDF library not loaded.";
+            return;
+        }
+
+        if (
+            typeof window.docx === "undefined" ||
+            !window.docx.Document ||
+            !window.docx.Packer
+        ) {
+            result.innerHTML =
+                "❌ DOCX library not loaded.<br><br>" +
+                "Please refresh the page and try again.";
+            return;
+        }
+
+        if (typeof saveAs === "undefined") {
+            result.innerHTML =
+                "❌ FileSaver library not loaded.";
+            return;
+        }
 
         var file = input.files[0];
+
+        result.innerHTML =
+            "Reading PDF...";
 
         var buffer =
             await file.arrayBuffer();
@@ -1766,46 +1771,45 @@ async function pdfToWord() {
         var paragraphs = [];
 
         for (
-            var pageNumber = 1;
-            pageNumber <= pdf.numPages;
-            pageNumber++
+            var pageNo = 1;
+            pageNo <= pdf.numPages;
+            pageNo++
         ) {
 
             result.innerHTML =
                 "Processing page " +
-                pageNumber +
+                pageNo +
                 " of " +
                 pdf.numPages +
                 "...";
 
             var page =
-                await pdf.getPage(pageNumber);
+                await pdf.getPage(pageNo);
 
             var textContent =
                 await page.getTextContent();
 
-            var lines = [];
+            var text = "";
 
             textContent.items.forEach(
                 function(item) {
 
                     if (item.str) {
-                        lines.push(item.str);
+                        text += item.str + " ";
                     }
 
                 }
             );
 
-            var pageText =
-                lines.join(" ");
+            text = text.trim();
 
-            if (pageText.trim()) {
+            if (text) {
 
                 paragraphs.push(
-                    new docx.Paragraph({
+                    new window.docx.Paragraph({
                         children: [
-                            new docx.TextRun({
-                                text: pageText
+                            new window.docx.TextRun({
+                                text: text
                             })
                         ]
                     })
@@ -1813,26 +1817,22 @@ async function pdfToWord() {
 
             }
 
-            if (pageNumber < pdf.numPages) {
-
-                paragraphs.push(
-                    new docx.Paragraph({
-                        children: [
-                            new docx.TextRun({
-                                text: ""
-                            })
-                        ]
-                    })
-                );
-
-            }
+            paragraphs.push(
+                new window.docx.Paragraph({
+                    children: [
+                        new window.docx.TextRun({
+                            text: ""
+                        })
+                    ]
+                })
+            );
 
         }
 
         if (!paragraphs.length) {
 
             result.innerHTML =
-                "No readable text found in this PDF.";
+                "❌ No readable text found in this PDF.";
 
             return;
         }
@@ -1841,7 +1841,7 @@ async function pdfToWord() {
             "Creating Word document...";
 
         var document =
-            new docx.Document({
+            new window.docx.Document({
                 sections: [
                     {
                         properties: {},
@@ -1851,7 +1851,7 @@ async function pdfToWord() {
             });
 
         var blob =
-            await docx.Packer.toBlob(
+            await window.docx.Packer.toBlob(
                 document
             );
 
@@ -1868,12 +1868,12 @@ async function pdfToWord() {
     catch (error) {
 
         console.error(
-            "PDF to Word Error:",
+            "PDF → Word Error:",
             error
         );
 
         result.innerHTML =
-            "❌ PDF to Word conversion failed.<br><br>" +
+            "❌ PDF → Word conversion failed.<br><br>" +
             "<small>" +
             escapeHTML(
                 error.message ||
