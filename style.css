@@ -1,15 +1,12 @@
-/* =========================================================
+/* ================================
    AB DIGITAL UTILITY
-   Complete Responsive Stylesheet
-   ========================================================= */
-
-
-/* ================= RESET ================= */
+   MAIN STYLESHEET
+================================ */
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -17,1015 +14,500 @@ html {
 }
 
 body {
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background: #f8f9fc;
-    color: #202124;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
     line-height: 1.6;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
+/* ================================
+   HEADER
+================================ */
 
-button,
-input,
-select,
-textarea {
-    font-family: inherit;
-}
-
-
-/* ================= CONTAINER ================= */
-
-.container {
-    width: 92%;
-    max-width: 1180px;
-    margin: auto;
-}
-
-
-/* ================= HEADER ================= */
-
-.header {
+header {
     background: #ffffff;
-    border-bottom: 1px solid #e8e8ef;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 18px 20px;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-.nav {
-    min-height: 72px;
-
+.header-container {
+    max-width: 1200px;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    gap: 30px;
+    gap: 20px;
 }
-
-
-/* ================= LOGO ================= */
 
 .logo {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 800;
-    color: #5b5cf0;
-    white-space: nowrap;
+    color: #2563eb;
 }
 
-.logo span {
-    color: #222;
-    font-weight: 600;
+.logo a {
+    text-decoration: none;
+    color: inherit;
 }
-
-
-/* ================= NAVIGATION ================= */
 
 nav {
     display: flex;
-    align-items: center;
-    gap: 28px;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 nav a {
-    color: #555;
-    font-size: 15px;
+    text-decoration: none;
+    color: #374151;
     font-weight: 600;
-    transition: 0.2s;
+    padding: 8px 12px;
+    border-radius: 8px;
 }
 
 nav a:hover {
-    color: #5b5cf0;
+    background: #eff6ff;
+    color: #2563eb;
 }
 
-
-/* ================= HERO ================= */
+/* ================================
+   HERO
+================================ */
 
 .hero {
-    background:
-        linear-gradient(
-            135deg,
-            #f4f3ff,
-            #ffffff
-        );
-
-    padding: 85px 0 80px;
-}
-
-.hero-content {
     text-align: center;
-    max-width: 900px;
+    padding: 65px 20px 45px;
+    background: linear-gradient(180deg, #eff6ff, #f8fafc);
 }
-
-
-/* ================= BADGE ================= */
-
-.badge {
-    display: inline-block;
-
-    padding: 8px 16px;
-
-    border-radius: 30px;
-
-    background: #ffffff;
-
-    border: 1px solid #e5e5ef;
-
-    color: #555;
-
-    font-size: 14px;
-
-    margin-bottom: 25px;
-}
-
-
-/* ================= HERO TITLE ================= */
 
 .hero h1 {
-    font-size: 52px;
-    line-height: 1.15;
-    margin-bottom: 22px;
+    font-size: 42px;
     font-weight: 800;
+    color: #111827;
+    margin-bottom: 12px;
 }
 
 .hero h1 span {
-    color: #5b5cf0;
+    color: #2563eb;
 }
 
 .hero p {
-    max-width: 720px;
+    max-width: 700px;
     margin: auto;
-
-    color: #666;
-
+    color: #6b7280;
     font-size: 18px;
 }
 
+/* ================================
+   TOOLS SECTION
+================================ */
 
-/* ================= SEARCH ================= */
-
-.search {
-    max-width: 600px;
-
-    margin: 32px auto 25px;
-
-    background: #ffffff;
-
-    border: 1px solid #ddd;
-
-    border-radius: 14px;
-
-    display: flex;
-    align-items: center;
-
-    padding: 0 18px;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,0.05);
+.tools-section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 45px 20px;
 }
 
-.search span {
-    font-size: 20px;
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.search input {
-    width: 100%;
-
-    border: none;
-    outline: none;
-
-    padding: 16px;
-
-    font-size: 16px;
-
-    background: transparent;
+.section-title h2 {
+    font-size: 30px;
+    color: #111827;
+    margin-bottom: 8px;
 }
 
-
-/* ================= HERO FEATURES ================= */
-
-.hero-features {
-    display: flex;
-    justify-content: center;
-
-    gap: 25px;
-
-    flex-wrap: wrap;
-
-    color: #555;
-
-    font-size: 14px;
+.section-title p {
+    color: #6b7280;
 }
 
-
-/* ================= SECTIONS ================= */
-
-.section {
-    padding: 75px 0;
-}
-
-.light-section {
-    background: #f2f3f8;
-}
-
-
-/* ================= SECTION HEADING ================= */
-
-.heading {
-    margin-bottom: 35px;
-}
-
-.heading h2 {
-    font-size: 32px;
-    margin-bottom: 7px;
-}
-
-.heading p {
-    color: #707070;
-}
-
-
-/* ================= TOOLS GRID ================= */
+/* ================================
+   TOOL GRID
+================================ */
 
 .tools-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 28px;
-
-    margin-top: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
 }
 
-
-/* ================= TOOL CARD ================= */
+/* ================================
+   TOOL CARD
+================================ */
 
 .tool-card {
     background: #ffffff;
-
-    border: 1px solid #e6e6ed;
-
-    border-radius: 18px;
-
-    padding: 28px;
-
-    min-height: 245px;
-
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 26px 22px;
+    min-height: 190px;
     display: flex;
-
     flex-direction: column;
-
-    align-items: flex-start;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,0.04);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    justify-content: space-between;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+    transition: 0.25s ease;
 }
 
 .tool-card:hover {
     transform: translateY(-5px);
-
-    box-shadow:
-        0 15px 35px rgba(0,0,0,0.08);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.09);
+    border-color: #bfdbfe;
 }
-
-
-/* ================= TOOL ICON ================= */
-
-.tool-icon {
-    width: 54px;
-    height: 54px;
-
-    border-radius: 14px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 25px;
-
-    margin-bottom: 18px;
-}
-
-.purple {
-    background: #eeeaff;
-}
-
-.blue {
-    background: #e6f1ff;
-}
-
-.orange {
-    background: #fff0df;
-}
-
-.green {
-    background: #e5f8eb;
-}
-
-.pink {
-    background: #ffe9f1;
-}
-
-.yellow {
-    background: #fff6d9;
-}
-
-
-/* ================= TOOL CARD TEXT ================= */
 
 .tool-card h3 {
     font-size: 20px;
-
+    color: #111827;
     margin-bottom: 8px;
 }
 
 .tool-card p {
-    color: #707070;
-
     font-size: 14px;
-
-    margin-bottom: 20px;
-
-    flex-grow: 1;
+    color: #6b7280;
+    margin-bottom: 18px;
 }
 
+/* ================================
+   TOOL ICON
+================================ */
 
-/* ================= BUTTONS ================= */
+.tool-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #eff6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+/* ================================
+   BUTTONS
+================================ */
 
 button,
-.cta-button {
+.tool-card button {
     border: none;
-
-    background: #5b5cf0;
-
+    outline: none;
+    background: #2563eb;
     color: #ffffff;
-
     padding: 11px 18px;
-
-    border-radius: 10px;
-
-    font-size: 14px;
-
+    border-radius: 9px;
+    font-size: 15px;
     font-weight: 700;
-
     cursor: pointer;
-
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 button:hover,
-.cta-button:hover {
-    background: #4546d8;
-
+.tool-card button:hover {
+    background: #1d4ed8;
     transform: translateY(-1px);
 }
 
-
-/* ================= WORKSPACE ================= */
-
-.workspace {
-    display: none;
-
-    padding: 60px 0;
-
-    background: #eef0f7;
+button:active {
+    transform: translateY(0);
 }
 
+/* ================================
+   WORKSPACE
+================================ */
 
-/* ================= TOOL WINDOW ================= */
-
-.tool-window {
-    background: #ffffff;
-
-    border-radius: 20px;
-
-    padding: 35px;
-
-    position: relative;
-
-    border: 1px solid #e1e1e8;
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.08);
+#workspace {
+    max-width: 900px;
+    margin: 20px auto 50px;
+    padding: 0 20px;
 }
-
-
-/* ================= CLOSE BUTTON ================= */
-
-.close {
-    position: absolute;
-
-    top: 15px;
-    right: 18px;
-
-    width: 40px;
-    height: 40px;
-
-    border-radius: 50%;
-
-    background: #f1f1f5;
-
-    color: #444;
-
-    font-size: 24px;
-
-    padding: 0;
-}
-
-.close:hover {
-    background: #e5e5ea;
-
-    color: #111;
-}
-
-
-/* ================= TOOL CONTENT ================= */
 
 #toolContent {
-    padding-top: 10px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
 }
 
 #toolContent h2 {
     font-size: 28px;
-
+    color: #111827;
     margin-bottom: 10px;
 }
 
 #toolContent p {
-    color: #666;
-
+    color: #6b7280;
     margin-bottom: 22px;
 }
 
+/* ================================
+   INPUTS
+================================ */
 
-/* ================= FILE INPUT ================= */
-
-input[type="file"] {
+input,
+select,
+textarea {
     width: 100%;
-
-    max-width: 600px;
-
-    padding: 13px;
-
-    background: #fafafa;
-
-    border: 1px dashed #bdbdc8;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-}
-
-
-/* ================= NORMAL INPUT ================= */
-
-#toolContent input[type="text"],
-#toolContent input[type="number"],
-#toolContent input[type="date"],
-#toolContent input[type="url"] {
-    width: 100%;
-
-    max-width: 420px;
-
-    padding: 13px 15px;
-
-    margin: 5px 8px 10px 0;
-
-    border: 1px solid #d7d7df;
-
-    border-radius: 10px;
-
+    max-width: 500px;
+    padding: 12px 14px;
+    margin: 7px 5px 7px 0;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 15px;
     outline: none;
 }
 
-#toolContent input:focus {
-    border-color: #5b5cf0;
-
-    box-shadow:
-        0 0 0 3px rgba(91,92,240,0.1);
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
+/* ================================
+   FILE INPUT
+================================ */
 
-/* ================= RESULT ================= */
+input[type="file"] {
+    max-width: 100%;
+    padding: 10px;
+    background: #f9fafb;
+}
+
+/* ================================
+   RANGE
+================================ */
+
+input[type="range"] {
+    max-width: 350px;
+    padding: 0;
+}
+
+/* ================================
+   RESULT BOX
+================================ */
 
 .result {
-    margin-top: 20px;
-
-    padding: 16px;
-
-    background: #f5f6fb;
-
-    border-radius: 12px;
-
-    color: #444;
-
+    margin-top: 25px;
+    padding: 18px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    color: #374151;
     min-height: 20px;
 }
 
-
-/* ================= DOWNLOAD ================= */
+/* ================================
+   DOWNLOAD LINK
+================================ */
 
 .download {
     display: inline-block;
-
-    background: #5b5cf0;
-
-    color: white;
-
+    text-decoration: none;
+    background: #16a34a;
+    color: #ffffff;
     padding: 11px 18px;
-
-    border-radius: 9px;
-
+    border-radius: 8px;
     font-weight: 700;
-
-    margin-top: 10px;
-}
-
-.download:hover {
-    background: #4546d8;
-}
-
-
-/* ================= PDF TOOLS ================= */
-
-.pdf-tools-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 20px;
-
-    margin-top: 25px;
-}
-
-
-/* ================= PDF TOOL CARD ================= */
-
-.pdf-tool-card {
-    background: #fafaff;
-
-    border: 1px solid #e2e2ed;
-
-    border-radius: 15px;
-
-    padding: 22px;
-
-    min-height: 175px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: space-between;
-
-    transition: 0.2s;
-}
-
-.pdf-tool-card:hover {
-    border-color: #5b5cf0;
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,0.06);
-}
-
-.pdf-tool-card h3 {
-    font-size: 18px;
-
-    margin-bottom: 7px;
-}
-
-.pdf-tool-card p {
-    font-size: 13px;
-
-    color: #777;
-
-    margin-bottom: 15px;
-}
-
-.pdf-tool-card button {
-    width: 100%;
-}
-
-
-/* ================= CALCULATOR GRID ================= */
-
-.calculator-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 28px;
-}
-
-
-/* ================= CALCULATOR CARD ================= */
-
-.calculator-card {
-    background: #ffffff;
-
-    border: 1px solid #e5e5eb;
-
-    border-radius: 18px;
-
-    padding: 28px;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,0.04);
-}
-
-.calculator-card h3 {
-    margin-bottom: 18px;
-}
-
-.calculator-card input {
-    width: 100%;
-
-    padding: 13px;
-
-    margin-bottom: 12px;
-
-    border: 1px solid #d8d8e0;
-
-    border-radius: 10px;
-
-    outline: none;
-}
-
-
-/* ================= GUIDE GRID ================= */
-
-.guide-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 28px;
-}
-
-
-/* ================= GUIDE CARD ================= */
-
-.guide-card {
-    background: #ffffff;
-
-    border: 1px solid #e5e5eb;
-
-    border-radius: 18px;
-
-    padding: 28px;
-
-    box-shadow:
-        0 7px 24px rgba(0,0,0,0.04);
-}
-
-.guide-card > div {
-    font-size: 30px;
-
-    margin-bottom: 12px;
-}
-
-.guide-card h3 {
-    margin-bottom: 10px;
-}
-
-.guide-card p {
-    color: #707070;
-
-    font-size: 14px;
-}
-
-
-/* ================= CTA ================= */
-
-.cta {
-    background: #5b5cf0;
-
-    color: #ffffff;
-
-    text-align: center;
-
-    padding: 75px 0;
-}
-
-.cta h2 {
-    font-size: 35px;
-
-    margin-bottom: 10px;
-}
-
-.cta p {
-    opacity: 0.9;
-
-    margin-bottom: 25px;
-}
-
-.cta-button {
-    display: inline-block;
-
-    background: #ffffff;
-
-    color: #5b5cf0;
-}
-
-.cta-button:hover {
-    background: #f1f1ff;
-}
-
-
-/* ================= FOOTER ================= */
-
-footer {
-    background: #171820;
-
-    color: #ffffff;
-}
-
-.footer {
-    padding: 45px 0;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 40px;
-}
-
-.footer .logo {
-    color: #ffffff;
-}
-
-.footer .logo span {
-    color: #ffffff;
-}
-
-.footer p {
-    color: #aaa;
-
     margin-top: 8px;
 }
 
-
-/* ================= FOOTER LINKS ================= */
-
-.footer-links {
-    display: flex;
-
-    gap: 25px;
-
-    flex-wrap: wrap;
-
-    align-items: center;
+.download:hover {
+    background: #15803d;
 }
 
-.footer-links a {
-    color: #bbb;
+/* ================================
+   PDF / OFFICE TOOLS
+================================ */
 
+.pdf-tools,
+.office-tools {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.pdf-tool-card,
+.office-tool-card {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.pdf-tool-card h3,
+.office-tool-card h3 {
+    margin-bottom: 7px;
+    color: #111827;
+}
+
+.pdf-tool-card p,
+.office-tool-card p {
     font-size: 14px;
+    margin-bottom: 15px;
 }
 
-.footer-links a:hover {
-    color: #ffffff;
+/* ================================
+   CLOSE BUTTON
+================================ */
+
+.close-btn {
+    float: right;
+    background: #ef4444;
+    padding: 8px 13px;
+    border-radius: 7px;
 }
 
+.close-btn:hover {
+    background: #dc2626;
+}
 
-/* ================= COPYRIGHT ================= */
+/* ================================
+   FOOTER
+================================ */
 
-.copyright {
+footer {
+    background: #111827;
+    color: #d1d5db;
     text-align: center;
-
-    padding: 18px;
-
-    border-top: 1px solid #292a32;
-
-    color: #888;
-
-    font-size: 13px;
+    padding: 35px 20px;
+    margin-top: 40px;
 }
 
+footer h3 {
+    color: #ffffff;
+    margin-bottom: 8px;
+}
 
-/* =========================================================
-   TABLET
-   ========================================================= */
+footer p {
+    font-size: 14px;
+    margin: 5px 0;
+}
 
-@media (max-width: 950px) {
+footer a {
+    color: #93c5fd;
+    text-decoration: none;
+}
 
-    .hero h1 {
-        font-size: 44px;
-    }
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ================================
+   RESPONSIVE - TABLET
+================================ */
+
+@media (max-width: 1000px) {
 
     .tools-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 22px;
-    }
-
-    .pdf-tools-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-    .guide-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 22px;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 650px) {
-
-    .container {
-        width: 92%;
-    }
-
-
-    /* HEADER */
-
-    .nav {
-        min-height: auto;
-
-        padding: 18px 0;
-
-        flex-direction: column;
-
-        gap: 15px;
-    }
-
-    nav {
-        gap: 16px;
-
-        flex-wrap: wrap;
-
-        justify-content: center;
-    }
-
-    nav a {
-        font-size: 13px;
-    }
-
-
-    /* HERO */
-
-    .hero {
-        padding: 60px 0;
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .hero h1 {
         font-size: 36px;
+    }
+}
+
+/* ================================
+   RESPONSIVE - MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    header {
+        position: relative;
+    }
+
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    .hero {
+        padding: 45px 18px 35px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
     }
 
     .hero p {
         font-size: 16px;
     }
 
-    .hero-features {
-        gap: 12px;
-
-        flex-direction: column;
+    .tools-section {
+        padding: 35px 15px;
     }
-
-
-    /* SECTION */
-
-    .section {
-        padding: 55px 0;
-    }
-
-    .heading h2 {
-        font-size: 27px;
-    }
-
-
-    /* TOOLS */
 
     .tools-grid {
         grid-template-columns: 1fr;
-
         gap: 18px;
     }
 
     .tool-card {
-        min-height: auto;
-
-        padding: 24px;
+        min-height: 170px;
+        padding: 22px;
     }
 
-
-    /* PDF TOOLS */
-
-    .pdf-tools-grid {
-        grid-template-columns: 1fr;
-
-        gap: 16px;
+    #workspace {
+        padding: 0 12px;
     }
 
-    .pdf-tool-card {
-        min-height: 150px;
-    }
-
-
-    /* WORKSPACE */
-
-    .tool-window {
-        padding: 25px 18px;
+    #toolContent {
+        padding: 22px 18px;
     }
 
     #toolContent h2 {
         font-size: 24px;
     }
 
-
-    /* CALCULATORS */
-
-    .calculator-grid {
+    .pdf-tools,
+    .office-tools {
         grid-template-columns: 1fr;
-
-        gap: 18px;
     }
 
-
-    /* GUIDES */
-
-    .guide-grid {
-        grid-template-columns: 1fr;
-
-        gap: 18px;
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+        margin-right: 0;
     }
 
-
-    /* CTA */
-
-    .cta {
-        padding: 55px 0;
+    button {
+        width: 100%;
+        margin-top: 8px;
     }
-
-    .cta h2 {
-        font-size: 28px;
-    }
-
-
-    /* FOOTER */
-
-    .footer {
-        flex-direction: column;
-
-        padding: 35px 0;
-    }
-
-    .footer-links {
-        gap: 18px;
-    }
-
 }
 
-
-/* =========================================================
+/* ================================
    SMALL MOBILE
-   ========================================================= */
+================================ */
 
 @media (max-width: 400px) {
 
-    .hero h1 {
-        font-size: 31px;
-    }
-
     .logo {
-        font-size: 19px;
+        font-size: 21px;
     }
 
-    .tool-card {
-        padding: 20px;
+    .hero h1 {
+        font-size: 26px;
     }
 
-    .calculator-card {
-        padding: 20px;
+    .section-title h2 {
+        font-size: 25px;
     }
 
-    .guide-card {
-        padding: 20px;
+    #toolContent {
+        padding: 18px 14px;
     }
-
 }
