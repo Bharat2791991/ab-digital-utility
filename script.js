@@ -1498,37 +1498,107 @@ async function wordToPDF() {
     var result = get("wordToPdfResult");
 
     if (!input || !input.files.length) {
-        result.innerHTML = "Please select a DOCX file.";
+        result.innerHTML = "Please select a Word (.docx) file.";
         return;
     }
 
-    if (!window.mammoth) {
-        result.innerHTML = "Word conversion library not loaded.";
+    if (typeof mammoth === "undefined") {
+        result.innerHTML =
+            "❌ Mammoth Word library not loaded.";
+        return;
+    }
+
+    if (
+        !window.jspdf ||
+        !window.jspdf.jsPDF
+    ) {
+        result.innerHTML =
+            "❌ jsPDF library not loaded.";
+        return;
+    }
+
+    if (typeof html2canvas === "undefined") {
+        result.innerHTML =
+            "❌ HTML2Canvas library not loaded.";
         return;
     }
 
     try {
 
         result.innerHTML =
-            "Reading Word document...";
+            "⏳ Reading Word document...";
+
+        var file = input.files[0];
 
         var arrayBuffer =
-            await input.files[0].arrayBuffer();
+            await file.arrayBuffer();
+
+        /* DOCX → HTML */
 
         var converted =
             await mammoth.convertToHtml({
-                arrayBuffer:
-                    arrayBuffer
+                arrayBuffer: arrayBuffer
             });
 
         var html =
             converted.value;
 
-        if (!window.jspdf || !window.jspdf.jsPDF) {
+        if (!html || !html.trim()) {
+
             result.innerHTML =
-                "PDF library not loaded.";
+                "❌ Word document appears to be empty.";
+
             return;
         }
+
+        /* Temporary document */
+
+        var container =
+            document.createElement("div");
+
+        container.innerHTML = html;
+
+        container.style.position = "fixed";
+        container.style.left = "-10000px";
+        container.style.top = "0";
+
+        container.style.width = "794px";
+
+        container.style.background = "white";
+        container.style.color = "black";
+
+        container.style.padding = "40px";
+
+        container.style.fontFamily =
+            "Arial, sans-serif";
+
+        container.style.fontSize =
+            "16px";
+
+        container.style.lineHeight =
+            "1.5";
+
+        container.style.boxSizing =
+            "border-box";
+
+        document.body.appendChild(container);
+
+        result.innerHTML =
+            "⏳ Creating PDF...";
+
+        /* Render HTML */
+
+        var canvas =
+            await html2canvas(
+                container,
+                {
+                    scale: 2,
+                    backgroundColor: "#ffffff",
+                    useCORS: true
+                }
+            );
+
+        /* Create PDF */
 
         var jsPDF =
             window.jspdf.jsPDF;
@@ -1540,67 +1610,106 @@ async function wordToPDF() {
                 "a4"
             );
 
-        var temp =
-            document.createElement("div");
+        var pageWidth = 210;
+        var pageHeight = 297;
 
-        temp.innerHTML = html;
+        var margin = 10;
 
-        temp.style.width = "180mm";
-        temp.style.fontSize = "11pt";
-        temp.style.lineHeight = "1.5";
+        var usableWidth =
+            pageWidth -
+            margin * 2;
 
-        temp.style.position = "absolute";
-        temp.style.left = "-10000px";
-        temp.style.top = "0";
+        var usableHeight =
+            pageHeight -
+            margin * 2;
 
-        document.body.appendChild(temp);
+        var imgWidth =
+            usableWidth;
 
-        var text =
-            temp.innerText || "";
+        var imgHeight =
+            canvas.height *
+            imgWidth /
+            canvas.width;
 
-        document.body.removeChild(temp);
-
-        var lines =
-            pdf.splitTextToSize(
-                text,
-                180
+        var imgData =
+            canvas.toDataURL(
+                "image/jpeg",
+                0.95
             );
 
-        var y = 15;
+        var position = margin;
 
-        lines.forEach(
-            function (line) {
+        pdf.addImage(
+            imgData,
+            "JPEG",
+            margin,
+            position,
+            imgWidth,
+            imgHeight
+        );
 
-                if (y > 280) {
-                    pdf.addPage();
-                    y = 15;
-                }
+        /* Multiple pages */
 
-                pdf.text(
-                    line,
-                    15,
-                    y
-                );
+        var heightLeft =
+            imgHeight -
+            usableHeight;
 
-                y += 6;
+        while (heightLeft > 0) {
 
-            }
+            position =
+                position -
+                usableHeight;
+
+            pdf.addPage();
+
+            pdf.addImage(
+                imgData,
+                "JPEG",
+                margin,
+                position,
+                imgWidth,
+                imgHeight
+            );
+
+            heightLeft -=
+                usableHeight;
+        }
+
+        document.body.removeChild(
+            container
         );
 
         pdf.save(
             "AB-Digital-Utility-Word-to-PDF.pdf"
         );
 
-        result.innerHTML =
-            "<strong>✅ Word converted to PDF!</strong>";
+        result.innerHTML = `
+            <strong>
+                ✅ Word successfully converted to PDF!
+            </strong>
+            <br><br>
+            PDF download started.
+        `;
 
-    } catch (error) {
-
-        console.error(error);
-
-        result.innerHTML =
-            "❌ Word to PDF conversion failed.";
     }
+
+    catch (error) {
+
+        console.error(
+            "WORD TO PDF ERROR:",
+            error
+        );
+
+        result.innerHTML = `
+            <strong>
+                ❌ Word to PDF conversion failed.
+            </strong>
+            <br><br>
+            Please try another .docx file.
+        `;
+
+    }
+
 }
 
 
