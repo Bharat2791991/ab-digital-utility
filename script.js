@@ -1725,40 +1725,23 @@ async function pdfToWord() {
     if (!input || !input.files.length) {
 
         result.innerHTML =
-            "Please select a PDF file.";
+            "Please select a PDF.";
 
         return;
     }
-
-    /* Check PDF.js */
 
     if (typeof pdfjsLib === "undefined") {
 
         result.innerHTML =
-            "❌ PDF library not loaded.";
+            "PDF library not loaded.";
 
         return;
     }
 
-    /* Check DOCX library */
-
-    if (
-        typeof window.docx === "undefined" ||
-        typeof window.docx.Document === "undefined"
-    ) {
+    if (typeof docx === "undefined") {
 
         result.innerHTML =
-            "❌ DOCX library not loaded.";
-
-        return;
-    }
-
-    /* Check FileSaver */
-
-    if (typeof saveAs === "undefined") {
-
-        result.innerHTML =
-            "❌ FileSaver library not loaded.";
+            "DOCX library not loaded. Please refresh the page.";
 
         return;
     }
@@ -1766,33 +1749,21 @@ async function pdfToWord() {
     try {
 
         result.innerHTML =
-            "⏳ Reading PDF...";
+            "Reading PDF... Please wait.";
 
-
-        var file =
-            input.files[0];
-
+        var file = input.files[0];
 
         var buffer =
             await file.arrayBuffer();
 
-
-        var loadingTask =
-            pdfjsLib.getDocument({
-                data: buffer
-            });
-
-
         var pdf =
-            await loadingTask.promise;
+            await pdfjsLib
+                .getDocument({
+                    data: buffer
+                })
+                .promise;
 
-
-        var children = [];
-
-
-        /* =====================================================
-           PROCESS EACH PAGE
-        ===================================================== */
+        var paragraphs = [];
 
         for (
             var pageNumber = 1;
@@ -1801,338 +1772,114 @@ async function pdfToWord() {
         ) {
 
             result.innerHTML =
-                "⏳ Processing page " +
+                "Processing page " +
                 pageNumber +
                 " of " +
                 pdf.numPages +
                 "...";
 
-
             var page =
-                await pdf.getPage(
-                    pageNumber
-                );
-
+                await pdf.getPage(pageNumber);
 
             var textContent =
                 await page.getTextContent();
 
-
-            var items =
-                textContent.items;
-
-
             var lines = [];
 
-
-            var currentLine = "";
-
-            var lastY = null;
-
-
-            /* =================================================
-               EXTRACT TEXT
-            ================================================= */
-
-            items.forEach(
+            textContent.items.forEach(
                 function(item) {
 
-                    var text =
-                        item.str || "";
-
-
-                    if (!text.trim()) {
-                        return;
+                    if (item.str) {
+                        lines.push(item.str);
                     }
-
-
-                    var y =
-                        item.transform
-                            ? item.transform[5]
-                            : 0;
-
-
-                    /*
-                       Detect a new line based
-                       on vertical position
-                    */
-
-                    if (
-                        lastY !== null &&
-                        Math.abs(
-                            y - lastY
-                        ) > 5
-                    ) {
-
-                        if (
-                            currentLine.trim()
-                        ) {
-
-                            lines.push(
-                                currentLine.trim()
-                            );
-
-                        }
-
-
-                        currentLine = "";
-
-                    }
-
-
-                    currentLine +=
-                        text + " ";
-
-
-                    lastY = y;
 
                 }
             );
 
+            var pageText =
+                lines.join(" ");
 
-            /* Add last line */
+            if (pageText.trim()) {
 
-            if (
-                currentLine.trim()
-            ) {
-
-                lines.push(
-                    currentLine.trim()
-                );
-
-            }
-
-
-            /* =================================================
-               PAGE HEADING
-            ================================================= */
-
-            children.push(
-
-                new window.docx.Paragraph({
-
-                    children: [
-
-                        new window.docx.TextRun({
-
-                            text:
-                                "Page " +
-                                pageNumber,
-
-                            bold:
-                                true,
-
-                            size:
-                                26
-
-                        })
-
-                    ],
-
-                    spacing: {
-
-                        after:
-                            200
-
-                    }
-
-                })
-
-            );
-
-
-            /* =================================================
-               PAGE TEXT
-            ================================================= */
-
-            if (
-                lines.length
-            ) {
-
-                lines.forEach(
-                    function(line) {
-
-                        children.push(
-
-                            new window.docx.Paragraph({
-
-                                children: [
-
-                                    new window.docx.TextRun({
-
-                                        text:
-                                            line,
-
-                                        size:
-                                            22
-
-                                    })
-
-                                ],
-
-                                spacing: {
-
-                                    after:
-                                        100
-
-                                }
-
-                            })
-
-                        );
-
-                    }
-                );
-
-            }
-
-            else {
-
-                children.push(
-
-                    new window.docx.Paragraph({
-
+                paragraphs.push(
+                    new docx.Paragraph({
                         children: [
-
-                            new window.docx.TextRun({
-
-                                text:
-                                    "[No readable text found on this page]",
-
-                                italics:
-                                    true,
-
-                                size:
-                                    22
-
+                            new docx.TextRun({
+                                text: pageText
                             })
-
                         ]
-
                     })
-
                 );
 
             }
 
+            if (pageNumber < pdf.numPages) {
 
-            /* =================================================
-               PAGE BREAK
-            ================================================= */
-
-            if (
-                pageNumber <
-                pdf.numPages
-            ) {
-
-                children.push(
-
-                    new window.docx.Paragraph({
-
-                        pageBreakBefore:
-                            true,
-
+                paragraphs.push(
+                    new docx.Paragraph({
                         children: [
-
-                            new window.docx.TextRun({
+                            new docx.TextRun({
                                 text: ""
                             })
-
                         ]
-
                     })
-
                 );
 
             }
 
         }
 
+        if (!paragraphs.length) {
 
-        /* =====================================================
-           CREATE DOCX
-        ===================================================== */
+            result.innerHTML =
+                "No readable text found in this PDF.";
+
+            return;
+        }
 
         result.innerHTML =
-            "⏳ Creating Word document...";
+            "Creating Word document...";
 
-
-        var wordDocument =
-            new window.docx.Document({
-
+        var document =
+            new docx.Document({
                 sections: [
-
                     {
-
                         properties: {},
-
-                        children:
-                            children
-
+                        children: paragraphs
                     }
-
                 ]
-
             });
 
-
-        /* =====================================================
-           CREATE BLOB
-        ===================================================== */
-
         var blob =
-            await window.docx.Packer.toBlob(
-                wordDocument
+            await docx.Packer.toBlob(
+                document
             );
-
-
-        /* =====================================================
-           DOWNLOAD
-        ===================================================== */
 
         saveAs(
             blob,
             "AB-Digital-Utility-PDF-to-Word.docx"
         );
 
-
-        result.innerHTML = `
-
-            <strong>
-                ✅ PDF successfully converted to Word!
-            </strong>
-
-            <br><br>
-
-            Word document download started.
-
-        `;
+        result.innerHTML =
+            "<strong>✅ PDF successfully converted to Word!</strong>";
 
     }
 
     catch (error) {
 
         console.error(
-            "PDF TO WORD ERROR:",
+            "PDF to Word Error:",
             error
         );
 
-
-        result.innerHTML = `
-
-            <strong>
-                ❌ PDF to Word conversion failed.
-            </strong>
-
-            <br><br>
-
-            Error:
-            ${escapeHTML(
+        result.innerHTML =
+            "❌ PDF to Word conversion failed.<br><br>" +
+            "<small>" +
+            escapeHTML(
                 error.message ||
                 String(error)
-            )}
-
-        `;
+            ) +
+            "</small>";
 
     }
 
