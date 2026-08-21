@@ -219,12 +219,15 @@ nav a:hover {
 /* TOOLS */
 
 .tools-grid {
-  display: grid;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 30px;
+}
 
-  grid-template-columns:
-    repeat(4, 1fr);
-
-  gap: 20px;
+.tool-card {
+    padding: 28px;
+    min-height: 230px;
 }
 
 .tool-card {
