@@ -1738,10 +1738,16 @@ async function pdfToWord() {
         return;
     }
 
-    if (
-        typeof docx === "undefined" ||
-        typeof docx.Document === "undefined"
-    ) {
+   if (
+    typeof window.docx === "undefined" ||
+    typeof window.docx.Document === "undefined"
+) {
+
+    result.innerHTML =
+        "❌ Word document library not loaded.";
+
+    return;
+}
 
         result.innerHTML =
             "❌ Word document library not loaded.";
@@ -1920,9 +1926,9 @@ async function pdfToWord() {
             ) {
 
                 children.push(
-                    new docx.Paragraph({
+                    new window.docx.Paragraph({
                         children: [
-                            new docx.TextRun({
+                            new window.docx.TextRun({
                                 text:
                                     " "
                             })
@@ -1942,7 +1948,7 @@ async function pdfToWord() {
 
 
         var documentFile =
-            new docx.Document({
+           new window.docx.Document({
 
                 sections: [
                     {
@@ -1956,7 +1962,7 @@ async function pdfToWord() {
 
 
         var blob =
-            await docx.Packer
+            await window.docx.Packer
                 .toBlob(
                     documentFile
                 );
