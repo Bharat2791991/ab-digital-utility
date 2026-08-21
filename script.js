@@ -1874,9 +1874,9 @@ async function pdfToWord() {
             /* Page heading */
 
             children.push(
-                new docx.Paragraph({
+                new window.docx.Paragraph({
                     children: [
-                        new docx.TextRun({
+                        new window.docx.TextRun({
                             text:
                                 "Page " +
                                 pageNumber,
@@ -1897,10 +1897,10 @@ async function pdfToWord() {
                 function(line) {
 
                     children.push(
-                        new docx.Paragraph({
+                        new window.docx.Paragraph({
 
                             children: [
-                                new docx.TextRun({
+                                new window.docx.TextRun({
                                     text:
                                         line,
                                     size: 22
