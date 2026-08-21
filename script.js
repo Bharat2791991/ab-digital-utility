@@ -10,8 +10,50 @@ function openTool(tool) {
 
     if (tool === "jpgPdf") {
 
-        content.innerHTML = `
-            <h2>JPG to PDF Converter</h2>
+    content.innerHTML = `
+        <h2>PDF Tools</h2>
+
+        <p>All essential PDF tools in one place.</p>
+
+        <div class="pdf-tools-menu">
+
+            <button onclick="openPDFTool('jpgToPdf')">
+                🖼️ JPG → PDF
+            </button>
+
+            <button onclick="openPDFTool('pdfToJpg')">
+                🖼️ PDF → JPG
+            </button>
+
+            <button onclick="openPDFTool('merge')">
+                🔗 Merge PDF
+            </button>
+
+            <button onclick="openPDFTool('split')">
+                ✂️ Split PDF
+            </button>
+
+            <button onclick="openPDFTool('remove')">
+                🗑️ Remove Pages
+            </button>
+
+            <button onclick="openPDFTool('extract')">
+                📑 Extract Pages
+            </button>
+
+            <button onclick="openPDFTool('rotate')">
+                🔄 Rotate PDF
+            </button>
+
+            <button onclick="openPDFTool('compress')">
+                📦 Compress PDF
+            </button>
+
+        </div>
+
+        <div id="pdfToolWorkspace" class="pdf-workspace">
+
+            <h3>JPG → PDF</h3>
 
             <p>Select multiple JPG or PNG images.</p>
 
@@ -29,8 +71,10 @@ function openTool(tool) {
             </button>
 
             <div id="jpgResult" class="result"></div>
-        `;
-    }
+
+        </div>
+    `;
+}
 
 
     /* QR CODE */
