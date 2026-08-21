@@ -1,364 +1,144 @@
 /* =========================================================
    AB DIGITAL UTILITY
-   MAIN SCRIPT - PART 1
+   COMPLETE SCRIPT.JS
    ========================================================= */
 
 
-/* ================= TOOL OPEN ================= */
+/* =========================================================
+   OPEN TOOL
+   ========================================================= */
 
 function openTool(tool) {
 
-    var workspace =
+    const workspace =
         document.getElementById("workspace");
 
-    var content =
+    const content =
         document.getElementById("toolContent");
+
+
+    if (!workspace || !content) {
+        return;
+    }
+
 
     workspace.style.display = "block";
 
 
     /* =====================================================
-       PDF TOOLS HUB
+       PDF TOOLS
        ===================================================== */
 
-    if (tool === "jpgPdf") {
+    if (tool === "pdfTools") {
 
         content.innerHTML = `
 
-            <div class="pdf-tools">
+            <div class="pdf-core">
 
-                <h2>PDF Tools</h2>
+                <h2>📄 PDF Tools</h2>
 
                 <p>
-                    Convert, merge, split and manage your PDF
-                    files with easy online tools.
+                    Convert, merge, split and manage PDF files.
                 </p>
 
 
                 <div class="pdf-tools-grid">
 
 
-                    <!-- JPG TO PDF -->
+                    <button
+                        onclick="openTool('jpgPdf')">
 
-                    <div class="pdf-tool-card">
+                        🖼️ JPG to PDF
 
-                        <div class="tool-icon purple">
-                            📄
-                        </div>
+                    </button>
 
-                        <h3>
-                            JPG to PDF
-                        </h3>
 
-                        <p>
-                            Convert JPG or PNG images
-                            into a PDF file.
-                        </p>
+                    <button
+                        onclick="openTool('pdfJpg')">
 
-                        <button
-                            onclick="showJpgToPdf()">
+                        📄 PDF to JPG
 
-                            Open Tool →
+                    </button>
 
-                        </button>
 
-                    </div>
+                    <button
+                        onclick="openTool('mergePdf')">
 
+                        🔗 Merge PDF
 
-                    <!-- PDF TO JPG -->
+                    </button>
 
-                    <div class="pdf-tool-card">
 
-                        <div class="tool-icon blue">
-                            🖼️
-                        </div>
+                    <button
+                        onclick="openTool('splitPdf')">
 
-                        <h3>
-                            PDF to JPG
-                        </h3>
+                        ✂️ Split PDF
 
-                        <p>
-                            Convert PDF pages into images.
-                        </p>
+                    </button>
 
-                        <button
-                            onclick="showPdfToJpg()">
 
-                            Open Tool →
+                    <button
+                        onclick="openTool('removePdf')">
 
-                        </button>
+                        🗑️ Remove Pages
 
-                    </div>
+                    </button>
 
 
-                    <!-- WORD TO PDF -->
+                    <button
+                        onclick="openTool('wordPdf')">
 
-                    <div class="pdf-tool-card">
+                        📝 Word to PDF
 
-                        <div class="tool-icon orange">
-                            📝
-                        </div>
+                    </button>
 
-                        <h3>
-                            Word to PDF
-                        </h3>
 
-                        <p>
-                            Convert Word documents
-                            into PDF files.
-                        </p>
+                    <button
+                        onclick="openTool('pdfWord')">
 
-                        <button
-                            onclick="showWordToPdf()">
+                        📄 PDF to Word
 
-                            Open Tool →
+                    </button>
 
-                        </button>
 
-                    </div>
+                    <button
+                        onclick="openTool('excelPdf')">
 
+                        📊 Excel to PDF
 
-                    <!-- PDF TO WORD -->
+                    </button>
 
-                    <div class="pdf-tool-card">
 
-                        <div class="tool-icon purple">
-                            📃
-                        </div>
+                    <button
+                        onclick="openTool('pdfExcel')">
 
-                        <h3>
-                            PDF to Word
-                        </h3>
+                        📄 PDF to Excel
 
-                        <p>
-                            Convert PDF documents
-                            into editable Word files.
-                        </p>
+                    </button>
 
-                        <button
-                            onclick="showPdfToWord()">
 
-                            Open Tool →
+                    <button
+                        onclick="openTool('pptPdf')">
 
-                        </button>
+                        📽️ PowerPoint to PDF
 
-                    </div>
+                    </button>
 
 
-                    <!-- POWERPOINT TO PDF -->
+                    <button
+                        onclick="openTool('pdfPpt')">
 
-                    <div class="pdf-tool-card">
+                        📄 PDF to PowerPoint
 
-                        <div class="tool-icon orange">
-                            📊
-                        </div>
+                    </button>
 
-                        <h3>
-                            PowerPoint to PDF
-                        </h3>
 
-                        <p>
-                            Convert PowerPoint
-                            presentations into PDF.
-                        </p>
+                    <button
+                        onclick="openTool('htmlPdf')">
 
-                        <button
-                            onclick="showPptToPdf()">
+                        🌐 HTML to PDF
 
-                            Open Tool →
-
-                        </button>
-
-                    </div>
-
-
-                    <!-- PDF TO POWERPOINT -->
-
-                    <div class="pdf-tool-card">
-
-                        <div class="tool-icon blue">
-                            📊
-                        </div>
-
-                        <h3>
-                            PDF to PowerPoint
-                        </h3>
-
-                        <p>
-                            Convert PDF pages
-                            into PowerPoint slides.
-                        </p>
-
-                        <button
-                            onclick="showPdfToPpt()">
-
-                            Open Tool →
-
-                        </button>
-
-                    </div>
-
-
-                    <!-- EXCEL TO PDF -->
-
-                    <div class="pdf-tool-card">
-
-                        <div class="tool-icon green">
-                            📈
-                        </div>
-
-                        <h3>
-                            Excel to PDF
-                        </h3>
-
-                        <p>
-                            Convert Excel spreadsheets
-                            into PDF documents.
-                        </p>
-
-                        <button
-                            onclick="showExcelToPdf()">
-
-                            Open Tool →
-
-                        </button>
-
-                    </div>
-
-
-                    <!-- PDF TO EXCEL -->
-
-                    <div class="pdf-tool-card">
-
-                        <div class="tool-icon green">
-                            📊
-                        </div>
-
-                        <h3>
-                            PDF to Excel
-                        </h3>
-
-                        <p>
-                            Extract tables from PDF
-                            into Excel format.
-                        </p>
-
-                        <button
-                            onclick="showPdfToExcel()">
-
-                            Open Tool →
-
-                        </button>
-
-                    </div>
-
-
-                    <!-- HTML TO PDF -->
-
-                    <div class="pdf-tool-card">
-
-                        <div class="tool-icon orange">
-                            🌐
-                        </div>
-
-                        <h3>
-                            HTML to PDF
-                        </h3>
-
-                        <p>
-                            Convert HTML content
-                            into a PDF document.
-                        </p>
-
-                        <button
-                            onclick="showHtmlToPdf()">
-
-                            Open Tool →
-
-                        </button>
-
-                    </div>
-
-
-                    <!-- MERGE PDF -->
-
-                    <div class="pdf-tool-card">
-
-                        <div class="tool-icon purple">
-                            🔗
-                        </div>
-
-                        <h3>
-                            Merge PDF
-                        </h3>
-
-                        <p>
-                            Combine multiple PDF files
-                            into one PDF.
-                        </p>
-
-                        <button
-                            onclick="showMergePdf()">
-
-                            Open Tool →
-
-                        </button>
-
-                    </div>
-
-
-                    <!-- SPLIT PDF -->
-
-                    <div class="pdf-tool-card">
-
-                        <div class="tool-icon blue">
-                            ✂️
-                        </div>
-
-                        <h3>
-                            Split PDF
-                        </h3>
-
-                        <p>
-                            Extract selected pages
-                            from a PDF.
-                        </p>
-
-                        <button
-                            onclick="showSplitPdf()">
-
-                            Open Tool →
-
-                        </button>
-
-                    </div>
-
-
-                    <!-- REMOVE PAGES -->
-
-                    <div class="pdf-tool-card">
-
-                        <div class="tool-icon pink">
-                            🗑️
-                        </div>
-
-                        <h3>
-                            Remove PDF Pages
-                        </h3>
-
-                        <p>
-                            Remove unwanted pages
-                            from your PDF.
-                        </p>
-
-                        <button
-                            onclick="showRemovePdfPages()">
-
-                            Open Tool →
-
-                        </button>
-
-                    </div>
+                    </button>
 
 
                 </div>
@@ -366,6 +146,497 @@ function openTool(tool) {
             </div>
 
         `;
+
+    }
+
+
+    /* =====================================================
+       JPG TO PDF
+       ===================================================== */
+
+    if (tool === "jpgPdf") {
+
+        content.innerHTML = `
+
+            <h2>🖼️ JPG to PDF</h2>
+
+            <p>
+                Convert multiple JPG or PNG images into one PDF.
+            </p>
+
+
+            <input
+                id="jpgFiles"
+                type="file"
+                accept="image/jpeg,image/png"
+                multiple
+            >
+
+
+            <br><br>
+
+
+            <button
+                onclick="convertToPDF()">
+
+                Convert to PDF
+
+            </button>
+
+
+            <div
+                id="jpgResult"
+                class="result">
+            </div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       PDF TO JPG
+       ===================================================== */
+
+    if (tool === "pdfJpg") {
+
+        content.innerHTML = `
+
+            <h2>📄 PDF to JPG</h2>
+
+            <p>
+                Convert PDF pages into JPG images.
+            </p>
+
+
+            <input
+                id="pdfToJpgFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+
+            <br><br>
+
+
+            <button
+                onclick="convertPdfToJpg()">
+
+                Convert to JPG
+
+            </button>
+
+
+            <div
+                id="pdfToJpgResult"
+                class="result">
+            </div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       MERGE PDF
+       ===================================================== */
+
+    if (tool === "mergePdf") {
+
+        content.innerHTML = `
+
+            <h2>🔗 Merge PDF</h2>
+
+            <p>
+                Combine multiple PDF files into one PDF.
+            </p>
+
+
+            <input
+                id="mergePdfFiles"
+                type="file"
+                accept="application/pdf"
+                multiple
+            >
+
+
+            <br><br>
+
+
+            <button
+                onclick="mergePDF()">
+
+                Merge PDFs
+
+            </button>
+
+
+            <div
+                id="mergePdfResult"
+                class="result">
+            </div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       SPLIT PDF
+       ===================================================== */
+
+    if (tool === "splitPdf") {
+
+        content.innerHTML = `
+
+            <h2>✂️ Split PDF</h2>
+
+            <p>
+                Extract selected pages from a PDF.
+            </p>
+
+
+            <input
+                id="splitPdfFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+
+            <br><br>
+
+
+            <input
+                id="splitPages"
+                type="text"
+                placeholder="Pages e.g. 1,3,5"
+            >
+
+
+            <br><br>
+
+
+            <button
+                onclick="splitPDF()">
+
+                Split PDF
+
+            </button>
+
+
+            <div
+                id="splitPdfResult"
+                class="result">
+            </div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       REMOVE PDF PAGES
+       ===================================================== */
+
+    if (tool === "removePdf") {
+
+        content.innerHTML = `
+
+            <h2>🗑️ Remove PDF Pages</h2>
+
+            <p>
+                Remove selected pages from a PDF.
+            </p>
+
+
+            <input
+                id="removePdfFile"
+                type="file"
+                accept="application/pdf"
+            >
+
+
+            <br><br>
+
+
+            <input
+                id="removePages"
+                type="text"
+                placeholder="Pages to remove e.g. 2,4"
+            >
+
+
+            <br><br>
+
+
+            <button
+                onclick="removePdfPages()">
+
+                Remove Pages
+
+            </button>
+
+
+            <div
+                id="removePdfResult"
+                class="result">
+            </div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       WORD TO PDF
+       ===================================================== */
+
+    if (tool === "wordPdf") {
+
+        content.innerHTML = `
+
+            <h2>📝 Word to PDF</h2>
+
+            <p>
+                Word to PDF conversion module.
+            </p>
+
+            <input
+                type="file"
+                accept=".doc,.docx"
+            >
+
+            <br><br>
+
+            <button
+                onclick="showComingSoon('Word to PDF')">
+
+                Convert to PDF
+
+            </button>
+
+            <div class="result"></div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       PDF TO WORD
+       ===================================================== */
+
+    if (tool === "pdfWord") {
+
+        content.innerHTML = `
+
+            <h2>📄 PDF to Word</h2>
+
+            <p>
+                Convert PDF documents into editable Word files.
+            </p>
+
+            <input
+                type="file"
+                accept=".pdf"
+            >
+
+            <br><br>
+
+            <button
+                onclick="showComingSoon('PDF to Word')">
+
+                Convert to Word
+
+            </button>
+
+            <div class="result"></div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       EXCEL TO PDF
+       ===================================================== */
+
+    if (tool === "excelPdf") {
+
+        content.innerHTML = `
+
+            <h2>📊 Excel to PDF</h2>
+
+            <p>
+                Convert Excel spreadsheets into PDF.
+            </p>
+
+            <input
+                type="file"
+                accept=".xls,.xlsx"
+            >
+
+            <br><br>
+
+            <button
+                onclick="showComingSoon('Excel to PDF')">
+
+                Convert to PDF
+
+            </button>
+
+            <div class="result"></div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       PDF TO EXCEL
+       ===================================================== */
+
+    if (tool === "pdfExcel") {
+
+        content.innerHTML = `
+
+            <h2>📄 PDF to Excel</h2>
+
+            <p>
+                Convert PDF tables into Excel spreadsheets.
+            </p>
+
+            <input
+                type="file"
+                accept=".pdf"
+            >
+
+            <br><br>
+
+            <button
+                onclick="showComingSoon('PDF to Excel')">
+
+                Convert to Excel
+
+            </button>
+
+            <div class="result"></div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       POWERPOINT TO PDF
+       ===================================================== */
+
+    if (tool === "pptPdf") {
+
+        content.innerHTML = `
+
+            <h2>📽️ PowerPoint to PDF</h2>
+
+            <p>
+                Convert PowerPoint presentations into PDF.
+            </p>
+
+            <input
+                type="file"
+                accept=".ppt,.pptx"
+            >
+
+            <br><br>
+
+            <button
+                onclick="showComingSoon('PowerPoint to PDF')">
+
+                Convert to PDF
+
+            </button>
+
+            <div class="result"></div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       PDF TO POWERPOINT
+       ===================================================== */
+
+    if (tool === "pdfPpt") {
+
+        content.innerHTML = `
+
+            <h2>📄 PDF to PowerPoint</h2>
+
+            <p>
+                Convert PDF pages into PowerPoint slides.
+            </p>
+
+            <input
+                type="file"
+                accept=".pdf"
+            >
+
+            <br><br>
+
+            <button
+                onclick="showComingSoon('PDF to PowerPoint')">
+
+                Convert to PowerPoint
+
+            </button>
+
+            <div class="result"></div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       HTML TO PDF
+       ===================================================== */
+
+    if (tool === "htmlPdf") {
+
+        content.innerHTML = `
+
+            <h2>🌐 HTML to PDF</h2>
+
+            <p>
+                Enter HTML content and create a PDF.
+            </p>
+
+
+            <textarea
+                id="htmlInput"
+                rows="10"
+                placeholder="<h1>Hello</h1>">
+            </textarea>
+
+
+            <br><br>
+
+
+            <button
+                onclick="convertHtmlToPDF()">
+
+                Create PDF
+
+            </button>
+
+
+            <div
+                id="htmlPdfResult"
+                class="result">
+            </div>
+
+        `;
+
     }
 
 
@@ -377,11 +648,12 @@ function openTool(tool) {
 
         content.innerHTML = `
 
-            <h2>QR Code Generator</h2>
+            <h2>🔳 QR Code Generator</h2>
 
             <p>
                 Enter text or website URL.
             </p>
+
 
             <input
                 id="qrText"
@@ -389,11 +661,17 @@ function openTool(tool) {
                 placeholder="Enter text or URL"
             >
 
+
             <br><br>
 
-            <button onclick="generateQR()">
+
+            <button
+                onclick="generateQR()">
+
                 Generate QR
+
             </button>
+
 
             <div
                 id="qrResult"
@@ -401,6 +679,7 @@ function openTool(tool) {
             </div>
 
         `;
+
     }
 
 
@@ -412,7 +691,8 @@ function openTool(tool) {
 
         content.innerHTML = `
 
-            <h2>GST Calculator</h2>
+            <h2>🧾 GST Calculator</h2>
+
 
             <input
                 id="gstAmount"
@@ -420,17 +700,24 @@ function openTool(tool) {
                 placeholder="Enter amount"
             >
 
+
             <input
                 id="gstRate"
                 type="number"
                 placeholder="GST rate %"
             >
 
+
             <br><br>
 
-            <button onclick="calculateGST()">
+
+            <button
+                onclick="calculateGST()">
+
                 Calculate GST
+
             </button>
+
 
             <div
                 id="gstResult"
@@ -438,6 +725,7 @@ function openTool(tool) {
             </div>
 
         `;
+
     }
 
 
@@ -449,7 +737,8 @@ function openTool(tool) {
 
         content.innerHTML = `
 
-            <h2>Percentage Calculator</h2>
+            <h2>% Percentage Calculator</h2>
+
 
             <input
                 id="percentageValue"
@@ -457,17 +746,24 @@ function openTool(tool) {
                 placeholder="Value"
             >
 
+
             <input
                 id="percentageTotal"
                 type="number"
                 placeholder="Total"
             >
 
+
             <br><br>
 
-            <button onclick="calculatePercentage()">
+
+            <button
+                onclick="calculatePercentage()">
+
                 Calculate
+
             </button>
+
 
             <div
                 id="percentageResult"
@@ -475,6 +771,7 @@ function openTool(tool) {
             </div>
 
         `;
+
     }
 
 
@@ -486,12 +783,13 @@ function openTool(tool) {
 
         content.innerHTML = `
 
-            <h2>Image Compressor</h2>
+            <h2>🗜️ Image Compressor</h2>
+
 
             <p>
-                Reduce image file size directly
-                in your browser.
+                Reduce image file size.
             </p>
+
 
             <input
                 id="compressFile"
@@ -499,13 +797,17 @@ function openTool(tool) {
                 accept="image/jpeg,image/png"
             >
 
+
             <br><br>
+
 
             <label>
                 Compression Quality
             </label>
 
+
             <br>
+
 
             <input
                 id="quality"
@@ -516,11 +818,17 @@ function openTool(tool) {
                 step="0.1"
             >
 
+
             <br><br>
 
-            <button onclick="compressImage()">
+
+            <button
+                onclick="compressImage()">
+
                 Compress Image
+
             </button>
+
 
             <div
                 id="compressResult"
@@ -528,6 +836,7 @@ function openTool(tool) {
             </div>
 
         `;
+
     }
 
 
@@ -539,11 +848,8 @@ function openTool(tool) {
 
         content.innerHTML = `
 
-            <h2>Image Resizer</h2>
+            <h2>📐 Image Resizer</h2>
 
-            <p>
-                Resize your image to custom dimensions.
-            </p>
 
             <input
                 id="resizeFile"
@@ -551,7 +857,9 @@ function openTool(tool) {
                 accept="image/*"
             >
 
+
             <br><br>
+
 
             <input
                 id="resizeWidth"
@@ -559,17 +867,24 @@ function openTool(tool) {
                 placeholder="Width in pixels"
             >
 
+
             <input
                 id="resizeHeight"
                 type="number"
                 placeholder="Height in pixels"
             >
 
+
             <br><br>
 
-            <button onclick="resizeImage()">
+
+            <button
+                onclick="resizeImage()">
+
                 Resize Image
+
             </button>
+
 
             <div
                 id="resizeResult"
@@ -577,33 +892,42 @@ function openTool(tool) {
             </div>
 
         `;
+
     }
 
 
     /* =====================================================
-       AGE CALCULATOR
+       AGE
        ===================================================== */
 
     if (tool === "age") {
 
         content.innerHTML = `
 
-            <h2>Age Calculator</h2>
+            <h2>🎂 Age Calculator</h2>
+
 
             <p>
                 Enter your date of birth.
             </p>
+
 
             <input
                 id="birthDate"
                 type="date"
             >
 
+
             <br><br>
 
-            <button onclick="calculateAge()">
+
+            <button
+                onclick="calculateAge()">
+
                 Calculate Age
+
             </button>
+
 
             <div
                 id="ageResult"
@@ -611,18 +935,20 @@ function openTool(tool) {
             </div>
 
         `;
+
     }
 
 
     /* =====================================================
-       EMI CALCULATOR
+       EMI
        ===================================================== */
 
     if (tool === "emi") {
 
         content.innerHTML = `
 
-            <h2>EMI Calculator</h2>
+            <h2>₹ EMI Calculator</h2>
+
 
             <input
                 id="loanAmount"
@@ -630,11 +956,13 @@ function openTool(tool) {
                 placeholder="Loan amount"
             >
 
+
             <input
                 id="interestRate"
                 type="number"
                 placeholder="Annual interest rate %"
             >
+
 
             <input
                 id="loanYears"
@@ -642,11 +970,17 @@ function openTool(tool) {
                 placeholder="Loan period in years"
             >
 
+
             <br><br>
 
-            <button onclick="calculateEMI()">
+
+            <button
+                onclick="calculateEMI()">
+
                 Calculate EMI
+
             </button>
+
 
             <div
                 id="emiResult"
@@ -654,14 +988,12 @@ function openTool(tool) {
             </div>
 
         `;
+
     }
 
 
-    /* ================= SCROLL ================= */
-
     workspace.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+        behavior: "smooth"
     });
 
 }
@@ -673,593 +1005,27 @@ function openTool(tool) {
 
 function closeTool() {
 
-    document.getElementById("workspace").style.display =
+    const workspace =
+        document.getElementById("workspace");
+
+    const content =
+        document.getElementById("toolContent");
+
+
+    workspace.style.display =
         "none";
 
-    document.getElementById("toolContent").innerHTML =
+
+    content.innerHTML =
         "";
 
 }
 
 
 /* =========================================================
-   PDF HUB BACK BUTTON
+   JPG TO PDF
    ========================================================= */
 
-function backToPdfTools() {
-
-    openTool("jpgPdf");
-
-}
-
-
-/* =========================================================
-   JPG TO PDF SCREEN
-   ========================================================= */
-
-function showJpgToPdf() {
-
-    const content =
-        document.getElementById("toolContent");
-
-    content.innerHTML = `
-
-        <button onclick="backToPdfTools()">
-            ← All PDF Tools
-        </button>
-
-        <br><br>
-
-        <h2>JPG to PDF Converter</h2>
-
-        <p>
-            Select one or multiple JPG or PNG images.
-        </p>
-
-        <input
-            id="jpgFiles"
-            type="file"
-            accept="image/jpeg,image/png"
-            multiple
-        >
-
-        <br><br>
-
-        <button onclick="convertToPDF()">
-            Convert to PDF
-        </button>
-
-        <div
-            id="jpgResult"
-            class="result">
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   PDF TO JPG SCREEN
-   ========================================================= */
-
-function showPdfToJpg() {
-
-    const content =
-        document.getElementById("toolContent");
-
-    content.innerHTML = `
-
-        <button onclick="backToPdfTools()">
-            ← All PDF Tools
-        </button>
-
-        <br><br>
-
-        <h2>PDF to JPG</h2>
-
-        <p>
-            Select a PDF file to convert its pages
-            into JPG images.
-        </p>
-
-        <input
-            id="pdfToJpgFile"
-            type="file"
-            accept="application/pdf"
-        >
-
-        <br><br>
-
-        <button onclick="convertPdfToJpg()">
-            Convert PDF
-        </button>
-
-        <div
-            id="pdfToJpgResult"
-            class="result">
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   WORD TO PDF SCREEN
-   ========================================================= */
-
-function showWordToPdf() {
-
-    const content =
-        document.getElementById("toolContent");
-
-    content.innerHTML = `
-
-        <button onclick="backToPdfTools()">
-            ← All PDF Tools
-        </button>
-
-        <br><br>
-
-        <h2>Word to PDF</h2>
-
-        <p>
-            Select a DOC or DOCX file.
-        </p>
-
-        <input
-            id="wordToPdfFile"
-            type="file"
-            accept=".doc,.docx"
-        >
-
-        <br><br>
-
-        <button onclick="convertWordToPdf()">
-            Convert to PDF
-        </button>
-
-        <div
-            id="wordToPdfResult"
-            class="result">
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   PDF TO WORD SCREEN
-   ========================================================= */
-
-function showPdfToWord() {
-
-    const content =
-        document.getElementById("toolContent");
-
-    content.innerHTML = `
-
-        <button onclick="backToPdfTools()">
-            ← All PDF Tools
-        </button>
-
-        <br><br>
-
-        <h2>PDF to Word</h2>
-
-        <p>
-            Select a PDF file.
-        </p>
-
-        <input
-            id="pdfToWordFile"
-            type="file"
-            accept="application/pdf"
-        >
-
-        <br><br>
-
-        <button onclick="convertPdfToWord()">
-            Convert to Word
-        </button>
-
-        <div
-            id="pdfToWordResult"
-            class="result">
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   POWERPOINT TO PDF SCREEN
-   ========================================================= */
-
-function showPptToPdf() {
-
-    const content =
-        document.getElementById("toolContent");
-
-    content.innerHTML = `
-
-        <button onclick="backToPdfTools()">
-            ← All PDF Tools
-        </button>
-
-        <br><br>
-
-        <h2>PowerPoint to PDF</h2>
-
-        <p>
-            Select a PPT or PPTX presentation.
-        </p>
-
-        <input
-            id="pptToPdfFile"
-            type="file"
-            accept=".ppt,.pptx"
-        >
-
-        <br><br>
-
-        <button onclick="convertPptToPdf()">
-            Convert to PDF
-        </button>
-
-        <div
-            id="pptToPdfResult"
-            class="result">
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   PDF TO POWERPOINT SCREEN
-   ========================================================= */
-
-function showPdfToPpt() {
-
-    const content =
-        document.getElementById("toolContent");
-
-    content.innerHTML = `
-
-        <button onclick="backToPdfTools()">
-            ← All PDF Tools
-        </button>
-
-        <br><br>
-
-        <h2>PDF to PowerPoint</h2>
-
-        <p>
-            Select a PDF file to create presentation slides.
-        </p>
-
-        <input
-            id="pdfToPptFile"
-            type="file"
-            accept="application/pdf"
-        >
-
-        <br><br>
-
-        <button onclick="convertPdfToPpt()">
-            Convert to PowerPoint
-        </button>
-
-        <div
-            id="pdfToPptResult"
-            class="result">
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   EXCEL TO PDF SCREEN
-   ========================================================= */
-
-function showExcelToPdf() {
-
-    const content =
-        document.getElementById("toolContent");
-
-    content.innerHTML = `
-
-        <button onclick="backToPdfTools()">
-            ← All PDF Tools
-        </button>
-
-        <br><br>
-
-        <h2>Excel to PDF</h2>
-
-        <p>
-            Select an XLS or XLSX spreadsheet.
-        </p>
-
-        <input
-            id="excelToPdfFile"
-            type="file"
-            accept=".xls,.xlsx"
-        >
-
-        <br><br>
-
-        <button onclick="convertExcelToPdf()">
-            Convert to PDF
-        </button>
-
-        <div
-            id="excelToPdfResult"
-            class="result">
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   PDF TO EXCEL SCREEN
-   ========================================================= */
-
-function showPdfToExcel() {
-
-    const content =
-        document.getElementById("toolContent");
-
-    content.innerHTML = `
-
-        <button onclick="backToPdfTools()">
-            ← All PDF Tools
-        </button>
-
-        <br><br>
-
-        <h2>PDF to Excel</h2>
-
-        <p>
-            Select a PDF containing tables.
-        </p>
-
-        <input
-            id="pdfToExcelFile"
-            type="file"
-            accept="application/pdf"
-        >
-
-        <br><br>
-
-        <button onclick="convertPdfToExcel()">
-            Convert to Excel
-        </button>
-
-        <div
-            id="pdfToExcelResult"
-            class="result">
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   HTML TO PDF SCREEN
-   ========================================================= */
-
-function showHtmlToPdf() {
-
-    const content =
-        document.getElementById("toolContent");
-
-    content.innerHTML = `
-
-        <button onclick="backToPdfTools()">
-            ← All PDF Tools
-        </button>
-
-        <br><br>
-
-        <h2>HTML to PDF</h2>
-
-        <p>
-            Enter HTML content below.
-        </p>
-
-        <textarea
-            id="htmlContent"
-            rows="12"
-            style="
-                width:100%;
-                max-width:800px;
-                padding:15px;
-                border:1px solid #ddd;
-                border-radius:10px;
-            "
-            placeholder="<h1>Hello</h1><p>My PDF</p>"
-        ></textarea>
-
-        <br><br>
-
-        <button onclick="convertHtmlToPdf()">
-            Create PDF
-        </button>
-
-        <div
-            id="htmlToPdfResult"
-            class="result">
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   MERGE PDF SCREEN
-   ========================================================= */
-
-function showMergePdf() {
-
-    const content =
-        document.getElementById("toolContent");
-
-    content.innerHTML = `
-
-        <button onclick="backToPdfTools()">
-            ← All PDF Tools
-        </button>
-
-        <br><br>
-
-        <h2>Merge PDF</h2>
-
-        <p>
-            Select multiple PDF files and combine them
-            into one PDF.
-        </p>
-
-        <input
-            id="mergePdfFiles"
-            type="file"
-            accept="application/pdf"
-            multiple
-        >
-
-        <br><br>
-
-        <button onclick="mergePDF()">
-            Merge PDF Files
-        </button>
-
-        <div
-            id="mergePdfResult"
-            class="result">
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   SPLIT PDF SCREEN
-   ========================================================= */
-
-function showSplitPdf() {
-
-    const content =
-        document.getElementById("toolContent");
-
-    content.innerHTML = `
-
-        <button onclick="backToPdfTools()">
-            ← All PDF Tools
-        </button>
-
-        <br><br>
-
-        <h2>Split PDF</h2>
-
-        <p>
-            Enter the pages you want to extract.
-            Example: 1,3,5
-        </p>
-
-        <input
-            id="splitPdfFile"
-            type="file"
-            accept="application/pdf"
-        >
-
-        <br><br>
-
-        <input
-            id="splitPages"
-            type="text"
-            placeholder="Example: 1,3,5"
-        >
-
-        <br><br>
-
-        <button onclick="splitPDF()">
-            Split PDF
-        </button>
-
-        <div
-            id="splitPdfResult"
-            class="result">
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   REMOVE PDF PAGES
-   ========================================================= */
-
-function showRemovePdfPages() {
-
-    const content =
-        document.getElementById("toolContent");
-
-    content.innerHTML = `
-
-        <button onclick="backToPdfTools()">
-            ← All PDF Tools
-        </button>
-
-        <br><br>
-
-        <h2>Remove PDF Pages</h2>
-
-        <p>
-            Enter the page numbers you want to remove.
-            Example: 2,4
-        </p>
-
-        <input
-            id="removePdfFile"
-            type="file"
-            accept="application/pdf"
-        >
-
-        <br><br>
-
-        <input
-            id="removePages"
-            type="text"
-            placeholder="Example: 2,4"
-        >
-
-        <br><br>
-
-        <button onclick="removePdfPages()">
-            Remove Pages
-        </button>
-
-        <div
-            id="removePdfResult"
-            class="result">
-        </div>
-
-    `;
-
-}
 async function convertToPDF() {
 
     const input =
@@ -1268,8 +1034,10 @@ async function convertToPDF() {
     const result =
         document.getElementById("jpgResult");
 
+
     const files =
         input.files;
+
 
     if (!files.length) {
 
@@ -1277,23 +1045,32 @@ async function convertToPDF() {
             "Please select at least one image.";
 
         return;
+
     }
+
 
     if (
         typeof window.jspdf === "undefined"
     ) {
 
         result.innerHTML =
-            "PDF library load nahi hui. Internet ON karke page refresh karein.";
+            "PDF library load nahi hui. Page refresh karein.";
 
         return;
+
     }
+
 
     const jsPDF =
         window.jspdf.jsPDF;
 
+
     const pdf =
-        new jsPDF("p", "mm", "a4");
+        new jsPDF(
+            "p",
+            "mm",
+            "a4"
+        );
 
 
     try {
@@ -1308,11 +1085,8 @@ async function convertToPDF() {
                 Converting image ${i + 1} of ${files.length}...;
 
 
-            const file =
-                files[i];
-
             const image =
-                await loadImage(file);
+                await loadImage(files[i]);
 
 
             if (i > 0) {
@@ -1320,15 +1094,24 @@ async function convertToPDF() {
             }
 
 
-            const pageWidth = 210;
-            const pageHeight = 297;
-            const margin = 10;
+            const pageWidth =
+                210;
+
+            const pageHeight =
+                297;
+
+            const margin =
+                10;
+
 
             const maxWidth =
-                pageWidth - margin * 2;
+                pageWidth -
+                margin * 2;
+
 
             const maxHeight =
-                pageHeight - margin * 2;
+                pageHeight -
+                margin * 2;
 
 
             const ratio =
@@ -1341,6 +1124,7 @@ async function convertToPDF() {
             const width =
                 image.width * ratio;
 
+
             const height =
                 image.height * ratio;
 
@@ -1348,12 +1132,14 @@ async function convertToPDF() {
             const x =
                 (pageWidth - width) / 2;
 
+
             const y =
                 (pageHeight - height) / 2;
 
 
             const format =
-                file.type === "image/png"
+                files[i].type ===
+                "image/png"
                     ? "PNG"
                     : "JPEG";
 
@@ -1366,6 +1152,7 @@ async function convertToPDF() {
                 width,
                 height
             );
+
         }
 
 
@@ -1384,9 +1171,10 @@ async function convertToPDF() {
         console.error(error);
 
         result.innerHTML =
-            "❌ Unable to create PDF. Please try again.";
+            "❌ Unable to create PDF.";
 
     }
+
 }
 
 
@@ -1401,6 +1189,7 @@ function loadImage(file) {
 
             const url =
                 URL.createObjectURL(file);
+
 
             const image =
                 new Image();
@@ -1423,35 +1212,18 @@ function loadImage(file) {
 
                     reject(
                         new Error(
-                            "Image could not be loaded."
+                            "Image loading failed."
                         )
                     );
 
                 };
 
 
-            image.src = url;
+            image.src =
+                url;
 
         }
     );
-}
-
-
-/* =========================================================
-   PDF LIBRARY CHECK
-   ========================================================= */
-
-function checkPdfLibrary() {
-
-    if (
-        typeof window.pdfjsLib === "undefined"
-    ) {
-
-        return false;
-
-    }
-
-    return true;
 
 }
 
@@ -1463,10 +1235,16 @@ function checkPdfLibrary() {
 async function convertPdfToJpg() {
 
     const input =
-        document.getElementById("pdfToJpgFile");
+        document.getElementById(
+            "pdfToJpgFile"
+        );
+
 
     const result =
-        document.getElementById("pdfToJpgResult");
+        document.getElementById(
+            "pdfToJpgResult"
+        );
+
 
     if (!input.files.length) {
 
@@ -1478,12 +1256,12 @@ async function convertPdfToJpg() {
     }
 
 
-    if (!checkPdfLibrary()) {
+    if (
+        typeof pdfjsLib === "undefined"
+    ) {
 
-        result.innerHTML = `
-            PDF engine is not loaded.<br><br>
-            Please add PDF.js library to index.html.
-        `;
+        result.innerHTML =
+            "PDF.js library load nahi hui.";
 
         return;
 
@@ -1495,17 +1273,21 @@ async function convertPdfToJpg() {
         const file =
             input.files[0];
 
-        const arrayBuffer =
+
+        const data =
             await file.arrayBuffer();
 
 
         const pdf =
-            await pdfjsLib.getDocument({
-                data: arrayBuffer
-            }).promise;
+            await pdfjsLib
+                .getDocument({
+                    data: data
+                })
+                .promise;
 
 
-        let html = "";
+        let output = "";
+
 
         for (
             let pageNumber = 1;
@@ -1518,7 +1300,9 @@ async function convertPdfToJpg() {
 
 
             const page =
-                await pdf.getPage(pageNumber);
+                await pdf.getPage(
+                    pageNumber
+                );
 
 
             const viewport =
@@ -1528,56 +1312,69 @@ async function convertPdfToJpg() {
 
 
             const canvas =
-                document.createElement("canvas");
+                document.createElement(
+                    "canvas"
+                );
 
 
             const context =
-                canvas.getContext("2d");
+                canvas.getContext(
+                    "2d"
+                );
 
 
             canvas.width =
                 viewport.width;
+
 
             canvas.height =
                 viewport.height;
 
 
             await page.render({
-                canvasContext: context,
-                viewport: viewport
+                canvasContext:
+                    context,
+                viewport:
+                    viewport
             }).promise;
 
 
-            const url =
+            const image =
                 canvas.toDataURL(
                     "image/jpeg",
                     0.9
                 );
 
 
-            html += `
+            output += `
 
-                <div style="margin-bottom:20px">
+                <div
+                    style="
+                        margin:20px 0;
+                    "
+                >
 
-                    <p>
+                    <strong>
                         Page ${pageNumber}
-                    </p>
+                    </strong>
+
+                    <br><br>
 
                     <img
-                        src="${url}"
+                        src="${image}"
                         style="
                             max-width:100%;
-                            border:1px solid #ddd;
                             border-radius:8px;
                         "
                     >
 
-                    <br>
+                    <br><br>
 
                     <a
                         class="download"
-                        href="${url}"
-                        download="page-${pageNumber}.jpg">
+                        href="${image}"
+                        download="page-${pageNumber}.jpg"
+                    >
 
                         Download Page ${pageNumber}
 
@@ -1586,6 +1383,7 @@ async function convertPdfToJpg() {
                 </div>
 
             `;
+
         }
 
 
@@ -1594,9 +1392,7 @@ async function convertPdfToJpg() {
                 ✅ PDF converted successfully
             </strong>
 
-            <br><br>
-
-            ${html}
+            ${output}
         `;
 
     }
@@ -1606,7 +1402,7 @@ async function convertPdfToJpg() {
         console.error(error);
 
         result.innerHTML =
-            "❌ Unable to process PDF.";
+            "❌ Unable to convert PDF.";
 
     }
 
@@ -1620,10 +1416,15 @@ async function convertPdfToJpg() {
 async function mergePDF() {
 
     const input =
-        document.getElementById("mergePdfFiles");
+        document.getElementById(
+            "mergePdfFiles"
+        );
+
 
     const result =
-        document.getElementById("mergePdfResult");
+        document.getElementById(
+            "mergePdfResult"
+        );
 
 
     if (!input.files.length) {
@@ -1640,10 +1441,8 @@ async function mergePDF() {
         typeof PDFLib === "undefined"
     ) {
 
-        result.innerHTML = `
-            PDF engine is not loaded.<br><br>
-            Please add pdf-lib library to index.html.
-        `;
+        result.innerHTML =
+            "PDF library load nahi hui.";
 
         return;
 
@@ -1653,7 +1452,9 @@ async function mergePDF() {
     try {
 
         const mergedPdf =
-            await PDFLib.PDFDocument.create();
+            await PDFLib
+                .PDFDocument
+                .create();
 
 
         for (
@@ -1665,9 +1466,9 @@ async function mergePDF() {
 
 
             const pdf =
-                await PDFLib.PDFDocument.load(
-                    bytes
-                );
+                await PDFLib
+                    .PDFDocument
+                    .load(bytes);
 
 
             const pages =
@@ -1723,13 +1524,21 @@ async function mergePDF() {
 async function splitPDF() {
 
     const fileInput =
-        document.getElementById("splitPdfFile");
+        document.getElementById(
+            "splitPdfFile"
+        );
+
 
     const pagesInput =
-        document.getElementById("splitPages");
+        document.getElementById(
+            "splitPages"
+        );
+
 
     const result =
-        document.getElementById("splitPdfResult");
+        document.getElementById(
+            "splitPdfResult"
+        );
 
 
     if (!fileInput.files.length) {
@@ -1749,7 +1558,7 @@ async function splitPDF() {
     if (!pageText) {
 
         result.innerHTML =
-            "Please enter page numbers.";
+            "Enter page numbers like 1,3,5.";
 
         return;
 
@@ -1761,7 +1570,7 @@ async function splitPDF() {
     ) {
 
         result.innerHTML =
-            "PDF engine is not loaded.";
+            "PDF library load nahi hui.";
 
         return;
 
@@ -1776,50 +1585,49 @@ async function splitPDF() {
 
 
         const sourcePdf =
-            await PDFLib.PDFDocument.load(
-                bytes
-            );
+            await PDFLib
+                .PDFDocument
+                .load(bytes);
 
 
         const outputPdf =
-            await PDFLib.PDFDocument.create();
+            await PDFLib
+                .PDFDocument
+                .create();
 
 
-        const pageNumbers =
+        const pages =
             pageText
                 .split(",")
                 .map(
                     function(value) {
-                        return parseInt(
-                            value.trim(),
-                            10
+
+                        return (
+                            parseInt(
+                                value.trim(),
+                                10
+                            ) - 1
                         );
+
                     }
                 )
                 .filter(
-                    function(value) {
-                        return !isNaN(value);
+                    function(page) {
+
+                        return (
+                            page >= 0 &&
+                            page <
+                            sourcePdf.getPageCount()
+                        );
+
                     }
                 );
 
 
-        const validPages =
-            pageNumbers.filter(
-                function(page) {
-
-                    return (
-                        page >= 1 &&
-                        page <= sourcePdf.getPageCount()
-                    );
-
-                }
-            );
-
-
-        if (!validPages.length) {
+        if (!pages.length) {
 
             result.innerHTML =
-                "No valid page numbers found.";
+                "No valid pages found.";
 
             return;
 
@@ -1829,11 +1637,7 @@ async function splitPDF() {
         const copiedPages =
             await outputPdf.copyPages(
                 sourcePdf,
-                validPages.map(
-                    function(page) {
-                        return page - 1;
-                    }
-                )
+                pages
             );
 
 
@@ -1881,13 +1685,21 @@ async function splitPDF() {
 async function removePdfPages() {
 
     const fileInput =
-        document.getElementById("removePdfFile");
+        document.getElementById(
+            "removePdfFile"
+        );
+
 
     const pagesInput =
-        document.getElementById("removePages");
+        document.getElementById(
+            "removePages"
+        );
+
 
     const result =
-        document.getElementById("removePdfResult");
+        document.getElementById(
+            "removePdfResult"
+        );
 
 
     if (!fileInput.files.length) {
@@ -1900,10 +1712,14 @@ async function removePdfPages() {
     }
 
 
-    if (!pagesInput.value.trim()) {
+    const pageText =
+        pagesInput.value.trim();
+
+
+    if (!pageText) {
 
         result.innerHTML =
-            "Please enter page numbers.";
+            "Enter pages like 2,4.";
 
         return;
 
@@ -1915,7 +1731,7 @@ async function removePdfPages() {
     ) {
 
         result.innerHTML =
-            "PDF engine is not loaded.";
+            "PDF library load nahi hui.";
 
         return;
 
@@ -1930,40 +1746,42 @@ async function removePdfPages() {
 
 
         const sourcePdf =
-            await PDFLib.PDFDocument.load(
-                bytes
-            );
-
-
-        const removePages =
-            pagesInput.value
-                .split(",")
-                .map(
-                    function(value) {
-                        return parseInt(
-                            value.trim(),
-                            10
-                        );
-                    }
-                )
-                .filter(
-                    function(value) {
-                        return !isNaN(value);
-                    }
-                );
-
-
-        const removeSet =
-            new Set(
-                removePages
-            );
+            await PDFLib
+                .PDFDocument
+                .load(bytes);
 
 
         const outputPdf =
-            await PDFLib.PDFDocument.create();
+            await PDFLib
+                .PDFDocument
+                .create();
 
 
-        const pageIndexes = [];
+        const removePages =
+            new Set(
+                pageText
+                    .split(",")
+                    .map(
+                        function(value) {
+
+                            return parseInt(
+                                value.trim(),
+                                10
+                            );
+
+                        }
+                    )
+                    .filter(
+                        function(value) {
+
+                            return !isNaN(value);
+
+                        }
+                    )
+            );
+
+
+        const keepPages = [];
 
 
         for (
@@ -1972,22 +1790,18 @@ async function removePdfPages() {
             i++
         ) {
 
-            const pageNumber =
-                i + 1;
-
-
             if (
-                !removeSet.has(pageNumber)
+                !removePages.has(i + 1)
             ) {
 
-                pageIndexes.push(i);
+                keepPages.push(i);
 
             }
 
         }
 
 
-        if (!pageIndexes.length) {
+        if (!keepPages.length) {
 
             result.innerHTML =
                 "You cannot remove all pages.";
@@ -2000,7 +1814,7 @@ async function removePdfPages() {
         const pages =
             await outputPdf.copyPages(
                 sourcePdf,
-                pageIndexes
+                keepPages
             );
 
 
@@ -2042,7 +1856,141 @@ async function removePdfPages() {
 
 
 /* =========================================================
-   DOWNLOAD HELPER
+   HTML TO PDF
+   ========================================================= */
+
+function convertHtmlToPDF() {
+
+    const html =
+        document.getElementById(
+            "htmlInput"
+        ).value.trim();
+
+
+    const result =
+        document.getElementById(
+            "htmlPdfResult"
+        );
+
+
+    if (!html) {
+
+        result.innerHTML =
+            "Please enter HTML.";
+
+        return;
+
+    }
+
+
+    if (
+        typeof window.jspdf === "undefined"
+    ) {
+
+        result.innerHTML =
+            "PDF library load nahi hui.";
+
+        return;
+
+    }
+
+
+    const jsPDF =
+        window.jspdf.jsPDF;
+
+
+    const pdf =
+        new jsPDF();
+
+
+    const temp =
+        document.createElement(
+            "div"
+        );
+
+
+    temp.innerHTML =
+        html;
+
+
+    document.body.appendChild(
+        temp
+    );
+
+
+    pdf.html(
+        temp,
+        {
+            callback:
+                function(doc) {
+
+                    doc.save(
+                        "AB-Digital-Utility-HTML.pdf"
+                    );
+
+
+                    temp.remove();
+
+
+                    result.innerHTML =
+                        "<strong>✅ PDF created successfully!</strong>";
+
+                },
+
+            margin: 10,
+
+            autoPaging: "text",
+
+            x: 10,
+
+            y: 10,
+
+            width: 190
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   COMING SOON
+   ========================================================= */
+
+function showComingSoon(name) {
+
+    const results =
+        document.querySelectorAll(
+            ".result"
+        );
+
+
+    const result =
+        results[results.length - 1];
+
+
+    if (result) {
+
+        result.innerHTML = `
+
+            <strong>
+                🚧 ${name}
+            </strong>
+
+            <br><br>
+
+            This converter will be added in
+            the next version.
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   DOWNLOAD BLOB
    ========================================================= */
 
 function downloadBlob(
@@ -2061,22 +2009,32 @@ function downloadBlob(
 
 
     const url =
-        URL.createObjectURL(blob);
+        URL.createObjectURL(
+            blob
+        );
 
 
     const link =
-        document.createElement("a");
+        document.createElement(
+            "a"
+        );
 
 
-    link.href = url;
+    link.href =
+        url;
+
 
     link.download =
         filename;
 
 
-    document.body.appendChild(link);
+    document.body.appendChild(
+        link
+    );
+
 
     link.click();
+
 
     link.remove();
 
@@ -2084,7 +2042,9 @@ function downloadBlob(
     setTimeout(
         function() {
 
-            URL.revokeObjectURL(url);
+            URL.revokeObjectURL(
+                url
+            );
 
         },
         1000
@@ -2100,13 +2060,15 @@ function downloadBlob(
 function generateQR() {
 
     const text =
-        document.getElementById("qrText")
-            .value
-            .trim();
+        document.getElementById(
+            "qrText"
+        ).value.trim();
 
 
     const result =
-        document.getElementById("qrResult");
+        document.getElementById(
+            "qrResult"
+        );
 
 
     if (!text) {
@@ -2119,7 +2081,8 @@ function generateQR() {
     }
 
 
-    result.innerHTML = "";
+    result.innerHTML =
+        "";
 
 
     if (
@@ -2127,7 +2090,7 @@ function generateQR() {
     ) {
 
         result.innerHTML =
-            "QR library load nahi hui. Page refresh karein.";
+            "QR library load nahi hui.";
 
         return;
 
@@ -2154,20 +2117,24 @@ function calculateGST() {
 
     const amount =
         Number(
-            document.getElementById("gstAmount")
-                .value
+            document.getElementById(
+                "gstAmount"
+            ).value
         );
 
 
     const rate =
         Number(
-            document.getElementById("gstRate")
-                .value
+            document.getElementById(
+                "gstRate"
+            ).value
         );
 
 
     const result =
-        document.getElementById("gstResult");
+        document.getElementById(
+            "gstResult"
+        );
 
 
     if (
@@ -2191,29 +2158,12 @@ function calculateGST() {
         amount + gst;
 
 
-    const cgst =
-        gst / 2;
-
-    const sgst =
-        gst / 2;
-
-
     result.innerHTML = `
 
         GST:
         <strong>
             ₹${gst.toFixed(2)}
         </strong>
-
-        <br>
-
-        CGST:
-        ₹${cgst.toFixed(2)}
-
-        <br>
-
-        SGST:
-        ₹${sgst.toFixed(2)}
 
         <br>
 
@@ -2339,6 +2289,7 @@ function compressImage() {
                     canvas.width =
                         image.width;
 
+
                     canvas.height =
                         image.height;
 
@@ -2379,14 +2330,14 @@ function compressImage() {
 
                             result.innerHTML = `
 
-                                Original size:
+                                Original:
                                 <strong>
                                     ${originalSize} KB
                                 </strong>
 
                                 <br>
 
-                                Compressed size:
+                                Compressed:
                                 <strong>
                                     ${newSize} KB
                                 </strong>
@@ -2398,7 +2349,7 @@ function compressImage() {
                                     href="${url}"
                                     download="AB-Digital-Utility-compressed.jpg">
 
-                                    Download Compressed Image
+                                    Download Image
 
                                 </a>
 
@@ -2418,7 +2369,9 @@ function compressImage() {
         };
 
 
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(
+        file
+    );
 
 }
 
@@ -2473,7 +2426,7 @@ function resizeImage() {
     ) {
 
         result.innerHTML =
-            "Please enter valid width and height.";
+            "Please enter valid dimensions.";
 
         return;
 
@@ -2502,6 +2455,7 @@ function resizeImage() {
 
                     canvas.width =
                         width;
+
 
                     canvas.height =
                         height;
@@ -2562,7 +2516,9 @@ function resizeImage() {
         };
 
 
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(
+        file
+    );
 
 }
 
@@ -2675,7 +2631,7 @@ function calculateAge() {
 
 
 /* =========================================================
-   EMI CALCULATOR
+   EMI
    ========================================================= */
 
 function calculateEMI() {
@@ -2735,9 +2691,7 @@ function calculateEMI() {
     let emi;
 
 
-    if (
-        monthlyRate === 0
-    ) {
+    if (monthlyRate === 0) {
 
         emi =
             principal / months;
@@ -2775,7 +2729,6 @@ function calculateEMI() {
     result.innerHTML = `
 
         Monthly EMI:
-
         <strong>
             ₹${emi.toFixed(2)}
         </strong>
@@ -2783,14 +2736,130 @@ function calculateEMI() {
         <br>
 
         Total Interest:
-
         ₹${totalInterest.toFixed(2)}
 
         <br>
 
         Total Payment:
-
         ₹${totalPayment.toFixed(2)}
+
+    `;
+
+}
+
+
+/* =========================================================
+   QUICK GST
+   ========================================================= */
+
+function quickGST() {
+
+    const amount =
+        Number(
+            document.getElementById(
+                "quickGSTAmount"
+            ).value
+        );
+
+
+    const rate =
+        Number(
+            document.getElementById(
+                "quickGSTRate"
+            ).value
+        );
+
+
+    const result =
+        document.getElementById(
+            "quickGSTResult"
+        );
+
+
+    if (
+        amount <= 0 ||
+        rate < 0
+    ) {
+
+        result.innerHTML =
+            "Enter valid values.";
+
+        return;
+
+    }
+
+
+    const gst =
+        amount * rate / 100;
+
+
+    const total =
+        amount + gst;
+
+
+    result.innerHTML = `
+
+        GST: ₹${gst.toFixed(2)}
+
+        <br>
+
+        Total:
+        <strong>
+            ₹${total.toFixed(2)}
+        </strong>
+
+    `;
+
+}
+
+
+/* =========================================================
+   QUICK PERCENTAGE
+   ========================================================= */
+
+function quickPercentage() {
+
+    const value =
+        Number(
+            document.getElementById(
+                "quickPercentValue"
+            ).value
+        );
+
+
+    const total =
+        Number(
+            document.getElementById(
+                "quickPercentTotal"
+            ).value
+        );
+
+
+    const result =
+        document.getElementById(
+            "quickPercentResult"
+        );
+
+
+    if (total <= 0) {
+
+        result.innerHTML =
+            "Enter valid values.";
+
+        return;
+
+    }
+
+
+    const percentage =
+        value / total * 100;
+
+
+    result.innerHTML = `
+
+        <strong>
+            ${percentage.toFixed(2)}%
+        </strong>
 
     `;
 
