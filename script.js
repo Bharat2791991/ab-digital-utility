@@ -1738,16 +1738,10 @@ async function pdfToWord() {
         return;
     }
 
-   if (
-    typeof window.docx === "undefined" ||
-    typeof window.docx.Document === "undefined"
-) {
-
-    result.innerHTML =
-        "❌ Word document library not loaded.";
-
-    return;
-}
+    if (
+        typeof docx === "undefined" ||
+        typeof docx.Document === "undefined"
+    ) {
 
         result.innerHTML =
             "❌ Word document library not loaded.";
@@ -1874,9 +1868,9 @@ async function pdfToWord() {
             /* Page heading */
 
             children.push(
-                new window.docx.Paragraph({
+                new docx.Paragraph({
                     children: [
-                        new window.docx.TextRun({
+                        new docx.TextRun({
                             text:
                                 "Page " +
                                 pageNumber,
@@ -1897,10 +1891,10 @@ async function pdfToWord() {
                 function(line) {
 
                     children.push(
-                        new window.docx.Paragraph({
+                        new docx.Paragraph({
 
                             children: [
-                                new window.docx.TextRun({
+                                new docx.TextRun({
                                     text:
                                         line,
                                     size: 22
@@ -1926,9 +1920,9 @@ async function pdfToWord() {
             ) {
 
                 children.push(
-                    new window.docx.Paragraph({
+                    new docx.Paragraph({
                         children: [
-                            new window.docx.TextRun({
+                            new docx.TextRun({
                                 text:
                                     " "
                             })
@@ -1948,7 +1942,7 @@ async function pdfToWord() {
 
 
         var documentFile =
-           new window.docx.Document({
+            new docx.Document({
 
                 sections: [
                     {
@@ -1962,7 +1956,7 @@ async function pdfToWord() {
 
 
         var blob =
-            await window.docx.Packer
+            await docx.Packer
                 .toBlob(
                     documentFile
                 );
