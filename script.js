@@ -1723,112 +1723,282 @@ async function pdfToWord() {
     var result = get("pdfToWordResult");
 
     if (!input || !input.files.length) {
-        result.innerHTML = "Please select a PDF.";
+
+        result.innerHTML =
+            "Please select a PDF file.";
+
         return;
     }
 
     if (typeof pdfjsLib === "undefined") {
-        result.innerHTML = "PDF.js library not loaded.";
+
+        result.innerHTML =
+            "❌ PDF library not loaded.";
+
         return;
     }
 
     if (
         typeof docx === "undefined" ||
-        !docx.Document
+        typeof docx.Document === "undefined"
     ) {
-        result.innerHTML = "DOCX library not loaded.";
+
+        result.innerHTML =
+            "❌ Word document library not loaded.";
+
         return;
     }
 
     try {
 
         result.innerHTML =
-            "Reading PDF...";
+            "⏳ Reading PDF...";
+
+        var file =
+            input.files[0];
 
         var buffer =
-            await input.files[0].arrayBuffer();
+            await file.arrayBuffer();
 
         var pdf =
-            await pdfjsLib.getDocument({
-                data: buffer
-            }).promise;
+            await pdfjsLib
+                .getDocument({
+                    data: buffer
+                })
+                .promise;
 
-        var paragraphs = [];
+
+        var children = [];
+
 
         for (
-            var i = 1;
-            i <= pdf.numPages;
-            i++
+            var pageNumber = 1;
+            pageNumber <= pdf.numPages;
+            pageNumber++
         ) {
 
             result.innerHTML =
-                "Extracting page " +
-                i +
+                "⏳ Processing page " +
+                pageNumber +
                 " of " +
                 pdf.numPages +
                 "...";
 
+
             var page =
-                await pdf.getPage(i);
+                await pdf.getPage(
+                    pageNumber
+                );
+
 
             var textContent =
                 await page.getTextContent();
 
-            var text =
-                textContent.items
-                    .map(
-                        function (item) {
-                            return item.str;
+
+            var lines = [];
+
+            var currentLine = "";
+
+            var lastY = null;
+
+
+            textContent.items.forEach(
+                function(item) {
+
+                    var text =
+                        item.str || "";
+
+                    var y =
+                        item.transform
+                            ? item.transform[5]
+                            : 0;
+
+
+                    if (
+                        lastY !== null &&
+                        Math.abs(y - lastY) > 5
+                    ) {
+
+                        if (
+                            currentLine.trim()
+                        ) {
+
+                            lines.push(
+                                currentLine.trim()
+                            );
+
                         }
-                    )
-                    .join(" ");
 
-            paragraphs.push(
+                        currentLine = "";
+
+                    }
+
+
+                    currentLine +=
+                        text + " ";
+
+                    lastY = y;
+
+                }
+            );
+
+
+            if (
+                currentLine.trim()
+            ) {
+
+                lines.push(
+                    currentLine.trim()
+                );
+
+            }
+
+
+            if (
+                lines.length === 0
+            ) {
+
+                lines.push(
+                    "[No readable text found on this page]"
+                );
+
+            }
+
+
+            /* Page heading */
+
+            children.push(
                 new docx.Paragraph({
-                    text:
-                        "PAGE " + i
+                    children: [
+                        new docx.TextRun({
+                            text:
+                                "Page " +
+                                pageNumber,
+                            bold: true,
+                            size: 24
+                        })
+                    ],
+                    spacing: {
+                        after: 200
+                    }
                 })
             );
 
-            paragraphs.push(
-                new docx.Paragraph({
-                    text:
-                        text
-                })
+
+            /* PDF text */
+
+            lines.forEach(
+                function(line) {
+
+                    children.push(
+                        new docx.Paragraph({
+
+                            children: [
+                                new docx.TextRun({
+                                    text:
+                                        line,
+                                    size: 22
+                                })
+                            ],
+
+                            spacing: {
+                                after: 100
+                            }
+
+                        })
+                    );
+
+                }
             );
+
+
+            /* Page separator */
+
+            if (
+                pageNumber <
+                pdf.numPages
+            ) {
+
+                children.push(
+                    new docx.Paragraph({
+                        children: [
+                            new docx.TextRun({
+                                text:
+                                    " "
+                            })
+                        ],
+                        pageBreakBefore:
+                            true
+                    })
+                );
+
+            }
+
         }
 
-        var documentObject =
+
+        result.innerHTML =
+            "⏳ Creating Word document...";
+
+
+        var documentFile =
             new docx.Document({
+
                 sections: [
                     {
                         properties: {},
                         children:
-                            paragraphs
+                            children
                     }
                 ]
+
             });
 
+
         var blob =
-            await docx.Packer.toBlob(
-                documentObject
-            );
+            await docx.Packer
+                .toBlob(
+                    documentFile
+                );
+
 
         saveAs(
             blob,
             "AB-Digital-Utility-PDF-to-Word.docx"
         );
 
-        result.innerHTML =
-            "<strong>✅ PDF converted to Word!</strong>";
 
-    } catch (error) {
+        result.innerHTML = `
+            <strong>
+                ✅ PDF successfully converted to Word!
+            </strong>
 
-        console.error(error);
+            <br><br>
 
-        result.innerHTML =
-            "❌ PDF to Word conversion failed.";
+            Word document download started.
+        `;
+
     }
+
+    catch (error) {
+
+        console.error(
+            "PDF TO WORD ERROR:",
+            error
+        );
+
+        result.innerHTML = `
+            <strong>
+                ❌ PDF to Word conversion failed.
+            </strong>
+
+            <br><br>
+
+            Please try another PDF file.
+        `;
+
+    }
+
 }
 
 
