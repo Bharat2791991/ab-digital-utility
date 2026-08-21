@@ -1,661 +1,1031 @@
+/* =========================================================
+   AB DIGITAL UTILITY
+   Complete Responsive Stylesheet
+   ========================================================= */
+
+
+/* ================= RESET ================= */
+
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-  background: #f7f8fc;
-  color: #171923;
-
-  line-height: 1.6;
+    background: #f8f9fc;
+    color: #202124;
+    line-height: 1.6;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* ================= CONTAINER ================= */
 
 .container {
-  width: min(1120px, 92%);
-  margin: auto;
+    width: 92%;
+    max-width: 1180px;
+    margin: auto;
 }
 
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 .header {
-  background: rgba(255,255,255,.94);
-
-  border-bottom:
-    1px solid #e7e8ef;
-
-  position: sticky;
-
-  top: 0;
-
-  z-index: 1000;
-
-  backdrop-filter: blur(10px);
+    background: #ffffff;
+    border-bottom: 1px solid #e8e8ef;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .nav {
-  height: 70px;
+    min-height: 72px;
 
-  display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  align-items: center;
-
-  justify-content: space-between;
+    gap: 30px;
 }
 
+
+/* ================= LOGO ================= */
+
 .logo {
-  color: #171923;
-
-  text-decoration: none;
-
-  font-size: 25px;
-
-  font-weight: 900;
+    font-size: 22px;
+    font-weight: 800;
+    color: #5b5cf0;
+    white-space: nowrap;
 }
 
 .logo span {
-  color: #5b5cf0;
+    color: #222;
+    font-weight: 600;
 }
 
-nav {
-  display: flex;
 
-  gap: 28px;
+/* ================= NAVIGATION ================= */
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
 }
 
 nav a {
-  color: #505565;
-
-  text-decoration: none;
-
-  font-weight: 600;
+    color: #555;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.2s;
 }
 
 nav a:hover {
-  color: #5b5cf0;
+    color: #5b5cf0;
 }
 
 
-/* HERO */
+/* ================= HERO ================= */
 
 .hero {
-  background:
-    radial-gradient(
-      circle at top right,
-      #dfe1ff,
-      transparent 40%
-    ),
-    linear-gradient(
-      135deg,
-      #f0f1ff,
-      #ffffff
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #f4f3ff,
+            #ffffff
+        );
 
-  padding: 95px 0 100px;
-
-  text-align: center;
+    padding: 85px 0 80px;
 }
 
 .hero-content {
-  max-width: 850px;
+    text-align: center;
+    max-width: 900px;
 }
+
+
+/* ================= BADGE ================= */
 
 .badge {
-  display: inline-block;
+    display: inline-block;
 
-  background: white;
+    padding: 8px 16px;
 
-  border: 1px solid #dedff0;
+    border-radius: 30px;
 
-  padding: 7px 15px;
+    background: #ffffff;
 
-  border-radius: 30px;
+    border: 1px solid #e5e5ef;
 
-  font-size: 14px;
+    color: #555;
 
-  font-weight: 700;
+    font-size: 14px;
 
-  margin-bottom: 22px;
+    margin-bottom: 25px;
 }
 
+
+/* ================= HERO TITLE ================= */
+
 .hero h1 {
-  font-size:
-    clamp(40px, 7vw, 70px);
-
-  line-height: 1.04;
-
-  letter-spacing: -2px;
+    font-size: 52px;
+    line-height: 1.15;
+    margin-bottom: 22px;
+    font-weight: 800;
 }
 
 .hero h1 span {
-  color: #5b5cf0;
+    color: #5b5cf0;
 }
 
 .hero p {
-  max-width: 680px;
+    max-width: 720px;
+    margin: auto;
 
-  margin: 22px auto;
+    color: #666;
 
-  color: #686f7e;
-
-  font-size: 18px;
+    font-size: 18px;
 }
 
+
+/* ================= SEARCH ================= */
+
 .search {
-  background: white;
+    max-width: 600px;
 
-  border: 1px solid #dfe1eb;
+    margin: 32px auto 25px;
 
-  max-width: 620px;
+    background: #ffffff;
 
-  margin: 32px auto 0;
+    border: 1px solid #ddd;
 
-  border-radius: 14px;
+    border-radius: 14px;
 
-  display: flex;
+    display: flex;
+    align-items: center;
 
-  align-items: center;
+    padding: 0 18px;
 
-  padding: 0 18px;
-
-  box-shadow:
-    0 15px 35px rgba(35,35,80,.07);
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.05);
 }
 
 .search span {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 .search input {
-  width: 100%;
+    width: 100%;
 
-  border: 0;
+    border: none;
+    outline: none;
 
-  outline: 0;
+    padding: 16px;
 
-  padding: 17px;
+    font-size: 16px;
 
-  font-size: 16px;
+    background: transparent;
 }
 
 
-/* SECTIONS */
+/* ================= HERO FEATURES ================= */
+
+.hero-features {
+    display: flex;
+    justify-content: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+
+    color: #555;
+
+    font-size: 14px;
+}
+
+
+/* ================= SECTIONS ================= */
 
 .section {
-  padding: 80px 0;
+    padding: 75px 0;
 }
 
 .light-section {
-  background: #eef0f8;
+    background: #f2f3f8;
 }
 
+
+/* ================= SECTION HEADING ================= */
+
 .heading {
-  margin-bottom: 35px;
+    margin-bottom: 35px;
 }
 
 .heading h2 {
-  font-size: 34px;
-
-  letter-spacing: -.5px;
+    font-size: 32px;
+    margin-bottom: 7px;
 }
 
 .heading p {
-  color: #737987;
-
-  margin-top: 4px;
+    color: #707070;
 }
 
 
-/* TOOLS */
+/* ================= TOOLS GRID ================= */
 
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
     gap: 28px;
+
     margin-top: 30px;
 }
 
+
+/* ================= TOOL CARD ================= */
+
 .tool-card {
+    background: #ffffff;
+
+    border: 1px solid #e6e6ed;
+
+    border-radius: 18px;
+
     padding: 28px;
-    min-height: 230px;
-}
 
-.tool-card {
-  background: white;
+    min-height: 245px;
 
-  border:
-    1px solid #e5e7ef;
+    display: flex;
 
-  border-radius: 18px;
+    flex-direction: column;
 
-  padding: 25px;
+    align-items: flex-start;
 
-  transition:
-    transform .2s,
-    box-shadow .2s;
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .tool-card:hover {
-  transform: translateY(-5px);
+    transform: translateY(-5px);
 
-  box-shadow:
-    0 18px 40px
-    rgba(30,30,60,.09);
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.08);
 }
 
+
+/* ================= TOOL ICON ================= */
+
 .tool-icon {
-  width: 50px;
+    width: 54px;
+    height: 54px;
 
-  height: 50px;
+    border-radius: 14px;
 
-  display: grid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  place-items: center;
+    font-size: 25px;
 
-  border-radius: 14px;
-
-  font-size: 23px;
-
-  margin-bottom: 18px;
-
-  font-weight: 900;
+    margin-bottom: 18px;
 }
 
 .purple {
-  background: #eeeefe;
+    background: #eeeaff;
 }
 
 .blue {
-  background: #e9f3ff;
+    background: #e6f1ff;
 }
 
 .orange {
-  background: #fff0df;
+    background: #fff0df;
 }
 
 .green {
-  background: #e6f8ed;
+    background: #e5f8eb;
 }
 
 .pink {
-  background: #ffeaf2;
+    background: #ffe9f1;
 }
 
 .yellow {
-  background: #fff8d9;
+    background: #fff6d9;
 }
 
-.tool-card h3 {
-  font-size: 19px;
 
-  margin-bottom: 7px;
+/* ================= TOOL CARD TEXT ================= */
+
+.tool-card h3 {
+    font-size: 20px;
+
+    margin-bottom: 8px;
 }
 
 .tool-card p {
-  color: #737987;
+    color: #707070;
 
-  min-height: 50px;
+    font-size: 14px;
 
-  font-size: 14px;
+    margin-bottom: 20px;
 
-  margin-bottom: 20px;
-}
-
-.tool-card button,
-.calculator-card button {
-  background: #5b5cf0;
-
-  color: white;
-
-  border: 0;
-
-  border-radius: 9px;
-
-  padding: 11px 17px;
-
-  font-weight: 700;
-
-  cursor: pointer;
-}
-
-.tool-card button:hover,
-.calculator-card button:hover {
-  opacity: .88;
+    flex-grow: 1;
 }
 
 
-/* WORKSPACE */
+/* ================= BUTTONS ================= */
+
+button,
+.cta-button {
+    border: none;
+
+    background: #5b5cf0;
+
+    color: #ffffff;
+
+    padding: 11px 18px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+button:hover,
+.cta-button:hover {
+    background: #4546d8;
+
+    transform: translateY(-1px);
+}
+
+
+/* ================= WORKSPACE ================= */
 
 .workspace {
-  display: none;
+    display: none;
 
-  background: #eef0f8;
+    padding: 60px 0;
 
-  padding: 65px 0;
+    background: #eef0f7;
 }
+
+
+/* ================= TOOL WINDOW ================= */
 
 .tool-window {
-  background: white;
+    background: #ffffff;
 
-  max-width: 800px;
+    border-radius: 20px;
 
-  margin: auto;
+    padding: 35px;
 
-  padding: 40px;
+    position: relative;
 
-  border-radius: 20px;
+    border: 1px solid #e1e1e8;
 
-  position: relative;
-
-  box-shadow:
-    0 20px 50px
-    rgba(30,30,60,.1);
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.08);
 }
+
+
+/* ================= CLOSE BUTTON ================= */
 
 .close {
-  position: absolute;
+    position: absolute;
 
-  right: 18px;
+    top: 15px;
+    right: 18px;
 
-  top: 18px;
+    width: 40px;
+    height: 40px;
 
-  width: 38px;
+    border-radius: 50%;
 
-  height: 38px;
+    background: #f1f1f5;
 
-  border: 0;
+    color: #444;
 
-  border-radius: 50%;
+    font-size: 24px;
 
-  background: #171923;
-
-  color: white;
-
-  font-size: 22px;
-
-  cursor: pointer;
+    padding: 0;
 }
 
-.tool-window h2 {
-  margin-bottom: 8px;
+.close:hover {
+    background: #e5e5ea;
+
+    color: #111;
 }
 
-.tool-window p {
-  color: #6d7380;
 
-  margin-bottom: 20px;
+/* ================= TOOL CONTENT ================= */
+
+#toolContent {
+    padding-top: 10px;
 }
 
-.tool-window input,
-.tool-window select {
-  width: 100%;
+#toolContent h2 {
+    font-size: 28px;
 
-  padding: 13px;
-
-  border:
-    1px solid #d9dce6;
-
-  border-radius: 9px;
-
-  margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
-.file-input {
-  background: #f7f8fc;
+#toolContent p {
+    color: #666;
 
-  padding: 25px !important;
+    margin-bottom: 22px;
 }
 
-.tool-window button:not(.close) {
-  background: #5b5cf0;
 
-  border: 0;
+/* ================= FILE INPUT ================= */
 
-  color: white;
+input[type="file"] {
+    width: 100%;
 
-  padding: 12px 20px;
+    max-width: 600px;
 
-  border-radius: 9px;
+    padding: 13px;
 
-  cursor: pointer;
+    background: #fafafa;
 
-  font-weight: 700;
+    border: 1px dashed #bdbdc8;
+
+    border-radius: 10px;
+
+    cursor: pointer;
 }
+
+
+/* ================= NORMAL INPUT ================= */
+
+#toolContent input[type="text"],
+#toolContent input[type="number"],
+#toolContent input[type="date"],
+#toolContent input[type="url"] {
+    width: 100%;
+
+    max-width: 420px;
+
+    padding: 13px 15px;
+
+    margin: 5px 8px 10px 0;
+
+    border: 1px solid #d7d7df;
+
+    border-radius: 10px;
+
+    outline: none;
+}
+
+#toolContent input:focus {
+    border-color: #5b5cf0;
+
+    box-shadow:
+        0 0 0 3px rgba(91,92,240,0.1);
+}
+
+
+/* ================= RESULT ================= */
 
 .result {
-  background: #f2f3f7;
+    margin-top: 20px;
 
-  padding: 15px;
+    padding: 16px;
 
-  border-radius: 10px;
+    background: #f5f6fb;
 
-  margin-top: 18px;
+    border-radius: 12px;
+
+    color: #444;
+
+    min-height: 20px;
 }
+
+
+/* ================= DOWNLOAD ================= */
 
 .download {
-  display: inline-block;
+    display: inline-block;
 
-  background: #16a34a;
+    background: #5b5cf0;
 
-  color: white;
+    color: white;
 
-  text-decoration: none;
+    padding: 11px 18px;
 
-  padding: 11px 17px;
+    border-radius: 9px;
 
-  border-radius: 8px;
+    font-weight: 700;
 
-  margin-top: 12px;
+    margin-top: 10px;
+}
 
-  font-weight: 700;
+.download:hover {
+    background: #4546d8;
 }
 
 
-/* CALCULATORS */
+/* ================= PDF TOOLS ================= */
+
+.pdf-tools-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-top: 25px;
+}
+
+
+/* ================= PDF TOOL CARD ================= */
+
+.pdf-tool-card {
+    background: #fafaff;
+
+    border: 1px solid #e2e2ed;
+
+    border-radius: 15px;
+
+    padding: 22px;
+
+    min-height: 175px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    transition: 0.2s;
+}
+
+.pdf-tool-card:hover {
+    border-color: #5b5cf0;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.06);
+}
+
+.pdf-tool-card h3 {
+    font-size: 18px;
+
+    margin-bottom: 7px;
+}
+
+.pdf-tool-card p {
+    font-size: 13px;
+
+    color: #777;
+
+    margin-bottom: 15px;
+}
+
+.pdf-tool-card button {
+    width: 100%;
+}
+
+
+/* ================= CALCULATOR GRID ================= */
 
 .calculator-grid {
-  display: grid;
+    display: grid;
 
-  grid-template-columns:
-    repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-  gap: 25px;
+    gap: 28px;
 }
 
+
+/* ================= CALCULATOR CARD ================= */
+
 .calculator-card {
-  background: white;
+    background: #ffffff;
 
-  padding: 30px;
+    border: 1px solid #e5e5eb;
 
-  border-radius: 18px;
+    border-radius: 18px;
 
-  border:
-    1px solid #e2e4ed;
+    padding: 28px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.04);
 }
 
 .calculator-card h3 {
-  margin-bottom: 18px;
+    margin-bottom: 18px;
 }
 
 .calculator-card input {
-  width: 100%;
+    width: 100%;
 
-  padding: 13px;
+    padding: 13px;
 
-  border:
-    1px solid #d9dce6;
+    margin-bottom: 12px;
 
-  border-radius: 8px;
+    border: 1px solid #d8d8e0;
 
-  margin-bottom: 10px;
+    border-radius: 10px;
+
+    outline: none;
 }
 
 
-/* GUIDES */
+/* ================= GUIDE GRID ================= */
 
 .guide-grid {
-  display: grid;
+    display: grid;
 
-  grid-template-columns:
-    repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
-  gap: 22px;
+    gap: 28px;
 }
 
+
+/* ================= GUIDE CARD ================= */
+
 .guide-card {
-  background: white;
+    background: #ffffff;
 
-  border:
-    1px solid #e4e6ed;
+    border: 1px solid #e5e5eb;
 
-  padding: 28px;
+    border-radius: 18px;
 
-  border-radius: 18px;
+    padding: 28px;
+
+    box-shadow:
+        0 7px 24px rgba(0,0,0,0.04);
 }
 
 .guide-card > div {
-  font-size: 30px;
+    font-size: 30px;
 
-  margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .guide-card h3 {
-  margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .guide-card p {
-  color: #707684;
+    color: #707070;
+
+    font-size: 14px;
 }
 
 
-/* CTA */
+/* ================= CTA ================= */
 
 .cta {
-  background: #5b5cf0;
+    background: #5b5cf0;
 
-  color: white;
+    color: #ffffff;
 
-  text-align: center;
+    text-align: center;
 
-  padding: 70px 0;
+    padding: 75px 0;
 }
 
 .cta h2 {
-  font-size: 35px;
+    font-size: 35px;
+
+    margin-bottom: 10px;
 }
 
 .cta p {
-  opacity: .9;
+    opacity: 0.9;
 
-  margin-top: 8px;
+    margin-bottom: 25px;
+}
+
+.cta-button {
+    display: inline-block;
+
+    background: #ffffff;
+
+    color: #5b5cf0;
+}
+
+.cta-button:hover {
+    background: #f1f1ff;
 }
 
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 footer {
-  background: #11131d;
+    background: #171820;
 
-  color: white;
+    color: #ffffff;
 }
 
 .footer {
-  padding: 50px 0;
+    padding: 45px 0;
 
-  display: flex;
+    display: flex;
 
-  justify-content: space-between;
+    justify-content: space-between;
 
-  gap: 30px;
+    gap: 40px;
 }
 
 .footer .logo {
-  color: white;
+    color: #ffffff;
+}
+
+.footer .logo span {
+    color: #ffffff;
 }
 
 .footer p {
-  color: #a9adba;
+    color: #aaa;
 
-  margin-top: 8px;
+    margin-top: 8px;
 }
 
+
+/* ================= FOOTER LINKS ================= */
+
 .footer-links {
-  display: flex;
+    display: flex;
 
-  gap: 22px;
+    gap: 25px;
 
-  flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    align-items: center;
 }
 
 .footer-links a {
-  color: #c9ccd5;
+    color: #bbb;
 
-  text-decoration: none;
+    font-size: 14px;
 }
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+
+/* ================= COPYRIGHT ================= */
 
 .copyright {
-  border-top:
-    1px solid #292c38;
+    text-align: center;
 
-  padding: 18px;
+    padding: 18px;
 
-  text-align: center;
+    border-top: 1px solid #292a32;
 
-  color: #8e93a2;
+    color: #888;
+
+    font-size: 13px;
 }
 
 
-/* MOBILE */
+/* =========================================================
+   TABLET
+   ========================================================= */
 
-@media(max-width: 900px) {
+@media (max-width: 950px) {
 
-  .tools-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
-  }
+    .hero h1 {
+        font-size: 44px;
+    }
+
+    .tools-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 22px;
+    }
+
+    .pdf-tools-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .guide-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 22px;
+    }
 
 }
 
-@media(max-width: 600px) {
 
-  nav {
-    display: none;
-  }
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
-  .hero {
-    padding: 65px 0 70px;
-  }
+@media (max-width: 650px) {
 
-  .hero h1 {
-    letter-spacing: -1px;
-  }
+    .container {
+        width: 92%;
+    }
 
-  .section {
-    padding: 55px 0;
-  }
 
-  .tools-grid,
-  .calculator-grid,
-  .guide-grid {
-    grid-template-columns: 1fr;
-  }
+    /* HEADER */
 
-  .tool-window {
-    padding: 28px 20px;
-  }
+    .nav {
+        min-height: auto;
 
-  .footer {
-    flex-direction: column;
-  }
+        padding: 18px 0;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    nav {
+        gap: 16px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .hero-features {
+        gap: 12px;
+
+        flex-direction: column;
+    }
+
+
+    /* SECTION */
+
+    .section {
+        padding: 55px 0;
+    }
+
+    .heading h2 {
+        font-size: 27px;
+    }
+
+
+    /* TOOLS */
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .tool-card {
+        min-height: auto;
+
+        padding: 24px;
+    }
+
+
+    /* PDF TOOLS */
+
+    .pdf-tools-grid {
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+    }
+
+    .pdf-tool-card {
+        min-height: 150px;
+    }
+
+
+    /* WORKSPACE */
+
+    .tool-window {
+        padding: 25px 18px;
+    }
+
+    #toolContent h2 {
+        font-size: 24px;
+    }
+
+
+    /* CALCULATORS */
+
+    .calculator-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+
+    /* GUIDES */
+
+    .guide-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+
+    /* CTA */
+
+    .cta {
+        padding: 55px 0;
+    }
+
+    .cta h2 {
+        font-size: 28px;
+    }
+
+
+    /* FOOTER */
+
+    .footer {
+        flex-direction: column;
+
+        padding: 35px 0;
+    }
+
+    .footer-links {
+        gap: 18px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .hero h1 {
+        font-size: 31px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .tool-card {
+        padding: 20px;
+    }
+
+    .calculator-card {
+        padding: 20px;
+    }
+
+    .guide-card {
+        padding: 20px;
+    }
 
 }
