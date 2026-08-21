@@ -56,14 +56,12 @@ function openTool(tool) {
    if (tool === "pdfTools") {
 
     content.innerHTML = `
-
+    
         <h2>📑 PDF Tools</h2>
 
-        <p>
-            All PDF tools in one place.
-        </p>
+        <p>All PDF tools in one place.</p>
 
-        <div class="tools-grid">
+        <div class="pdf-tools-menu">
 
             <button onclick="openTool('jpgPdf')">
                 🖼️ JPG → PDF
@@ -114,9 +112,13 @@ function openTool(tool) {
             </button>
 
         </div>
-
     `;
 
+    workspace.scrollIntoView({
+        behavior: "smooth"
+    });
+
+    return;
 }
 
 
