@@ -8,13 +8,10 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>AB Digital Utility – Free Online Tools</title>
+<title>AB Digital Utility – Free Online PDF Tools</title>
 
 <meta name="description"
-      content="AB Digital Utility provides free online PDF, image, QR code and calculator tools. Convert, merge, split and manage PDF files easily.">
-
-<meta name="keywords"
-      content="PDF tools, JPG to PDF, PDF to JPG, Word to PDF, PDF to Word, PowerPoint to PDF, PDF to PowerPoint, Excel to PDF, PDF to Excel, Merge PDF, Split PDF, HTML to PDF, GST calculator">
+      content="Free online PDF, image, document and calculator tools from AB Digital Utility.">
 
 <meta name="robots"
       content="index, follow">
@@ -22,81 +19,57 @@
 <meta name="author"
       content="AB Digital Utility">
 
-<meta name="theme-color"
-      content="#5b5cf0">
-
 <link rel="canonical"
       href="https://bharat2791991.github.io/ab-digital-utility/">
+
+<meta name="google-site-verification"
+      content="3s2SRuI9PK_NuphmSrBad_1tJbvusEsPDuoA130K_vY">
 
 <link rel="stylesheet"
       href="style.css">
 
 
-<!-- jsPDF -->
+<!-- PDF -->
 
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 
-
-<!-- QR Code -->
-
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
 
-<!-- PDF.js -->
+<!-- PDF / Image -->
 
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 
-<!-- PDF-LIB -->
+<!-- Word -->
 
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.9.0/mammoth.browser.min.js"></script>
 
-      
-<!-- PDF-LIB -->
+<script src="https://unpkg.com/docx@9.5.1/build/index.umd.js"></script>
 
-<script 
-src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
 
-<!-- Mammoth -->
+<!-- Excel -->
 
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 
-<!-- SheetJS -->
+<!-- PowerPoint -->
 
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
 
 
-<!-- Open Graph -->
+<!-- QR -->
 
-<meta property="og:title"
-      content="AB Digital Utility – Free Online Tools">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-<meta property="og:description"
-      content="Free PDF, image, QR code and calculator tools.">
 
-<meta property="og:url"
-      content="https://bharat2791991.github.io/ab-digital-utility/">
+<!-- OCR -->
 
-<meta property="og:type"
-      content="website">
-
-<meta property="og:site_name"
-      content="AB Digital Utility">
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
 </head>
 
@@ -104,37 +77,25 @@ src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js">
 <body>
 
 
-<!-- ================= HEADER ================= -->
-
 <header class="header">
 
 <div class="container nav">
 
-<a href="#home"
-   class="logo">
+<a href="#home" class="logo">
 
 AB <span>Digital Utility</span>
 
 </a>
 
-
 <nav>
 
-<a href="#home">
-Home
-</a>
+<a href="#home">Home</a>
 
-<a href="#tools">
-Tools
-</a>
+<a href="#tools">Tools</a>
 
-<a href="#calculators">
-Calculators
-</a>
+<a href="#pdfTools">PDF Tools</a>
 
-<a href="#guides">
-Guides
-</a>
+<a href="#calculators">Calculators</a>
 
 </nav>
 
@@ -143,75 +104,46 @@ Guides
 </header>
 
 
-
 <main>
 
 
-<!-- ================= HERO ================= -->
-
-<section class="hero"
-         id="home">
+<section class="hero" id="home">
 
 <div class="container hero-content">
 
-
 <div class="badge">
-
 🇮🇳 Made for everyday users
-
 </div>
 
-
 <h1>
-
 Free Digital Tools.
-
 <br>
-
-<span>
-Kaam karo, easy karo.
-</span>
-
+<span>Kaam karo, easy karo.</span>
 </h1>
 
-
 <p>
-
-Convert files, manage PDFs, compress images,
-generate QR codes and calculate GST, EMI,
-percentage and more.
-
+Convert, edit, manage and calculate directly
+from your browser.
 </p>
-
 
 <div class="search">
 
-<span>
-🔍
-</span>
+<span>🔍</span>
 
 <input
 id="searchInput"
 type="search"
-placeholder="Search for a tool..."
-autocomplete="off">
+placeholder="Search for a tool...">
 
 </div>
 
-
 <div class="hero-features">
 
-<span>
-✓ Free to use
-</span>
+<span>✓ Free to use</span>
 
-<span>
-✓ No software required
-</span>
+<span>✓ Browser based</span>
 
-<span>
-✓ Easy & fast
-</span>
+<span>✓ Easy & fast</span>
 
 </div>
 
@@ -223,259 +155,115 @@ autocomplete="off">
 
 <!-- ================= TOOLS ================= -->
 
-<section class="section"
-         id="tools">
+<section class="section" id="tools">
 
 <div class="container">
 
-
 <div class="heading">
 
-<div>
-
-<h2>
-Popular Tools
-</h2>
+<h2>Popular Tools</h2>
 
 <p>
-Simple and useful tools for everyday tasks.
+Useful tools for everyday digital work.
 </p>
 
 </div>
-
-</div>
-
 
 
 <div class="tools-grid">
 
 
-<!-- ================= PDF TOOLS ================= -->
+<article class="tool-card"
+data-search="jpg pdf image converter">
 
-<article
-class="tool-card"
-data-search="pdf jpg word powerpoint excel html merge split remove pages pdf tools">
+<div class="tool-icon purple">📄</div>
 
-<div class="tool-icon purple">
-📄
-</div>
+<h3>JPG to PDF</h3>
 
-<h3>
-PDF Tools
-</h3>
+<p>Convert JPG and PNG images into PDF.</p>
 
-<p>
-Convert, merge, split and manage PDF files.
-</p>
-
-<button
-onclick="openTool('pdfTools')">
-
-Open PDF Tools →
-
+<button onclick="openPDFTool('jpgPdf')">
+Open Tool →
 </button>
 
 </article>
 
 
+<article class="tool-card"
+data-search="image compressor">
 
-<!-- ================= IMAGE COMPRESSOR ================= -->
+<div class="tool-icon blue">🗜️</div>
 
-<article
-class="tool-card"
-data-search="compress image jpg png reduce size">
+<h3>Image Compressor</h3>
 
-<div class="tool-icon blue">
-🗜️
-</div>
+<p>Reduce image file size.</p>
 
-<h3>
-Image Compressor
-</h3>
-
-<p>
-Reduce image file size quickly and easily.
-</p>
-
-<button
-onclick="openTool('compress')">
-
-Use Tool →
-
+<button onclick="openPDFTool('compress')">
+Open Tool →
 </button>
 
 </article>
 
 
+<article class="tool-card"
+data-search="image resize">
 
-<!-- ================= IMAGE RESIZER ================= -->
+<div class="tool-icon orange">📐</div>
 
-<article
-class="tool-card"
-data-search="resize image photo dimensions width height">
+<h3>Image Resizer</h3>
 
-<div class="tool-icon orange">
-📐
-</div>
+<p>Resize images to custom dimensions.</p>
 
-<h3>
-Image Resizer
-</h3>
-
-<p>
-Resize images to your required dimensions.
-</p>
-
-<button
-onclick="openTool('resize')">
-
-Use Tool →
-
+<button onclick="openPDFTool('resize')">
+Open Tool →
 </button>
 
 </article>
 
 
+<article class="tool-card"
+data-search="qr code generator">
 
-<!-- ================= QR ================= -->
+<div class="tool-icon green">🔳</div>
 
-<article
-class="tool-card"
-data-search="qr code generator url text">
+<h3>QR Code Generator</h3>
 
-<div class="tool-icon green">
-🔳
-</div>
+<p>Create QR codes from text or URLs.</p>
 
-<h3>
-QR Code Generator
-</h3>
-
-<p>
-Create QR codes from text, links or URLs.
-</p>
-
-<button
-onclick="openTool('qr')">
-
-Use Tool →
-
+<button onclick="openPDFTool('qr')">
+Open Tool →
 </button>
 
 </article>
 
 
+<article class="tool-card"
+data-search="gst calculator">
 
-<!-- ================= AGE ================= -->
+<div class="tool-icon yellow">🧾</div>
 
-<article
-class="tool-card"
-data-search="age calculator birthday date of birth dob">
+<h3>GST Calculator</h3>
 
-<div class="tool-icon pink">
-🎂
-</div>
+<p>Calculate GST and total amount.</p>
 
-<h3>
-Age Calculator
-</h3>
-
-<p>
-Calculate your exact age from your date of birth.
-</p>
-
-<button
-onclick="openTool('age')">
-
-Use Tool →
-
+<button onclick="openPDFTool('gst')">
+Open Tool →
 </button>
 
 </article>
 
 
+<article class="tool-card"
+data-search="percentage calculator">
 
-<!-- ================= GST ================= -->
+<div class="tool-icon purple">%</div>
 
-<article
-class="tool-card"
-data-search="gst calculator tax india cgst sgst igst">
+<h3>Percentage Calculator</h3>
 
-<div class="tool-icon yellow">
-🧾
-</div>
+<p>Calculate percentages quickly.</p>
 
-<h3>
-GST Calculator
-</h3>
-
-<p>
-Quickly calculate GST and total amount.
-</p>
-
-<button
-onclick="openTool('gst')">
-
-Use Tool →
-
-</button>
-
-</article>
-
-
-
-<!-- ================= PERCENTAGE ================= -->
-
-<article
-class="tool-card"
-data-search="percentage calculator percent">
-
-<div class="tool-icon purple">
-%
-</div>
-
-<h3>
-Percentage Calculator
-</h3>
-
-<p>
-Calculate percentages quickly and accurately.
-</p>
-
-<button
-onclick="openTool('percentage')">
-
-Use Tool →
-
-</button>
-
-</article>
-
-
-
-<!-- ================= EMI ================= -->
-
-<article
-class="tool-card"
-data-search="emi calculator loan home car">
-
-<div class="tool-icon blue">
-₹
-</div>
-
-<h3>
-EMI Calculator
-</h3>
-
-<p>
-Calculate monthly EMI, interest and total payment.
-</p>
-
-<button
-onclick="openTool('emi')">
-
-Use Tool →
-
+<button onclick="openPDFTool('percentage')">
+Open Tool →
 </button>
 
 </article>
@@ -489,7 +277,117 @@ Use Tool →
 
 
 
-<!-- ================= TOOL WORKSPACE ================= -->
+<!-- ================= PDF CORE ================= -->
+
+<section class="section pdf-section"
+id="pdfTools">
+
+<div class="container">
+
+<div class="heading">
+
+<h2>📚 PDF Core</h2>
+
+<p>
+Complete PDF tools in one place.
+</p>
+
+</div>
+
+
+<div class="pdf-tools-grid">
+
+
+<button onclick="openPDFTool('jpgPdf')">
+📄 JPG → PDF
+</button>
+
+<button onclick="openPDFTool('pdfToJpg')">
+🖼️ PDF → JPG
+</button>
+
+<button onclick="openPDFTool('wordToPdf')">
+📝 Word → PDF
+</button>
+
+<button onclick="openPDFTool('pdfToWord')">
+📝 PDF → Word
+</button>
+
+<button onclick="openPDFTool('excelToPdf')">
+📊 Excel → PDF
+</button>
+
+<button onclick="openPDFTool('pdfToExcel')">
+📊 PDF → Excel
+</button>
+
+<button onclick="openPDFTool('pptToPdf')">
+📽️ PowerPoint → PDF
+</button>
+
+<button onclick="openPDFTool('pdfToPpt')">
+📽️ PDF → PowerPoint
+</button>
+
+<button onclick="openPDFTool('htmlToPdf')">
+🌐 HTML → PDF
+</button>
+
+<button onclick="openPDFTool('merge')">
+🔗 Merge PDF
+</button>
+
+<button onclick="openPDFTool('split')">
+✂️ Split PDF
+</button>
+
+<button onclick="openPDFTool('removePages')">
+🗑️ Remove Pages
+</button>
+
+<button onclick="openPDFTool('extractPages')">
+📑 Extract Pages
+</button>
+
+<button onclick="openPDFTool('rotate')">
+🔄 Rotate PDF
+</button>
+
+<button onclick="openPDFTool('reorder')">
+↕️ Reorder Pages
+</button>
+
+<button onclick="openPDFTool('duplicate')">
+📄 Duplicate Pages
+</button>
+
+<button onclick="openPDFTool('pageNumbers')">
+🔢 Page Numbers
+</button>
+
+<button onclick="openPDFTool('watermark')">
+💧 Watermark
+</button>
+
+<button onclick="openPDFTool('compressPdf')">
+🗜️ Compress PDF
+</button>
+
+<button onclick="openPDFTool('ocr')">
+🔎 OCR PDF
+</button>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= WORKSPACE ================= -->
 
 <section
 class="workspace"
@@ -499,21 +397,15 @@ id="workspace">
 
 <div class="tool-window">
 
-
 <button
 class="close"
-onclick="closeTool()"
-aria-label="Close tool">
+onclick="closeTool()">
 
 ×
 
 </button>
 
-
-<div id="toolContent">
-
-</div>
-
+<div id="toolContent"></div>
 
 </div>
 
@@ -523,43 +415,29 @@ aria-label="Close tool">
 
 
 
-<!-- ================= QUICK CALCULATORS ================= -->
+<!-- ================= CALCULATORS ================= -->
 
 <section
-class="section light-section"
+class="section"
 id="calculators">
 
 <div class="container">
 
-
 <div class="heading">
 
-<div>
+<h2>Quick Calculators</h2>
 
-<h2>
-Quick Calculators
-</h2>
-
-<p>
-Useful calculations without installing an app.
-</p>
+<p>Useful everyday calculations.</p>
 
 </div>
-
-</div>
-
 
 
 <div class="calculator-grid">
 
 
-<!-- GST -->
-
 <div class="calculator-card">
 
-<h3>
-GST Calculator
-</h3>
+<h3>GST Calculator</h3>
 
 <input
 id="quickGSTAmount"
@@ -571,30 +449,21 @@ id="quickGSTRate"
 type="number"
 placeholder="GST %">
 
-<button
-onclick="quickGST()">
-
+<button onclick="quickGST()">
 Calculate
-
 </button>
 
 <div
 id="quickGSTResult"
 class="result">
-
 </div>
 
 </div>
 
-
-
-<!-- PERCENTAGE -->
 
 <div class="calculator-card">
 
-<h3>
-Percentage Calculator
-</h3>
+<h3>Percentage</h3>
 
 <input
 id="quickPercentValue"
@@ -606,238 +475,19 @@ id="quickPercentTotal"
 type="number"
 placeholder="Total">
 
-<button
-onclick="quickPercentage()">
-
+<button onclick="quickPercentage()">
 Calculate
-
 </button>
 
 <div
 id="quickPercentResult"
 class="result">
-
 </div>
 
 </div>
 
 
 </div>
-
-</div>
-
-</section>
-
-
-
-<!-- ================= WHY AB DIGITAL UTILITY ================= -->
-
-<section class="section">
-
-<div class="container">
-
-
-<div class="heading">
-
-<div>
-
-<h2>
-Why AB Digital Utility?
-</h2>
-
-<p>
-Simple tools designed for everyday digital work.
-</p>
-
-</div>
-
-</div>
-
-
-
-<div class="guide-grid">
-
-
-<article class="guide-card">
-
-<div>
-⚡
-</div>
-
-<h3>
-Fast & Simple
-</h3>
-
-<p>
-No complicated software or installation.
-Open a tool and get your work done.
-</p>
-
-</article>
-
-
-
-<article class="guide-card">
-
-<div>
-🔒
-</div>
-
-<h3>
-Browser Based
-</h3>
-
-<p>
-Many tools process your files directly
-inside your browser.
-</p>
-
-</article>
-
-
-
-<article class="guide-card">
-
-<div>
-💻
-</div>
-
-<h3>
-Works on Any Device
-</h3>
-
-<p>
-Use AB Digital Utility on phone,
-tablet or computer.
-</p>
-
-</article>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ================= GUIDES ================= -->
-
-<section
-class="section"
-id="guides">
-
-<div class="container">
-
-
-<div class="heading">
-
-<div>
-
-<h2>
-Useful Guides
-</h2>
-
-<p>
-Helpful information for everyday online tasks.
-</p>
-
-</div>
-
-</div>
-
-
-
-<div class="guide-grid">
-
-
-<article class="guide-card">
-
-<div>
-📸
-</div>
-
-<h3>
-How to reduce image size?
-</h3>
-
-<p>
-Reduce JPG and PNG file size
-without installing software.
-</p>
-
-</article>
-
-
-
-<article class="guide-card">
-
-<div>
-📄
-</div>
-
-<h3>
-How to convert JPG to PDF?
-</h3>
-
-<p>
-Convert multiple photos into
-a single PDF directly from your browser.
-</p>
-
-</article>
-
-
-
-<article class="guide-card">
-
-<div>
-🧾
-</div>
-
-<h3>
-How does GST calculation work?
-</h3>
-
-<p>
-Understand GST inclusive and
-exclusive price calculations.
-</p>
-
-</article>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ================= CTA ================= -->
-
-<section class="cta">
-
-<div class="container">
-
-<h2>
-Useful tools. One simple place.
-</h2>
-
-<p>
-AB Digital Utility is being built to make
-everyday online work faster and easier.
-</p>
-
-<a
-href="#tools"
-class="cta-button">
-
-Explore All Tools →
-
-</a>
 
 </div>
 
@@ -848,19 +498,14 @@ Explore All Tools →
 
 
 
-<!-- ================= FOOTER ================= -->
-
 <footer>
 
 <div class="container footer">
 
-
 <div>
 
 <div class="logo">
-
 AB <span>Digital Utility</span>
-
 </div>
 
 <p>
@@ -870,30 +515,19 @@ Free online tools for everyday digital work.
 </div>
 
 
-
 <div class="footer-links">
 
-<a href="about.html">
-About
-</a>
+<a href="about.html">About</a>
 
-<a href="privacy.html">
-Privacy
-</a>
+<a href="privacy.html">Privacy</a>
 
-<a href="terms.html">
-Terms
-</a>
+<a href="terms.html">Terms</a>
 
-<a href="contact.html">
-Contact
-</a>
+<a href="contact.html">Contact</a>
 
 </div>
 
-
 </div>
-
 
 
 <div class="copyright">
@@ -907,10 +541,7 @@ All rights reserved.
 
 
 
-<!-- ================= SCRIPT ================= -->
-
 <script src="script.js"></script>
-
 
 </body>
 
