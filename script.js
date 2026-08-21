@@ -8,10 +8,10 @@
 
 function openTool(tool) {
 
-    const workspace =
+    var workspace =
         document.getElementById("workspace");
 
-    const content =
+    var content =
         document.getElementById("toolContent");
 
     workspace.style.display = "block";
