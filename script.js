@@ -1,6 +1,7 @@
 /* =========================================================
    AB DIGITAL UTILITY
    COMPLETE SCRIPT.JS
+   Version: 2.0
 ========================================================= */
 
 
@@ -14,7 +15,6 @@ function get(id) {
 
 
 function showWorkspace() {
-
     var workspace = get("workspace");
 
     if (workspace) {
@@ -24,7 +24,6 @@ function showWorkspace() {
 
 
 function setContent(html) {
-
     var content = get("toolContent");
 
     if (content) {
@@ -34,27 +33,33 @@ function setContent(html) {
 
 
 function scrollWorkspace() {
-
     var workspace = get("workspace");
 
     if (workspace) {
-
         workspace.scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
+    }
+}
 
+
+function showError(result, message) {
+    if (result) {
+        result.innerHTML =
+            '<strong>❌ ' + escapeHTML(message) + '</strong>';
     }
 }
 
 
 /* =========================================================
-   OPEN PDF TOOL
+   OPEN PDF / UTILITY TOOL
 ========================================================= */
 
 function openPDFTool(tool) {
 
     showWorkspace();
+
 
     /* =====================================================
        JPG TO PDF
@@ -75,7 +80,6 @@ function openPDFTool(tool) {
 
             </div>
 
-
             <input
                 id="jpgFiles"
                 type="file"
@@ -89,15 +93,11 @@ function openPDFTool(tool) {
                 Convert to PDF
             </button>
 
-            <div
-                id="jpgResult"
-                class="result">
-            </div>
+            <div id="jpgResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -110,16 +110,11 @@ function openPDFTool(tool) {
 
         setContent(`
 
-            <div class="tool-header">
+            <h2>🖼️ PDF to JPG</h2>
 
-                <h2>🖼️ PDF to JPG</h2>
-
-                <p>
-                    Convert every PDF page into JPG images.
-                </p>
-
-            </div>
-
+            <p>
+                Convert every PDF page into JPG images.
+            </p>
 
             <input
                 id="pdfToJpgFile"
@@ -133,15 +128,11 @@ function openPDFTool(tool) {
                 Convert to JPG
             </button>
 
-            <div
-                id="pdfToJpgResult"
-                class="result">
-            </div>
+            <div id="pdfToJpgResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -172,15 +163,11 @@ function openPDFTool(tool) {
                 Convert Word to PDF
             </button>
 
-            <div
-                id="wordToPdfResult"
-                class="result">
-            </div>
+            <div id="wordToPdfResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -211,15 +198,11 @@ function openPDFTool(tool) {
                 Convert PDF to Word
             </button>
 
-            <div
-                id="pdfToWordResult"
-                class="result">
-            </div>
+            <div id="pdfToWordResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -235,7 +218,7 @@ function openPDFTool(tool) {
             <h2>📊 Excel to PDF</h2>
 
             <p>
-                Convert Excel spreadsheets into PDF.
+                Convert Excel spreadsheet data into PDF.
             </p>
 
             <input
@@ -250,15 +233,11 @@ function openPDFTool(tool) {
                 Convert Excel to PDF
             </button>
 
-            <div
-                id="excelToPdfResult"
-                class="result">
-            </div>
+            <div id="excelToPdfResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -274,7 +253,7 @@ function openPDFTool(tool) {
             <h2>📊 PDF to Excel</h2>
 
             <p>
-                Extract PDF text into an Excel workbook.
+                Extract readable PDF text into an Excel workbook.
             </p>
 
             <input
@@ -289,15 +268,11 @@ function openPDFTool(tool) {
                 Convert PDF to Excel
             </button>
 
-            <div
-                id="pdfToExcelResult"
-                class="result">
-            </div>
+            <div id="pdfToExcelResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -329,15 +304,11 @@ function openPDFTool(tool) {
                 Convert PowerPoint to PDF
             </button>
 
-            <div
-                id="pptToPdfResult"
-                class="result">
-            </div>
+            <div id="pptToPdfResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -368,15 +339,11 @@ function openPDFTool(tool) {
                 Convert PDF to PowerPoint
             </button>
 
-            <div
-                id="pdfToPptResult"
-                class="result">
-            </div>
+            <div id="pdfToPptResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -408,15 +375,11 @@ function openPDFTool(tool) {
                 Convert HTML to PDF
             </button>
 
-            <div
-                id="htmlToPdfResult"
-                class="result">
-            </div>
+            <div id="htmlToPdfResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -448,15 +411,11 @@ function openPDFTool(tool) {
                 Merge PDFs
             </button>
 
-            <div
-                id="mergeResult"
-                class="result">
-            </div>
+            <div id="mergeResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -495,15 +454,11 @@ function openPDFTool(tool) {
                 Split PDF
             </button>
 
-            <div
-                id="splitResult"
-                class="result">
-            </div>
+            <div id="splitResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -538,15 +493,11 @@ function openPDFTool(tool) {
                 Remove Pages
             </button>
 
-            <div
-                id="removeResult"
-                class="result">
-            </div>
+            <div id="removeResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -581,15 +532,11 @@ function openPDFTool(tool) {
                 Extract Pages
             </button>
 
-            <div
-                id="extractResult"
-                class="result">
-            </div>
+            <div id="extractResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -614,17 +561,9 @@ function openPDFTool(tool) {
 
             <select id="rotateAngle">
 
-                <option value="90">
-                    90°
-                </option>
-
-                <option value="180">
-                    180°
-                </option>
-
-                <option value="270">
-                    270°
-                </option>
+                <option value="90">90°</option>
+                <option value="180">180°</option>
+                <option value="270">270°</option>
 
             </select>
 
@@ -634,15 +573,11 @@ function openPDFTool(tool) {
                 Rotate PDF
             </button>
 
-            <div
-                id="rotateResult"
-                class="result">
-            </div>
+            <div id="rotateResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -677,15 +612,11 @@ function openPDFTool(tool) {
                 Reorder Pages
             </button>
 
-            <div
-                id="reorderResult"
-                class="result">
-            </div>
+            <div id="reorderResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -720,15 +651,11 @@ function openPDFTool(tool) {
                 Create PDF
             </button>
 
-            <div
-                id="duplicateResult"
-                class="result">
-            </div>
+            <div id="duplicateResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -777,15 +704,11 @@ function openPDFTool(tool) {
                 Add Page Numbers
             </button>
 
-            <div
-                id="pageNumberResult"
-                class="result">
-            </div>
+            <div id="pageNumberResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -820,21 +743,17 @@ function openPDFTool(tool) {
                 Add Watermark
             </button>
 
-            <div
-                id="watermarkResult"
-                class="result">
-            </div>
+            <div id="watermarkResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
 
     /* =====================================================
-       COMPRESS
+       COMPRESS PDF
     ===================================================== */
 
     if (tool === "compressPdf") {
@@ -844,7 +763,7 @@ function openPDFTool(tool) {
             <h2>🗜️ Compress PDF</h2>
 
             <p>
-                Reduce PDF file size where possible.
+                Optimize PDF structure where possible.
             </p>
 
             <input
@@ -859,15 +778,11 @@ function openPDFTool(tool) {
                 Compress PDF
             </button>
 
-            <div
-                id="compressPdfResult"
-                class="result">
-            </div>
+            <div id="compressPdfResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -898,15 +813,11 @@ function openPDFTool(tool) {
                 Start OCR
             </button>
 
-            <div
-                id="ocrResult"
-                class="result">
-            </div>
+            <div id="ocrResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -922,7 +833,8 @@ function openPDFTool(tool) {
             <h2>🔐 Protect PDF</h2>
 
             <p>
-                Add password protection to your PDF.
+                Password encryption requires a compatible
+                PDF encryption engine.
             </p>
 
             <input
@@ -945,15 +857,11 @@ function openPDFTool(tool) {
                 Protect PDF
             </button>
 
-            <div
-                id="protectResult"
-                class="result">
-            </div>
+            <div id="protectResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -969,7 +877,8 @@ function openPDFTool(tool) {
             <h2>🔓 Unlock PDF</h2>
 
             <p>
-                Process a PDF when you have the correct password.
+                Process a PDF only when you have the
+                correct password.
             </p>
 
             <input
@@ -992,15 +901,11 @@ function openPDFTool(tool) {
                 Unlock PDF
             </button>
 
-            <div
-                id="unlockResult"
-                class="result">
-            </div>
+            <div id="unlockResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -1027,15 +932,11 @@ function openPDFTool(tool) {
                 Preview PDF
             </button>
 
-            <div
-                id="previewResult"
-                class="result">
-            </div>
+            <div id="previewResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -1059,10 +960,8 @@ function openPDFTool(tool) {
             <br><br>
 
             <label>
-                Quality
+                Quality:
             </label>
-
-            <br>
 
             <input
                 id="quality"
@@ -1073,21 +972,33 @@ function openPDFTool(tool) {
                 step="0.1"
             >
 
+            <span id="qualityValue">
+                0.7
+            </span>
+
             <br><br>
 
             <button onclick="compressImage()">
                 Compress Image
             </button>
 
-            <div
-                id="compressResult"
-                class="result">
-            </div>
+            <div id="compressResult" class="result"></div>
 
         `);
 
-        scrollWorkspace();
+        var quality = get("quality");
 
+        if (quality) {
+            quality.addEventListener("input", function () {
+                var display = get("qualityValue");
+
+                if (display) {
+                    display.textContent = this.value;
+                }
+            });
+        }
+
+        scrollWorkspace();
         return;
     }
 
@@ -1113,12 +1024,14 @@ function openPDFTool(tool) {
             <input
                 id="resizeWidth"
                 type="number"
-                placeholder="Width">
+                placeholder="Width"
+            >
 
             <input
                 id="resizeHeight"
                 type="number"
-                placeholder="Height">
+                placeholder="Height"
+            >
 
             <br><br>
 
@@ -1126,15 +1039,11 @@ function openPDFTool(tool) {
                 Resize Image
             </button>
 
-            <div
-                id="resizeResult"
-                class="result">
-            </div>
+            <div id="resizeResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -1152,7 +1061,8 @@ function openPDFTool(tool) {
             <input
                 id="qrText"
                 type="text"
-                placeholder="Enter text or URL">
+                placeholder="Enter text or URL"
+            >
 
             <br><br>
 
@@ -1160,15 +1070,11 @@ function openPDFTool(tool) {
                 Generate QR
             </button>
 
-            <div
-                id="qrResult"
-                class="result">
-            </div>
+            <div id="qrResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -1186,12 +1092,14 @@ function openPDFTool(tool) {
             <input
                 id="gstAmount"
                 type="number"
-                placeholder="Amount">
+                placeholder="Amount"
+            >
 
             <input
                 id="gstRate"
                 type="number"
-                placeholder="GST %">
+                placeholder="GST %"
+            >
 
             <br><br>
 
@@ -1199,15 +1107,11 @@ function openPDFTool(tool) {
                 Calculate GST
             </button>
 
-            <div
-                id="gstResult"
-                class="result">
-            </div>
+            <div id="gstResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -1225,12 +1129,14 @@ function openPDFTool(tool) {
             <input
                 id="percentageValue"
                 type="number"
-                placeholder="Value">
+                placeholder="Value"
+            >
 
             <input
                 id="percentageTotal"
                 type="number"
-                placeholder="Total">
+                placeholder="Total"
+            >
 
             <br><br>
 
@@ -1238,15 +1144,11 @@ function openPDFTool(tool) {
                 Calculate
             </button>
 
-            <div
-                id="percentageResult"
-                class="result">
-            </div>
+            <div id="percentageResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -1263,7 +1165,8 @@ function openPDFTool(tool) {
 
             <input
                 id="birthDate"
-                type="date">
+                type="date"
+            >
 
             <br><br>
 
@@ -1271,15 +1174,11 @@ function openPDFTool(tool) {
                 Calculate Age
             </button>
 
-            <div
-                id="ageResult"
-                class="result">
-            </div>
+            <div id="ageResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
 
@@ -1297,17 +1196,20 @@ function openPDFTool(tool) {
             <input
                 id="loanAmount"
                 type="number"
-                placeholder="Loan amount">
+                placeholder="Loan amount"
+            >
 
             <input
                 id="interestRate"
                 type="number"
-                placeholder="Annual interest %">
+                placeholder="Annual interest %"
+            >
 
             <input
                 id="loanYears"
                 type="number"
-                placeholder="Loan period in years">
+                placeholder="Loan period in years"
+            >
 
             <br><br>
 
@@ -1315,18 +1217,13 @@ function openPDFTool(tool) {
                 Calculate EMI
             </button>
 
-            <div
-                id="emiResult"
-                class="result">
-            </div>
+            <div id="emiResult" class="result"></div>
 
         `);
 
         scrollWorkspace();
-
         return;
     }
-
 }
 
 
@@ -1337,19 +1234,15 @@ function openPDFTool(tool) {
 function closeTool() {
 
     var workspace = get("workspace");
-
     var content = get("toolContent");
-
 
     if (workspace) {
         workspace.style.display = "none";
     }
 
-
     if (content) {
         content.innerHTML = "";
     }
-
 }
 
 
@@ -1360,44 +1253,27 @@ function closeTool() {
 async function convertToPDF() {
 
     var input = get("jpgFiles");
-
     var result = get("jpgResult");
 
-
     if (!input || !input.files.length) {
-
-        result.innerHTML =
-            "Please select at least one image.";
-
+        result.innerHTML = "Please select at least one image.";
         return;
     }
 
-
-    if (
-        !window.jspdf ||
-        !window.jspdf.jsPDF
-    ) {
-
-        result.innerHTML =
-            "PDF library not loaded.";
-
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+        result.innerHTML = "PDF library not loaded.";
         return;
     }
-
 
     try {
 
-        var jsPDF =
-            window.jspdf.jsPDF;
+        var jsPDF = window.jspdf.jsPDF;
 
-
-        var pdf =
-            new jsPDF(
-                "p",
-                "mm",
-                "a4"
-            );
-
+        var pdf = new jsPDF(
+            "p",
+            "mm",
+            "a4"
+        );
 
         for (
             var i = 0;
@@ -1412,54 +1288,36 @@ async function convertToPDF() {
                 input.files.length +
                 "...";
 
-
-            var file =
-                input.files[i];
-
+            var file = input.files[i];
 
             var url =
                 URL.createObjectURL(file);
 
-
-            var image =
-                new Image();
-
+            var image = new Image();
 
             await new Promise(
-                function(resolve, reject) {
+                function (resolve, reject) {
 
-                    image.onload =
-                        resolve;
-
-                    image.onerror =
-                        reject;
-
-                    image.src =
-                        url;
+                    image.onload = resolve;
+                    image.onerror = reject;
+                    image.src = url;
 
                 }
             );
-
 
             if (i > 0) {
                 pdf.addPage();
             }
 
-
             var pageWidth = 210;
-
             var pageHeight = 297;
-
             var margin = 10;
 
             var maxWidth =
-                pageWidth -
-                margin * 2;
+                pageWidth - margin * 2;
 
             var maxHeight =
-                pageHeight -
-                margin * 2;
-
+                pageHeight - margin * 2;
 
             var ratio =
                 Math.min(
@@ -1467,13 +1325,11 @@ async function convertToPDF() {
                     maxHeight / image.height
                 );
 
-
             var width =
                 image.width * ratio;
 
             var height =
                 image.height * ratio;
-
 
             var x =
                 (pageWidth - width) / 2;
@@ -1481,12 +1337,10 @@ async function convertToPDF() {
             var y =
                 (pageHeight - height) / 2;
 
-
             var format =
                 file.type === "image/png"
                     ? "PNG"
                     : "JPEG";
-
 
             pdf.addImage(
                 image,
@@ -1497,31 +1351,23 @@ async function convertToPDF() {
                 height
             );
 
-
             URL.revokeObjectURL(url);
-
         }
-
 
         pdf.save(
             "AB-Digital-Utility-JPG-to-PDF.pdf"
         );
 
-
         result.innerHTML =
             "<strong>✅ PDF successfully created!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
             "❌ Unable to create PDF.";
-
     }
-
 }
 
 
@@ -1531,52 +1377,33 @@ async function convertToPDF() {
 
 async function pdfToJPG() {
 
-    var input =
-        get("pdfToJpgFile");
+    var input = get("pdfToJpgFile");
+    var result = get("pdfToJpgResult");
 
-    var result =
-        get("pdfToJpgResult");
-
-
-    if (!input.files.length) {
-
-        result.innerHTML =
-            "Please select a PDF file.";
-
+    if (!input || !input.files.length) {
+        result.innerHTML = "Please select a PDF.";
         return;
     }
 
-
-    if (
-        typeof pdfjsLib ===
-        "undefined"
-    ) {
-
-        result.innerHTML =
-            "PDF.js library not loaded.";
-
+    if (typeof pdfjsLib === "undefined") {
+        result.innerHTML = "PDF.js library not loaded.";
         return;
     }
-
 
     try {
 
         var buffer =
-            await input.files[0]
-                .arrayBuffer();
-
+            await input.files[0].arrayBuffer();
 
         var pdf =
-            await pdfjsLib
-                .getDocument({
-                    data: buffer
-                })
-                .promise;
+            await pdfjsLib.getDocument({
+                data: buffer
+            }).promise;
 
-
-        var html =
-            "<strong>✅ Conversion complete</strong><br><br>";
-
+        result.innerHTML =
+            "Converting " +
+            pdf.numPages +
+            " page(s)...";
 
         for (
             var i = 1;
@@ -1584,29 +1411,16 @@ async function pdfToJPG() {
             i++
         ) {
 
-            result.innerHTML =
-                "Converting page " +
-                i +
-                " of " +
-                pdf.numPages +
-                "...";
-
-
             var page =
                 await pdf.getPage(i);
-
 
             var viewport =
                 page.getViewport({
                     scale: 1.5
                 });
 
-
             var canvas =
-                document.createElement(
-                    "canvas"
-                );
-
+                document.createElement("canvas");
 
             canvas.width =
                 viewport.width;
@@ -1614,68 +1428,63 @@ async function pdfToJPG() {
             canvas.height =
                 viewport.height;
 
-
             await page.render({
                 canvasContext:
-                    canvas.getContext(
-                        "2d"
-                    ),
+                    canvas.getContext("2d"),
                 viewport:
                     viewport
             }).promise;
 
+            canvas.toBlob(
+                function (blob) {
 
-            var image =
-                canvas.toDataURL(
-                    "image/jpeg",
-                    0.9
-                );
+                    var url =
+                        URL.createObjectURL(blob);
 
+                    var a =
+                        document.createElement("a");
 
-            html += `
+                    a.href = url;
 
-                <div class="pdf-result-item">
+                    a.download =
+                        "AB-Digital-Utility-page.jpg";
 
-                    <h4>
-                        Page ${i}
-                    </h4>
+                    document.body.appendChild(a);
 
-                    <img
-                        src="${image}"
-                        class="pdf-preview-image">
+                    a.click();
 
-                    <br>
+                    document.body.removeChild(a);
 
-                    <a
-                        class="download"
-                        href="${image}"
-                        download="AB-Digital-Utility-Page-${i}.jpg">
+                    setTimeout(
+                        function () {
+                            URL.revokeObjectURL(url);
+                        },
+                        1000
+                    );
 
-                        Download Page ${i}
+                },
+                "image/jpeg",
+                0.92
+            );
 
-                    </a>
-
-                </div>
-
-            `;
-
+            result.innerHTML =
+                "Converted page " +
+                i +
+                " of " +
+                pdf.numPages +
+                "...";
         }
 
+        result.innerHTML +=
+            "<br><strong>✅ JPG files created.</strong>";
 
-        result.innerHTML =
-            html;
-
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
-            "❌ Unable to convert PDF.";
-
+            "❌ PDF to JPG conversion failed.";
     }
-
 }
 
 
@@ -1685,142 +1494,113 @@ async function pdfToJPG() {
 
 async function wordToPDF() {
 
-    var input =
-        get("wordToPdfFile");
+    var input = get("wordToPdfFile");
+    var result = get("wordToPdfResult");
 
-    var result =
-        get("wordToPdfResult");
-
-
-    if (!input.files.length) {
-
-        result.innerHTML =
-            "Please select a DOCX file.";
-
+    if (!input || !input.files.length) {
+        result.innerHTML = "Please select a DOCX file.";
         return;
     }
 
-
-    if (
-        typeof mammoth ===
-        "undefined"
-    ) {
-
-        result.innerHTML =
-            "Word library not loaded.";
-
+    if (!window.mammoth) {
+        result.innerHTML = "Word conversion library not loaded.";
         return;
     }
-
 
     try {
 
         result.innerHTML =
             "Reading Word document...";
 
-
-        var buffer =
-            await input.files[0]
-                .arrayBuffer();
-
+        var arrayBuffer =
+            await input.files[0].arrayBuffer();
 
         var converted =
             await mammoth.convertToHtml({
                 arrayBuffer:
-                    buffer
+                    arrayBuffer
             });
 
-
-        var container =
-            document.createElement(
-                "div"
-            );
-
-
-        container.style.position =
-            "fixed";
-
-        container.style.left =
-            "-10000px";
-
-        container.style.width =
-            "180mm";
-
-        container.style.padding =
-            "10mm";
-
-        container.style.background =
-            "white";
-
-        container.style.color =
-            "black";
-
-
-        container.innerHTML =
+        var html =
             converted.value;
 
+        if (!window.jspdf || !window.jspdf.jsPDF) {
+            result.innerHTML =
+                "PDF library not loaded.";
+            return;
+        }
 
-        document.body.appendChild(
-            container
-        );
-
+        var jsPDF =
+            window.jspdf.jsPDF;
 
         var pdf =
-            new window.jspdf.jsPDF(
+            new jsPDF(
                 "p",
                 "mm",
                 "a4"
             );
 
+        var temp =
+            document.createElement("div");
 
-        await pdf.html(
-            container,
-            {
+        temp.innerHTML = html;
 
-                callback:
-                    function(pdf) {
+        temp.style.width = "180mm";
+        temp.style.fontSize = "11pt";
+        temp.style.lineHeight = "1.5";
 
-                        pdf.save(
-                            "AB-Digital-Utility-Word-to-PDF.pdf"
-                        );
+        temp.style.position = "absolute";
+        temp.style.left = "-10000px";
+        temp.style.top = "0";
 
-                    },
+        document.body.appendChild(temp);
 
-                x: 10,
+        var text =
+            temp.innerText || "";
 
-                y: 10,
+        document.body.removeChild(temp);
 
-                width: 190,
+        var lines =
+            pdf.splitTextToSize(
+                text,
+                180
+            );
 
-                autoPaging:
-                    "text",
+        var y = 15;
 
-                margin:
-                    [10,10,10,10]
+        lines.forEach(
+            function (line) {
+
+                if (y > 280) {
+                    pdf.addPage();
+                    y = 15;
+                }
+
+                pdf.text(
+                    line,
+                    15,
+                    y
+                );
+
+                y += 6;
 
             }
         );
 
-
-        document.body.removeChild(
-            container
+        pdf.save(
+            "AB-Digital-Utility-Word-to-PDF.pdf"
         );
-
 
         result.innerHTML =
             "<strong>✅ Word converted to PDF!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
-            "❌ Word conversion failed.";
-
+            "❌ Word to PDF conversion failed.";
     }
-
 }
 
 
@@ -1830,63 +1610,41 @@ async function wordToPDF() {
 
 async function pdfToWord() {
 
-    var input =
-        get("pdfToWordFile");
+    var input = get("pdfToWordFile");
+    var result = get("pdfToWordResult");
 
-    var result =
-        get("pdfToWordResult");
-
-
-    if (!input.files.length) {
-
-        result.innerHTML =
-            "Please select a PDF.";
-
+    if (!input || !input.files.length) {
+        result.innerHTML = "Please select a PDF.";
         return;
     }
 
+    if (typeof pdfjsLib === "undefined") {
+        result.innerHTML = "PDF.js library not loaded.";
+        return;
+    }
 
     if (
-        typeof pdfjsLib ===
-        "undefined"
+        typeof docx === "undefined" ||
+        !docx.Document
     ) {
-
-        result.innerHTML =
-            "PDF.js library not loaded.";
-
+        result.innerHTML = "DOCX library not loaded.";
         return;
     }
-
-
-    if (
-        typeof docx ===
-        "undefined"
-    ) {
-
-        result.innerHTML =
-            "DOCX library not loaded.";
-
-        return;
-    }
-
 
     try {
 
-        var buffer =
-            await input.files[0]
-                .arrayBuffer();
+        result.innerHTML =
+            "Reading PDF...";
 
+        var buffer =
+            await input.files[0].arrayBuffer();
 
         var pdf =
-            await pdfjsLib
-                .getDocument({
-                    data: buffer
-                })
-                .promise;
-
+            await pdfjsLib.getDocument({
+                data: buffer
+            }).promise;
 
         var paragraphs = [];
-
 
         for (
             var i = 1;
@@ -1897,92 +1655,71 @@ async function pdfToWord() {
             result.innerHTML =
                 "Extracting page " +
                 i +
+                " of " +
+                pdf.numPages +
                 "...";
-
 
             var page =
                 await pdf.getPage(i);
 
-
-            var text =
+            var textContent =
                 await page.getTextContent();
 
-
-            var pageText =
-                text.items
+            var text =
+                textContent.items
                     .map(
-                        function(item) {
+                        function (item) {
                             return item.str;
                         }
                     )
-                    .join(" ")
-                    .trim();
+                    .join(" ");
 
+            paragraphs.push(
+                new docx.Paragraph({
+                    text:
+                        "PAGE " + i
+                })
+            );
 
-            if (pageText) {
-
-                paragraphs.push(
-                    new docx.Paragraph({
-
-                        children: [
-                            new docx.TextRun({
-                                text:
-                                    pageText
-                            })
-                        ],
-
-                        spacing: {
-                            after: 200
-                        }
-
-                    })
-                );
-
-            }
-
+            paragraphs.push(
+                new docx.Paragraph({
+                    text:
+                        text
+                })
+            );
         }
 
-
-        var documentFile =
+        var documentObject =
             new docx.Document({
-
                 sections: [
                     {
+                        properties: {},
                         children:
                             paragraphs
                     }
                 ]
-
             });
 
-
         var blob =
-            await docx.Packer
-                .toBlob(
-                    documentFile
-                );
-
+            await docx.Packer.toBlob(
+                documentObject
+            );
 
         saveAs(
             blob,
             "AB-Digital-Utility-PDF-to-Word.docx"
         );
 
-
         result.innerHTML =
             "<strong>✅ PDF converted to Word!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
-            "❌ PDF to Word failed.";
-
+            "❌ PDF to Word conversion failed.";
     }
-
 }
 
 
@@ -1992,185 +1729,141 @@ async function pdfToWord() {
 
 async function excelToPDF() {
 
-    var input =
-        get("excelToPdfFile");
+    var input = get("excelToPdfFile");
+    var result = get("excelToPdfResult");
 
-    var result =
-        get("excelToPdfResult");
-
-
-    if (!input.files.length) {
-
-        result.innerHTML =
-            "Please select an Excel file.";
-
+    if (!input || !input.files.length) {
+        result.innerHTML = "Please select an Excel file.";
         return;
     }
 
-
-    if (
-        typeof XLSX ===
-        "undefined"
-    ) {
-
-        result.innerHTML =
-            "Excel library not loaded.";
-
+    if (typeof XLSX === "undefined") {
+        result.innerHTML = "Excel library not loaded.";
         return;
     }
 
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+        result.innerHTML = "PDF library not loaded.";
+        return;
+    }
 
     try {
 
-        var buffer =
-            await input.files[0]
-                .arrayBuffer();
+        result.innerHTML =
+            "Reading Excel workbook...";
 
+        var buffer =
+            await input.files[0].arrayBuffer();
 
         var workbook =
             XLSX.read(
                 buffer,
                 {
-                    type:
-                        "array"
+                    type: "array"
                 }
             );
 
-
-        var html = "";
-
-
-        workbook.SheetNames
-            .forEach(
-                function(name) {
-
-                    var sheet =
-                        workbook.Sheets[
-                            name
-                        ];
-
-
-                    html +=
-                        "<h2>" +
-                        name +
-                        "</h2>";
-
-
-                    html +=
-                        XLSX.utils
-                            .sheet_to_html(
-                                sheet
-                            );
-
-                }
-            );
-
-
-        var container =
-            document.createElement(
-                "div"
-            );
-
-
-        container.style.position =
-            "fixed";
-
-        container.style.left =
-            "-10000px";
-
-        container.style.width =
-            "180mm";
-
-        container.style.background =
-            "white";
-
-        container.style.color =
-            "black";
-
-        container.innerHTML =
-            `
-
-            <style>
-
-            table {
-                width:100%;
-                border-collapse:collapse;
-                font-size:10px;
-            }
-
-            td, th {
-                border:1px solid #888;
-                padding:5px;
-            }
-
-            </style>
-
-            ${html}
-
-            `;
-
-
-        document.body.appendChild(
-            container
-        );
-
+        var jsPDF =
+            window.jspdf.jsPDF;
 
         var pdf =
-            new window.jspdf.jsPDF(
-                "p",
+            new jsPDF(
+                "l",
                 "mm",
                 "a4"
             );
 
+        var firstSheet = true;
 
-        await pdf.html(
-            container,
-            {
+        workbook.SheetNames.forEach(
+            function (sheetName) {
 
-                callback:
-                    function(pdf) {
+                if (!firstSheet) {
+                    pdf.addPage();
+                }
 
-                        pdf.save(
-                            "AB-Digital-Utility-Excel-to-PDF.pdf"
+                firstSheet = false;
+
+                var sheet =
+                    workbook.Sheets[sheetName];
+
+                var rows =
+                    XLSX.utils.sheet_to_json(
+                        sheet,
+                        {
+                            header: 1,
+                            defval: ""
+                        }
+                    );
+
+                pdf.setFontSize(14);
+
+                pdf.text(
+                    sheetName,
+                    10,
+                    12
+                );
+
+                pdf.setFontSize(8);
+
+                var y = 20;
+
+                rows.forEach(
+                    function (row) {
+
+                        var line =
+                            row
+                                .map(
+                                    function (cell) {
+                                        return String(cell);
+                                    }
+                                )
+                                .join(" | ");
+
+                        var wrapped =
+                            pdf.splitTextToSize(
+                                line,
+                                270
+                            );
+
+                        wrapped.forEach(
+                            function (part) {
+
+                                if (y > 195) {
+                                    pdf.addPage();
+                                    y = 15;
+                                }
+
+                                pdf.text(
+                                    part,
+                                    10,
+                                    y
+                                );
+
+                                y += 5;
+                            }
                         );
 
-                    },
-
-                x: 10,
-
-                y: 10,
-
-                width: 190,
-
-                autoPaging:
-                    "text",
-
-                margin:
-                    [10,10,10,10]
+                    }
+                );
 
             }
         );
 
-
-        document.body.removeChild(
-            container
+        pdf.save(
+            "AB-Digital-Utility-Excel-to-PDF.pdf"
         );
-
 
         result.innerHTML =
             "<strong>✅ Excel converted to PDF!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
-            "❌ Excel conversion failed.";
-
+            "❌ Excel to PDF conversion failed.";
     }
-
 }
 
 
@@ -2180,44 +1873,36 @@ async function excelToPDF() {
 
 async function pdfToExcel() {
 
-    var input =
-        get("pdfToExcelFile");
+    var input = get("pdfToExcelFile");
+    var result = get("pdfToExcelResult");
 
-    var result =
-        get("pdfToExcelResult");
-
-
-    if (!input.files.length) {
-
-        result.innerHTML =
-            "Please select a PDF.";
-
+    if (!input || !input.files.length) {
+        result.innerHTML = "Please select a PDF.";
         return;
     }
 
+    if (typeof pdfjsLib === "undefined") {
+        result.innerHTML = "PDF.js library not loaded.";
+        return;
+    }
+
+    if (typeof XLSX === "undefined") {
+        result.innerHTML = "Excel library not loaded.";
+        return;
+    }
 
     try {
 
         var buffer =
-            await input.files[0]
-                .arrayBuffer();
-
+            await input.files[0].arrayBuffer();
 
         var pdf =
-            await pdfjsLib
-                .getDocument({
-                    data: buffer
-                })
-                .promise;
+            await pdfjsLib.getDocument({
+                data: buffer
+            }).promise;
 
-
-        var rows = [
-            [
-                "Page",
-                "Text"
-            ]
-        ];
-
+        var workbook =
+            XLSX.utils.book_new();
 
         for (
             var i = 1;
@@ -2225,73 +1910,89 @@ async function pdfToExcel() {
             i++
         ) {
 
+            result.innerHTML =
+                "Extracting page " +
+                i +
+                " of " +
+                pdf.numPages +
+                "...";
+
             var page =
                 await pdf.getPage(i);
 
-
-            var text =
+            var content =
                 await page.getTextContent();
 
+            var rows = [];
 
-            text.items.forEach(
-                function(item) {
+            var currentRow = [];
+            var currentY = null;
+
+            content.items.forEach(
+                function (item) {
+
+                    var y =
+                        Math.round(
+                            item.transform[5]
+                        );
 
                     if (
-                        item.str &&
-                        item.str.trim()
+                        currentY === null ||
+                        Math.abs(
+                            y - currentY
+                        ) > 5
                     ) {
 
-                        rows.push([
-                            i,
-                            item.str.trim()
-                        ]);
+                        if (
+                            currentRow.length
+                        ) {
+                            rows.push(
+                                currentRow
+                            );
+                        }
 
+                        currentRow = [];
+                        currentY = y;
                     }
+
+                    currentRow.push(
+                        item.str
+                    );
 
                 }
             );
 
-        }
+            if (currentRow.length) {
+                rows.push(currentRow);
+            }
 
-
-        var sheet =
-            XLSX.utils
-                .aoa_to_sheet(
+            var sheet =
+                XLSX.utils.aoa_to_sheet(
                     rows
                 );
 
-
-        var workbook =
-            XLSX.utils.book_new();
-
-
-        XLSX.utils.book_append_sheet(
-            workbook,
-            sheet,
-            "PDF Data"
-        );
-
+            XLSX.utils.book_append_sheet(
+                workbook,
+                sheet,
+                "Page " + i
+            );
+        }
 
         XLSX.writeFile(
             workbook,
             "AB-Digital-Utility-PDF-to-Excel.xlsx"
         );
 
-
         result.innerHTML =
             "<strong>✅ PDF converted to Excel!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
-            "❌ PDF to Excel failed.";
-
+            "❌ PDF to Excel conversion failed.";
     }
-
 }
 
 
@@ -2301,100 +2002,90 @@ async function pdfToExcel() {
 
 async function pptToPDF() {
 
-    var input =
-        get("pptToPdfFile");
+    var input = get("pptToPdfFile");
+    var result = get("pptToPdfResult");
 
-    var result =
-        get("pptToPdfResult");
-
-
-    if (!input.files.length) {
-
+    if (!input || !input.files.length) {
         result.innerHTML =
-            "Please select a PPTX file.";
-
+            "Please select a PowerPoint file.";
         return;
     }
 
+    if (typeof JSZip === "undefined") {
+        result.innerHTML =
+            "JSZip library not loaded.";
+        return;
+    }
+
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+        result.innerHTML =
+            "PDF library not loaded.";
+        return;
+    }
 
     try {
 
-        var buffer =
-            await input.files[0]
-                .arrayBuffer();
-
+        result.innerHTML =
+            "Reading PowerPoint presentation...";
 
         var zip =
             await JSZip.loadAsync(
-                buffer
+                await input.files[0].arrayBuffer()
             );
 
+        var slideFiles =
+            Object.keys(zip.files)
+                .filter(
+                    function (name) {
+                        return /^ppt\/slides\/slide\d+\.xml$/
+                            .test(name);
+                    }
+                )
+                .sort(
+                    function (a, b) {
 
-        var slides =
-            Object.keys(
-                zip.files
-            )
-            .filter(
-                function(name) {
+                        return (
+                            parseInt(
+                                a.match(/\d+/)[0]
+                            ) -
+                            parseInt(
+                                b.match(/\d+/)[0]
+                            )
+                        );
 
-                    return /^ppt\/slides\/slide\d+\.xml$/
-                        .test(name);
-
-                }
-            );
-
-
-        slides.sort(
-            function(a,b) {
-
-                return (
-                    parseInt(
-                        a.match(
-                            /slide(\d+)/
-                        )[1]
-                    )
-                    -
-                    parseInt(
-                        b.match(
-                            /slide(\d+)/
-                        )[1]
-                    )
+                    }
                 );
 
-            }
-        );
-
+        var jsPDF =
+            window.jspdf.jsPDF;
 
         var pdf =
-            new window.jspdf.jsPDF(
-                "landscape",
+            new jsPDF(
+                "l",
                 "mm",
                 "a4"
             );
 
-
         for (
             var i = 0;
-            i < slides.length;
+            i < slideFiles.length;
             i++
         ) {
 
-            if (i > 0) {
-                pdf.addPage();
-            }
-
+            result.innerHTML =
+                "Processing slide " +
+                (i + 1) +
+                " of " +
+                slideFiles.length +
+                "...";
 
             var xml =
                 await zip.files[
-                    slides[i]
-                ].async(
-                    "string"
-                );
-
+                    slideFiles[i]
+                ].async("text");
 
             var parser =
                 new DOMParser();
-
 
             var doc =
                 parser.parseFromString(
@@ -2402,137 +2093,130 @@ async function pptToPDF() {
                     "application/xml"
                 );
 
-
-            var nodes =
-                doc.getElementsByTagName(
-                    "a:t"
+            var texts =
+                Array.from(
+                    doc.getElementsByTagName(
+                        "a:t"
+                    )
+                )
+                .map(
+                    function (node) {
+                        return node.textContent;
+                    }
                 );
 
-
-            var text = "";
-
-
-            for (
-                var j = 0;
-                j < nodes.length;
-                j++
-            ) {
-
-                text +=
-                    nodes[j]
-                        .textContent +
-                    " ";
-
+            if (i > 0) {
+                pdf.addPage();
             }
 
-
-            pdf.setFontSize(20);
+            pdf.setFontSize(18);
 
             pdf.text(
-                "PowerPoint Slide " +
-                (i + 1),
-                20,
-                25
+                "Slide " + (i + 1),
+                15,
+                18
             );
 
+            pdf.setFontSize(11);
 
-            pdf.setFontSize(13);
-
+            var combined =
+                texts.join(" ");
 
             var lines =
                 pdf.splitTextToSize(
-                    text.trim(),
-                    240
+                    combined,
+                    260
                 );
 
+            var y = 32;
 
-            pdf.text(
-                lines,
-                20,
-                45
+            lines.forEach(
+                function (line) {
+
+                    if (y > 190) {
+                        pdf.addPage();
+                        y = 20;
+                    }
+
+                    pdf.text(
+                        line,
+                        15,
+                        y
+                    );
+
+                    y += 7;
+                }
             );
-
         }
-
 
         pdf.save(
             "AB-Digital-Utility-PowerPoint-to-PDF.pdf"
         );
 
-
         result.innerHTML =
             "<strong>✅ PowerPoint converted to PDF!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
-            "❌ PowerPoint conversion failed.";
-
+            "❌ PowerPoint to PDF conversion failed.";
     }
-
 }
 
 
 /* =========================================================
    PDF TO POWERPOINT
+   Each PDF page becomes one slide image.
 ========================================================= */
 
 async function pdfToPPT() {
 
-    var input =
-        get("pdfToPptFile");
+    var input = get("pdfToPptFile");
+    var result = get("pdfToPptResult");
 
-    var result =
-        get("pdfToPptResult");
-
-
-    if (!input.files.length) {
-
-        result.innerHTML =
-            "Please select a PDF.";
-
+    if (!input || !input.files.length) {
+        result.innerHTML = "Please select a PDF.";
         return;
     }
 
+    if (typeof pdfjsLib === "undefined") {
+        result.innerHTML =
+            "PDF.js library not loaded.";
+        return;
+    }
 
-    if (
-        typeof PptxGenJS ===
-        "undefined"
-    ) {
-
+    if (typeof pptxgen === "undefined") {
         result.innerHTML =
             "PowerPoint library not loaded.";
-
         return;
     }
-
 
     try {
 
         var buffer =
-            await input.files[0]
-                .arrayBuffer();
-
+            await input.files[0].arrayBuffer();
 
         var pdf =
-            await pdfjsLib
-                .getDocument({
-                    data: buffer
-                })
-                .promise;
+            await pdfjsLib.getDocument({
+                data: buffer
+            }).promise;
 
+        var pptx =
+            new pptxgen();
 
-        var ppt =
-            new PptxGenJS();
-
-
-        ppt.layout =
+        pptx.layout =
             "LAYOUT_WIDE";
 
+        pptx.author =
+            "AB Digital Utility";
+
+        pptx.subject =
+            "PDF to PowerPoint";
+
+        pptx.title =
+            "PDF converted by AB Digital Utility";
 
         for (
             var i = 1;
@@ -2547,22 +2231,16 @@ async function pdfToPPT() {
                 pdf.numPages +
                 "...";
 
-
             var page =
                 await pdf.getPage(i);
-
 
             var viewport =
                 page.getViewport({
                     scale: 1.5
                 });
 
-
             var canvas =
-                document.createElement(
-                    "canvas"
-                );
-
+                document.createElement("canvas");
 
             canvas.width =
                 viewport.width;
@@ -2570,74 +2248,46 @@ async function pdfToPPT() {
             canvas.height =
                 viewport.height;
 
-
             await page.render({
-
                 canvasContext:
-                    canvas.getContext(
-                        "2d"
-                    ),
-
+                    canvas.getContext("2d"),
                 viewport:
                     viewport
-
             }).promise;
-
 
             var image =
                 canvas.toDataURL(
                     "image/jpeg",
-                    0.85
+                    0.92
                 );
 
-
             var slide =
-                ppt.addSlide();
-
-
-            slide.background = {
-                color: "FFFFFF"
-            };
-
+                pptx.addSlide();
 
             slide.addImage({
-
-                data:
-                    image,
-
+                data: image,
                 x: 0,
-
                 y: 0,
-
                 w: 13.333,
-
                 h: 7.5
-
             });
-
         }
 
-
-        await ppt.writeFile({
+        await pptx.writeFile({
             fileName:
                 "AB-Digital-Utility-PDF-to-PowerPoint.pptx"
         });
 
-
         result.innerHTML =
             "<strong>✅ PDF converted to PowerPoint!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
-            "❌ PDF to PowerPoint failed.";
-
+            "❌ PDF to PowerPoint conversion failed.";
     }
-
 }
 
 
@@ -2645,7 +2295,7 @@ async function pdfToPPT() {
    HTML TO PDF
 ========================================================= */
 
-async function htmlToPDF() {
+function htmlToPDF() {
 
     var input =
         get("htmlToPdfInput");
@@ -2653,111 +2303,111 @@ async function htmlToPDF() {
     var result =
         get("htmlToPdfResult");
 
-
     var html =
-        input.value.trim();
-
+        input
+            ? input.value.trim()
+            : "";
 
     if (!html) {
-
         result.innerHTML =
             "Please enter HTML code.";
-
         return;
     }
 
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+        result.innerHTML =
+            "PDF library not loaded.";
+        return;
+    }
 
     try {
 
-        var container =
-            document.createElement(
-                "div"
-            );
-
-
-        container.style.position =
-            "fixed";
-
-        container.style.left =
-            "-10000px";
-
-        container.style.width =
-            "180mm";
-
-        container.style.padding =
-            "10mm";
-
-        container.style.background =
-            "white";
-
-        container.style.color =
-            "black";
-
-        container.innerHTML =
-            html;
-
-
-        document.body.appendChild(
-            container
-        );
-
+        var jsPDF =
+            window.jspdf.jsPDF;
 
         var pdf =
-            new window.jspdf.jsPDF(
+            new jsPDF(
                 "p",
                 "mm",
                 "a4"
             );
 
+        var temp =
+            document.createElement("div");
 
-        await pdf.html(
-            container,
-            {
+        temp.innerHTML =
+            html;
 
-                callback:
-                    function(pdf) {
+        temp.style.position =
+            "absolute";
 
-                        pdf.save(
-                            "AB-Digital-Utility-HTML.pdf"
-                        );
+        temp.style.left =
+            "-100000px";
 
-                    },
+        temp.style.width =
+            "180mm";
 
-                x: 10,
+        temp.style.padding =
+            "10mm";
 
-                y: 10,
+        temp.style.background =
+            "#ffffff";
 
-                width: 190,
+        temp.style.color =
+            "#000000";
 
-                autoPaging:
-                    "text",
+        document.body.appendChild(
+            temp
+        );
 
-                margin:
-                    [10,10,10,10]
+        var text =
+            temp.innerText || "";
+
+        document.body.removeChild(
+            temp
+        );
+
+        var lines =
+            pdf.splitTextToSize(
+                text,
+                180
+            );
+
+        var y = 15;
+
+        lines.forEach(
+            function (line) {
+
+                if (y > 280) {
+                    pdf.addPage();
+                    y = 15;
+                }
+
+                pdf.text(
+                    line,
+                    15,
+                    y
+                );
+
+                y += 6;
 
             }
         );
 
-
-        document.body.removeChild(
-            container
+        pdf.save(
+            "AB-Digital-Utility-HTML-to-PDF.pdf"
         );
-
 
         result.innerHTML =
             "<strong>✅ HTML converted to PDF!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
-            "❌ HTML conversion failed.";
-
+            "❌ HTML to PDF conversion failed.";
     }
-
 }
 
 
@@ -2767,17 +2417,10 @@ async function htmlToPDF() {
 
 async function mergePDF() {
 
-    var input =
-        get("mergeFiles");
+    var input = get("mergeFiles");
+    var result = get("mergeResult");
 
-    var result =
-        get("mergeResult");
-
-
-    if (
-        !input ||
-        input.files.length < 2
-    ) {
+    if (!input || input.files.length < 2) {
 
         result.innerHTML =
             "Please select at least 2 PDF files.";
@@ -2785,13 +2428,10 @@ async function mergePDF() {
         return;
     }
 
-
     try {
 
         var merged =
-            await PDFLib.PDFDocument
-                .create();
-
+            await PDFLib.PDFDocument.create();
 
         for (
             var i = 0;
@@ -2800,64 +2440,50 @@ async function mergePDF() {
         ) {
 
             result.innerHTML =
-                "Merging PDF " +
+                "Merging file " +
                 (i + 1) +
+                " of " +
+                input.files.length +
                 "...";
 
-
-            var bytes =
-                await input.files[i]
-                    .arrayBuffer();
-
-
-            var pdf =
-                await PDFLib.PDFDocument
-                    .load(bytes);
-
+            var source =
+                await PDFLib.PDFDocument.load(
+                    await input.files[i]
+                        .arrayBuffer()
+                );
 
             var pages =
                 await merged.copyPages(
-                    pdf,
-                    pdf.getPageIndices()
+                    source,
+                    source.getPageIndices()
                 );
 
-
             pages.forEach(
-                function(page) {
-
+                function (page) {
                     merged.addPage(page);
-
                 }
             );
-
         }
 
-
-        var output =
+        var bytes =
             await merged.save();
 
-
         downloadBlob(
-            output,
+            bytes,
             "AB-Digital-Utility-Merged.pdf",
             "application/pdf"
         );
 
-
         result.innerHTML =
             "<strong>✅ PDFs merged successfully!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
             "❌ Merge failed.";
-
     }
-
 }
 
 
@@ -2867,17 +2493,10 @@ async function mergePDF() {
 
 async function splitPDF() {
 
-    var input =
-        get("splitFile");
+    var input = get("splitFile");
+    var result = get("splitResult");
 
-    var result =
-        get("splitResult");
-
-    var pageText =
-        get("splitPages").value;
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
@@ -2885,32 +2504,34 @@ async function splitPDF() {
         return;
     }
 
-
     try {
 
         var pages =
             parsePageList(
-                pageText
+                get("splitPages").value
             );
 
+        if (!pages.length) {
+
+            result.innerHTML =
+                "Please enter page numbers.";
+
+            return;
+        }
 
         var source =
-            await PDFLib.PDFDocument
-                .load(
-                    await input.files[0]
-                        .arrayBuffer()
-                );
-
+            await PDFLib.PDFDocument.load(
+                await input.files[0]
+                    .arrayBuffer()
+            );
 
         var output =
-            await PDFLib.PDFDocument
-                .create();
-
+            await PDFLib.PDFDocument.create();
 
         var indexes =
             pages
                 .filter(
-                    function(n) {
+                    function (n) {
 
                         return (
                             n >= 1 &&
@@ -2920,11 +2541,18 @@ async function splitPDF() {
                     }
                 )
                 .map(
-                    function(n) {
+                    function (n) {
                         return n - 1;
                     }
                 );
 
+        if (!indexes.length) {
+
+            result.innerHTML =
+                "No valid page numbers found.";
+
+            return;
+        }
 
         var copied =
             await output.copyPages(
@@ -2932,19 +2560,14 @@ async function splitPDF() {
                 indexes
             );
 
-
         copied.forEach(
-            function(page) {
-
+            function (page) {
                 output.addPage(page);
-
             }
         );
 
-
         var bytes =
             await output.save();
-
 
         downloadBlob(
             bytes,
@@ -2952,38 +2575,29 @@ async function splitPDF() {
             "application/pdf"
         );
 
-
         result.innerHTML =
             "<strong>✅ PDF split successfully!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
             "❌ Split failed.";
-
     }
-
 }
 
 
 /* =========================================================
-   REMOVE PAGES
+   REMOVE PDF PAGES
 ========================================================= */
 
 async function removePDFPages() {
 
-    var input =
-        get("removeFile");
+    var input = get("removeFile");
+    var result = get("removeResult");
 
-    var result =
-        get("removeResult");
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
@@ -2991,28 +2605,33 @@ async function removePDFPages() {
         return;
     }
 
-
     try {
 
-        var remove =
+        var removePages =
             parsePageList(
-                get("removePagesInput")
-                    .value
+                get("removePagesInput").value
             );
 
+        var removeSet =
+            new Set(
+                removePages
+                    .map(
+                        function (n) {
+                            return n - 1;
+                        }
+                    )
+            );
 
         var source =
-            await PDFLib.PDFDocument
-                .load(
-                    await input.files[0]
-                        .arrayBuffer()
-                );
-
+            await PDFLib.PDFDocument.load(
+                await input.files[0]
+                    .arrayBuffer()
+            );
 
         var output =
-            await PDFLib.PDFDocument
-                .create();
+            await PDFLib.PDFDocument.create();
 
+        var indexes = [];
 
         for (
             var i = 0;
@@ -3020,31 +2639,33 @@ async function removePDFPages() {
             i++
         ) {
 
-            if (
-                remove.indexOf(
-                    i + 1
-                ) === -1
-            ) {
-
-                var copied =
-                    await output.copyPages(
-                        source,
-                        [i]
-                    );
-
-
-                output.addPage(
-                    copied[0]
-                );
-
+            if (!removeSet.has(i)) {
+                indexes.push(i);
             }
-
         }
 
+        if (!indexes.length) {
+
+            result.innerHTML =
+                "You cannot remove all pages.";
+
+            return;
+        }
+
+        var pages =
+            await output.copyPages(
+                source,
+                indexes
+            );
+
+        pages.forEach(
+            function (page) {
+                output.addPage(page);
+            }
+        );
 
         var bytes =
             await output.save();
-
 
         downloadBlob(
             bytes,
@@ -3052,38 +2673,29 @@ async function removePDFPages() {
             "application/pdf"
         );
 
-
         result.innerHTML =
-            "<strong>✅ Pages removed successfully!</strong>";
+            "<strong>✅ Selected pages removed!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
-            "❌ Unable to remove pages.";
-
+            "❌ Remove pages failed.";
     }
-
 }
 
 
 /* =========================================================
-   EXTRACT
+   EXTRACT PDF PAGES
 ========================================================= */
 
 async function extractPDFPages() {
 
-    var input =
-        get("extractFile");
+    var input = get("extractFile");
+    var result = get("extractResult");
 
-    var result =
-        get("extractResult");
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
@@ -3091,33 +2703,31 @@ async function extractPDFPages() {
         return;
     }
 
-
     try {
 
-        var pages =
+        var pageList =
             parsePageList(
-                get("extractPagesInput")
-                    .value
+                get("extractPagesInput").value
             );
 
+        if (!pageList.length) {
+
+            result.innerHTML =
+                "Please enter page numbers.";
+
+            return;
+        }
 
         var source =
-            await PDFLib.PDFDocument
-                .load(
-                    await input.files[0]
-                        .arrayBuffer()
-                );
-
-
-        var output =
-            await PDFLib.PDFDocument
-                .create();
-
+            await PDFLib.PDFDocument.load(
+                await input.files[0]
+                    .arrayBuffer()
+            );
 
         var indexes =
-            pages
+            pageList
                 .filter(
-                    function(n) {
+                    function (n) {
 
                         return (
                             n >= 1 &&
@@ -3127,31 +2737,28 @@ async function extractPDFPages() {
                     }
                 )
                 .map(
-                    function(n) {
+                    function (n) {
                         return n - 1;
                     }
                 );
 
+        var output =
+            await PDFLib.PDFDocument.create();
 
-        var copied =
+        var pages =
             await output.copyPages(
                 source,
                 indexes
             );
 
-
-        copied.forEach(
-            function(page) {
-
+        pages.forEach(
+            function (page) {
                 output.addPage(page);
-
             }
         );
 
-
         var bytes =
             await output.save();
-
 
         downloadBlob(
             bytes,
@@ -3159,38 +2766,29 @@ async function extractPDFPages() {
             "application/pdf"
         );
 
-
         result.innerHTML =
-            "<strong>✅ Pages extracted!</strong>";
+            "<strong>✅ Pages extracted successfully!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
-            "❌ Extraction failed.";
-
+            "❌ Extract failed.";
     }
-
 }
 
 
 /* =========================================================
-   ROTATE
+   ROTATE PDF
 ========================================================= */
 
 async function rotatePDF() {
 
-    var input =
-        get("rotateFile");
+    var input = get("rotateFile");
+    var result = get("rotateResult");
 
-    var result =
-        get("rotateResult");
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
@@ -3198,41 +2796,37 @@ async function rotatePDF() {
         return;
     }
 
-
     try {
 
         var angle =
             Number(
-                get("rotateAngle")
-                    .value
+                get("rotateAngle").value
             );
 
-
         var pdf =
-            await PDFLib.PDFDocument
-                .load(
-                    await input.files[0]
-                        .arrayBuffer()
-                );
-
+            await PDFLib.PDFDocument.load(
+                await input.files[0]
+                    .arrayBuffer()
+            );
 
         pdf.getPages()
             .forEach(
-                function(page) {
+                function (page) {
+
+                    var current =
+                        page.getRotation().angle;
 
                     page.setRotation(
                         PDFLib.degrees(
-                            angle
+                            current + angle
                         )
                     );
 
                 }
             );
 
-
         var bytes =
             await pdf.save();
-
 
         downloadBlob(
             bytes,
@@ -3240,38 +2834,29 @@ async function rotatePDF() {
             "application/pdf"
         );
 
-
         result.innerHTML =
             "<strong>✅ PDF rotated successfully!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
             "❌ Rotation failed.";
-
     }
-
 }
 
 
 /* =========================================================
-   REORDER
+   REORDER PDF
 ========================================================= */
 
 async function reorderPDF() {
 
-    var input =
-        get("reorderFile");
+    var input = get("reorderFile");
+    var result = get("reorderResult");
 
-    var result =
-        get("reorderResult");
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
@@ -3279,47 +2864,48 @@ async function reorderPDF() {
         return;
     }
 
-
     try {
 
         var order =
             parsePageList(
-                get("reorderPagesInput")
-                    .value
+                get("reorderPagesInput").value
             );
 
-
         var source =
-            await PDFLib.PDFDocument
-                .load(
-                    await input.files[0]
-                        .arrayBuffer()
-                );
+            await PDFLib.PDFDocument.load(
+                await input.files[0]
+                    .arrayBuffer()
+            );
 
+        var valid =
+            order.filter(
+                function (n) {
 
-        var output =
-            await PDFLib.PDFDocument
-                .create();
+                    return (
+                        n >= 1 &&
+                        n <= source.getPageCount()
+                    );
 
+                }
+            );
+
+        if (!valid.length) {
+
+            result.innerHTML =
+                "Please enter valid page numbers.";
+
+            return;
+        }
 
         var indexes =
-            order
-                .filter(
-                    function(n) {
+            valid.map(
+                function (n) {
+                    return n - 1;
+                }
+            );
 
-                        return (
-                            n >= 1 &&
-                            n <= source.getPageCount()
-                        );
-
-                    }
-                )
-                .map(
-                    function(n) {
-                        return n - 1;
-                    }
-                );
-
+        var output =
+            await PDFLib.PDFDocument.create();
 
         var pages =
             await output.copyPages(
@@ -3327,19 +2913,14 @@ async function reorderPDF() {
                 indexes
             );
 
-
         pages.forEach(
-            function(page) {
-
+            function (page) {
                 output.addPage(page);
-
             }
         );
 
-
         var bytes =
             await output.save();
-
 
         downloadBlob(
             bytes,
@@ -3347,38 +2928,29 @@ async function reorderPDF() {
             "application/pdf"
         );
 
-
         result.innerHTML =
-            "<strong>✅ Pages reordered!</strong>";
+            "<strong>✅ Pages reordered successfully!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
             "❌ Reorder failed.";
-
     }
-
 }
 
 
 /* =========================================================
-   DUPLICATE
+   DUPLICATE PDF PAGES
 ========================================================= */
 
 async function duplicatePDF() {
 
-    var input =
-        get("duplicateFile");
+    var input = get("duplicateFile");
+    var result = get("duplicateResult");
 
-    var result =
-        get("duplicateResult");
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
@@ -3386,33 +2958,26 @@ async function duplicatePDF() {
         return;
     }
 
-
     try {
 
         var order =
             parsePageList(
-                get("duplicatePagesInput")
-                    .value
+                get("duplicatePagesInput").value
             );
 
-
         var source =
-            await PDFLib.PDFDocument
-                .load(
-                    await input.files[0]
-                        .arrayBuffer()
-                );
-
+            await PDFLib.PDFDocument.load(
+                await input.files[0]
+                    .arrayBuffer()
+            );
 
         var output =
-            await PDFLib.PDFDocument
-                .create();
-
+            await PDFLib.PDFDocument.create();
 
         var indexes =
             order
                 .filter(
-                    function(n) {
+                    function (n) {
 
                         return (
                             n >= 1 &&
@@ -3422,11 +2987,18 @@ async function duplicatePDF() {
                     }
                 )
                 .map(
-                    function(n) {
+                    function (n) {
                         return n - 1;
                     }
                 );
 
+        if (!indexes.length) {
+
+            result.innerHTML =
+                "Please enter valid page numbers.";
+
+            return;
+        }
 
         var pages =
             await output.copyPages(
@@ -3434,19 +3006,14 @@ async function duplicatePDF() {
                 indexes
             );
 
-
         pages.forEach(
-            function(page) {
-
+            function (page) {
                 output.addPage(page);
-
             }
         );
 
-
         var bytes =
             await output.save();
-
 
         downloadBlob(
             bytes,
@@ -3454,21 +3021,16 @@ async function duplicatePDF() {
             "application/pdf"
         );
 
-
         result.innerHTML =
             "<strong>✅ New PDF created!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
             "❌ Duplicate failed.";
-
     }
-
 }
 
 
@@ -3478,14 +3040,10 @@ async function duplicatePDF() {
 
 async function addPageNumbers() {
 
-    var input =
-        get("pageNumberFile");
+    var input = get("pageNumberFile");
+    var result = get("pageNumberResult");
 
-    var result =
-        get("pageNumberResult");
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
@@ -3493,33 +3051,28 @@ async function addPageNumbers() {
         return;
     }
 
-
     try {
 
         var pdf =
-            await PDFLib.PDFDocument
-                .load(
-                    await input.files[0]
-                        .arrayBuffer()
-                );
-
+            await PDFLib.PDFDocument.load(
+                await input.files[0]
+                    .arrayBuffer()
+            );
 
         var position =
-            get("pageNumberPosition")
-                .value;
-
+            get("pageNumberPosition").value;
 
         pdf.getPages()
             .forEach(
-                function(page, index) {
+                function (page, index) {
 
                     var size =
                         page.getSize();
 
-
                     var x =
                         size.width / 2;
 
+                    var y = 15;
 
                     if (
                         position ===
@@ -3545,47 +3098,28 @@ async function addPageNumbers() {
                         "top-center"
                     ) {
 
-                        page.drawText(
-                            String(index + 1),
-                            {
-                                x:
-                                    x - 5,
+                        x =
+                            size.width / 2;
 
-                                y:
-                                    size.height - 25,
-
-                                size:
-                                    10
-                            }
-                        );
+                        y =
+                            size.height - 25;
 
                     }
 
-                    else {
-
-                        page.drawText(
-                            String(index + 1),
-                            {
-                                x:
-                                    x - 5,
-
-                                y:
-                                    15,
-
-                                size:
-                                    10
-                            }
-                        );
-
-                    }
+                    page.drawText(
+                        String(index + 1),
+                        {
+                            x: x - 5,
+                            y: y,
+                            size: 10
+                        }
+                    );
 
                 }
             );
 
-
         var bytes =
             await pdf.save();
-
 
         downloadBlob(
             bytes,
@@ -3593,21 +3127,16 @@ async function addPageNumbers() {
             "application/pdf"
         );
 
-
         result.innerHTML =
             "<strong>✅ Page numbers added!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
             "❌ Unable to add page numbers.";
-
     }
-
 }
 
 
@@ -3617,26 +3146,21 @@ async function addPageNumbers() {
 
 async function watermarkPDF() {
 
-    var input =
-        get("watermarkFile");
-
-    var result =
-        get("watermarkResult");
+    var input = get("watermarkFile");
+    var result = get("watermarkResult");
 
     var text =
         get("watermarkText")
             .value
             .trim();
 
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
 
         return;
     }
-
 
     if (!text) {
 
@@ -3646,31 +3170,26 @@ async function watermarkPDF() {
         return;
     }
 
-
     try {
 
         var pdf =
-            await PDFLib.PDFDocument
-                .load(
-                    await input.files[0]
-                        .arrayBuffer()
-                );
-
+            await PDFLib.PDFDocument.load(
+                await input.files[0]
+                    .arrayBuffer()
+            );
 
         pdf.getPages()
             .forEach(
-                function(page) {
+                function (page) {
 
                     var size =
                         page.getSize();
-
 
                     page.drawText(
                         text,
                         {
                             x:
-                                size.width / 2 -
-                                60,
+                                size.width / 2 - 50,
 
                             y:
                                 size.height / 2,
@@ -3682,19 +3201,15 @@ async function watermarkPDF() {
                                 0.25,
 
                             rotate:
-                                PDFLib.degrees(
-                                    45
-                                )
+                                PDFLib.degrees(45)
                         }
                     );
 
                 }
             );
 
-
         var bytes =
             await pdf.save();
-
 
         downloadBlob(
             bytes,
@@ -3702,21 +3217,16 @@ async function watermarkPDF() {
             "application/pdf"
         );
 
-
         result.innerHTML =
             "<strong>✅ Watermark added!</strong>";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
             "❌ Watermark failed.";
-
     }
-
 }
 
 
@@ -3726,14 +3236,10 @@ async function watermarkPDF() {
 
 async function compressPDF() {
 
-    var input =
-        get("compressPdfFile");
+    var input = get("compressPdfFile");
+    var result = get("compressPdfResult");
 
-    var result =
-        get("compressPdfResult");
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
@@ -3741,44 +3247,38 @@ async function compressPDF() {
         return;
     }
 
-
     try {
 
         var original =
             input.files[0];
 
-
         var pdf =
-            await PDFLib.PDFDocument
-                .load(
-                    await original
-                        .arrayBuffer()
-                );
-
+            await PDFLib.PDFDocument.load(
+                await original.arrayBuffer()
+            );
 
         var bytes =
             await pdf.save({
-                useObjectStreams:
-                    true
+                useObjectStreams: true
             });
 
-
         var oldSize =
-            (original.size / 1024)
-                .toFixed(1);
-
+            (
+                original.size /
+                1024
+            ).toFixed(1);
 
         var newSize =
-            (bytes.length / 1024)
-                .toFixed(1);
-
+            (
+                bytes.length /
+                1024
+            ).toFixed(1);
 
         downloadBlob(
             bytes,
             "AB-Digital-Utility-Compressed.pdf",
             "application/pdf"
         );
-
 
         result.innerHTML = `
 
@@ -3798,40 +3298,31 @@ async function compressPDF() {
 
             <br><br>
 
-            Note: PDF-lib can optimize PDF structure,
-            but it cannot guarantee a smaller file for
-            every PDF, especially image-heavy files.
+            Note: PDF structure optimization cannot
+            guarantee a smaller file for every PDF.
 
         `;
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
             "❌ Compression failed.";
-
     }
-
 }
 
 
 /* =========================================================
-   OCR PDF
+   OCR PDF / IMAGE
 ========================================================= */
 
 async function ocrPDF() {
 
-    var input =
-        get("ocrFile");
+    var input = get("ocrFile");
+    var result = get("ocrResult");
 
-    var result =
-        get("ocrResult");
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF or image.";
@@ -3839,11 +3330,7 @@ async function ocrPDF() {
         return;
     }
 
-
-    if (
-        typeof Tesseract ===
-        "undefined"
-    ) {
+    if (typeof Tesseract === "undefined") {
 
         result.innerHTML =
             "OCR library not loaded.";
@@ -3851,21 +3338,16 @@ async function ocrPDF() {
         return;
     }
 
-
     try {
 
         result.innerHTML =
             "Starting OCR...";
 
-
         var file =
             input.files[0];
 
-
         if (
-            file.type.startsWith(
-                "image/"
-            )
+            file.type.startsWith("image/")
         ) {
 
             var output =
@@ -3874,11 +3356,9 @@ async function ocrPDF() {
                     "eng",
                     {
                         logger:
-                            function(info) {
+                            function (info) {
 
-                                if (
-                                    info.status
-                                ) {
+                                if (info.status) {
 
                                     result.innerHTML =
                                         info.status +
@@ -3887,8 +3367,7 @@ async function ocrPDF() {
                                             (
                                                 info.progress ||
                                                 0
-                                            ) *
-                                            100
+                                            ) * 100
                                         ) +
                                         "%";
 
@@ -3897,7 +3376,6 @@ async function ocrPDF() {
                             }
                     }
                 );
-
 
             result.innerHTML = `
 
@@ -3911,16 +3389,13 @@ async function ocrPDF() {
                     rows="15"
                     style="width:100%;">
 
-${escapeHTML(
-    output.data.text
-)}
+${escapeHTML(output.data.text)}
 
                 </textarea>
 
             `;
 
             return;
-
         }
 
 
@@ -3932,7 +3407,6 @@ ${escapeHTML(
             var buffer =
                 await file.arrayBuffer();
 
-
             var pdf =
                 await pdfjsLib
                     .getDocument({
@@ -3941,9 +3415,7 @@ ${escapeHTML(
                     })
                     .promise;
 
-
             var allText = "";
-
 
             for (
                 var i = 1;
@@ -3958,22 +3430,18 @@ ${escapeHTML(
                     pdf.numPages +
                     "...";
 
-
                 var page =
                     await pdf.getPage(i);
-
 
                 var viewport =
                     page.getViewport({
                         scale: 1.5
                     });
 
-
                 var canvas =
                     document.createElement(
                         "canvas"
                     );
-
 
                 canvas.width =
                     viewport.width;
@@ -3981,19 +3449,14 @@ ${escapeHTML(
                 canvas.height =
                     viewport.height;
 
-
                 await page.render({
-
                     canvasContext:
                         canvas.getContext(
                             "2d"
                         ),
-
                     viewport:
                         viewport
-
                 }).promise;
-
 
                 var output =
                     await Tesseract.recognize(
@@ -4001,15 +3464,12 @@ ${escapeHTML(
                         "eng"
                     );
 
-
                 allText +=
                     "\n\n--- PAGE " +
                     i +
                     " ---\n\n" +
                     output.data.text;
-
             }
-
 
             result.innerHTML = `
 
@@ -4030,24 +3490,18 @@ ${escapeHTML(allText)}
             `;
 
             return;
-
         }
-
 
         result.innerHTML =
             "Unsupported file type.";
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
             "❌ OCR failed.";
-
     }
-
 }
 
 
@@ -4057,26 +3511,20 @@ ${escapeHTML(allText)}
 
 async function protectPDF() {
 
-    var input =
-        get("protectFile");
+    var input = get("protectFile");
+    var result = get("protectResult");
 
-    var result =
-        get("protectResult");
+    var password =
+        get("protectPassword")
+            .value;
 
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
 
         return;
     }
-
-
-    var password =
-        get("protectPassword")
-            .value;
-
 
     if (!password) {
 
@@ -4086,25 +3534,18 @@ async function protectPDF() {
         return;
     }
 
-
     result.innerHTML = `
 
         <strong>
-            Browser-only password encryption is not
-            supported by the current PDF library.
+            ⚠️ True PDF password encryption is not
+            supported by the current browser-only library.
         </strong>
 
         <br><br>
 
-        The PDF has NOT been falsely marked as protected.
-
-        <br><br>
-
-        We can add true encryption after integrating
-        a server-side PDF encryption engine.
+        Your PDF has NOT been falsely marked as protected.
 
     `;
-
 }
 
 
@@ -4114,14 +3555,10 @@ async function protectPDF() {
 
 async function unlockPDF() {
 
-    var input =
-        get("unlockFile");
+    var input = get("unlockFile");
+    var result = get("unlockResult");
 
-    var result =
-        get("unlockResult");
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
@@ -4129,21 +3566,19 @@ async function unlockPDF() {
         return;
     }
 
-
     result.innerHTML = `
 
         <strong>
-            Password-protected PDFs require the correct
-            password and a PDF encryption engine.
+            ⚠️ Password-protected PDFs require the correct
+            password and a compatible PDF encryption engine.
         </strong>
 
         <br><br>
 
-        This browser-only version will not bypass
-        or crack PDF passwords.
+        This browser-only tool will not bypass or crack
+        PDF passwords.
 
     `;
-
 }
 
 
@@ -4153,14 +3588,10 @@ async function unlockPDF() {
 
 async function previewPDF() {
 
-    var input =
-        get("previewFile");
+    var input = get("previewFile");
+    var result = get("previewResult");
 
-    var result =
-        get("previewResult");
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select a PDF.";
@@ -4168,6 +3599,13 @@ async function previewPDF() {
         return;
     }
 
+    if (typeof pdfjsLib === "undefined") {
+
+        result.innerHTML =
+            "PDF.js library not loaded.";
+
+        return;
+    }
 
     try {
 
@@ -4175,18 +3613,14 @@ async function previewPDF() {
             await input.files[0]
                 .arrayBuffer();
 
-
         var pdf =
             await pdfjsLib
                 .getDocument({
-                    data:
-                        buffer
+                    data: buffer
                 })
                 .promise;
 
-
         var html = "";
-
 
         for (
             var i = 1;
@@ -4194,22 +3628,25 @@ async function previewPDF() {
             i++
         ) {
 
+            result.innerHTML =
+                "Rendering page " +
+                i +
+                " of " +
+                pdf.numPages +
+                "...";
+
             var page =
                 await pdf.getPage(i);
 
-
             var viewport =
                 page.getViewport({
-                    scale:
-                        0.7
+                    scale: 0.7
                 });
-
 
             var canvas =
                 document.createElement(
                     "canvas"
                 );
-
 
             canvas.width =
                 viewport.width;
@@ -4217,56 +3654,45 @@ async function previewPDF() {
             canvas.height =
                 viewport.height;
 
-
             await page.render({
-
                 canvasContext:
                     canvas.getContext(
                         "2d"
                     ),
-
                 viewport:
                     viewport
-
             }).promise;
-
 
             html += `
 
-                <div
-                class="pdf-preview-page">
+                <div class="pdf-preview-page">
 
                     <h4>
                         Page ${i}
                     </h4>
 
                     <img
-                    src="${canvas.toDataURL(
-                        "image/jpeg"
-                    )}"
-                    class="pdf-preview-image">
+                        src="${canvas.toDataURL(
+                            "image/jpeg"
+                        )}"
+                        class="pdf-preview-image"
+                    >
 
                 </div>
 
             `;
-
         }
-
 
         result.innerHTML =
             html;
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
         result.innerHTML =
             "❌ Preview failed.";
-
     }
-
 }
 
 
@@ -4276,14 +3702,10 @@ async function previewPDF() {
 
 function compressImage() {
 
-    var input =
-        get("compressFile");
+    var input = get("compressFile");
+    var result = get("compressResult");
 
-    var result =
-        get("compressResult");
-
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select an image.";
@@ -4291,32 +3713,27 @@ function compressImage() {
         return;
     }
 
-
     var quality =
         Number(
             get("quality").value
         );
 
-
     var reader =
         new FileReader();
 
-
     reader.onload =
-        function(event) {
+        function (event) {
 
             var image =
                 new Image();
 
-
             image.onload =
-                function() {
+                function () {
 
                     var canvas =
                         document.createElement(
                             "canvas"
                         );
-
 
                     canvas.width =
                         image.width;
@@ -4324,72 +3741,73 @@ function compressImage() {
                     canvas.height =
                         image.height;
 
-
-                    canvas.getContext(
-                        "2d"
-                    ).drawImage(
-                        image,
-                        0,
-                        0
-                    );
-
+                    canvas
+                        .getContext("2d")
+                        .drawImage(
+                            image,
+                            0,
+                            0
+                        );
 
                     canvas.toBlob(
+                        function (blob) {
 
-                        function(blob) {
+                            if (!blob) {
+
+                                result.innerHTML =
+                                    "❌ Unable to compress image.";
+
+                                return;
+                            }
 
                             var url =
                                 URL.createObjectURL(
                                     blob
                                 );
 
-
                             result.innerHTML = `
 
                                 Original:
-                                ${(input.files[0].size / 1024).toFixed(1)}
+                                ${(
+                                    input.files[0]
+                                        .size / 1024
+                                ).toFixed(1)}
                                 KB
 
                                 <br>
 
                                 Compressed:
-                                ${(blob.size / 1024).toFixed(1)}
+                                ${(
+                                    blob.size / 1024
+                                ).toFixed(1)}
                                 KB
 
                                 <br><br>
 
                                 <a
-                                class="download"
-                                href="${url}"
-                                download="AB-Digital-Utility-compressed.jpg">
+                                    class="download"
+                                    href="${url}"
+                                    download="AB-Digital-Utility-compressed.jpg">
 
-                                Download Compressed Image
+                                    Download Compressed Image
 
                                 </a>
 
                             `;
 
                         },
-
                         "image/jpeg",
-
                         quality
-
                     );
-
                 };
-
 
             image.src =
                 event.target.result;
-
         };
-
 
     reader.readAsDataURL(
         input.files[0]
     );
-
 }
 
 
@@ -4399,35 +3817,26 @@ function compressImage() {
 
 function resizeImage() {
 
-    var input =
-        get("resizeFile");
-
-    var result =
-        get("resizeResult");
-
+    var input = get("resizeFile");
+    var result = get("resizeResult");
 
     var width =
         Number(
-            get("resizeWidth")
-                .value
+            get("resizeWidth").value
         );
-
 
     var height =
         Number(
-            get("resizeHeight")
-                .value
+            get("resizeHeight").value
         );
 
-
-    if (!input.files.length) {
+    if (!input || !input.files.length) {
 
         result.innerHTML =
             "Please select an image.";
 
         return;
     }
-
 
     if (!width || !height) {
 
@@ -4437,26 +3846,22 @@ function resizeImage() {
         return;
     }
 
-
     var reader =
         new FileReader();
 
-
     reader.onload =
-        function(event) {
+        function (event) {
 
             var image =
                 new Image();
 
-
             image.onload =
-                function() {
+                function () {
 
                     var canvas =
                         document.createElement(
                             "canvas"
                         );
-
 
                     canvas.width =
                         width;
@@ -4464,26 +3869,23 @@ function resizeImage() {
                     canvas.height =
                         height;
 
-
-                    canvas.getContext(
-                        "2d"
-                    ).drawImage(
-                        image,
-                        0,
-                        0,
-                        width,
-                        height
-                    );
-
+                    canvas
+                        .getContext("2d")
+                        .drawImage(
+                            image,
+                            0,
+                            0,
+                            width,
+                            height
+                        );
 
                     canvas.toBlob(
-                        function(blob) {
+                        function (blob) {
 
                             var url =
                                 URL.createObjectURL(
                                     blob
                                 );
-
 
                             result.innerHTML = `
 
@@ -4494,42 +3896,34 @@ function resizeImage() {
                                 <br><br>
 
                                 <a
-                                class="download"
-                                href="${url}"
-                                download="AB-Digital-Utility-resized.jpg">
+                                    class="download"
+                                    href="${url}"
+                                    download="AB-Digital-Utility-resized.jpg">
 
-                                Download Resized Image
+                                    Download Resized Image
 
                                 </a>
 
                             `;
 
                         },
-
                         "image/jpeg",
-
                         0.9
-
                     );
-
                 };
-
 
             image.src =
                 event.target.result;
-
         };
-
 
     reader.readAsDataURL(
         input.files[0]
     );
-
 }
 
 
 /* =========================================================
-   QR
+   QR CODE
 ========================================================= */
 
 function generateQR() {
@@ -4542,7 +3936,6 @@ function generateQR() {
     var result =
         get("qrResult");
 
-
     if (!text) {
 
         result.innerHTML =
@@ -4551,9 +3944,7 @@ function generateQR() {
         return;
     }
 
-
     result.innerHTML = "";
-
 
     if (
         typeof QRCode ===
@@ -4566,7 +3957,6 @@ function generateQR() {
         return;
     }
 
-
     new QRCode(
         result,
         {
@@ -4577,7 +3967,10 @@ function generateQR() {
                 220,
 
             height:
-                220
+                220,
+
+            correctLevel:
+                QRCode.CorrectLevel.H
         }
     );
 
@@ -4585,28 +3978,23 @@ function generateQR() {
 
 
 /* =========================================================
-   GST
+   GST CALCULATOR
 ========================================================= */
 
 function calculateGST() {
 
     var amount =
         Number(
-            get("gstAmount")
-                .value
+            get("gstAmount").value
         );
-
 
     var rate =
         Number(
-            get("gstRate")
-                .value
+            get("gstRate").value
         );
-
 
     var result =
         get("gstResult");
-
 
     if (
         amount <= 0 ||
@@ -4619,17 +4007,14 @@ function calculateGST() {
         return;
     }
 
-
     var gst =
         amount *
         rate /
         100;
 
-
     var total =
         amount +
         gst;
-
 
     result.innerHTML = `
 
@@ -4646,7 +4031,6 @@ function calculateGST() {
         </strong>
 
     `;
-
 }
 
 
@@ -4658,21 +4042,16 @@ function calculatePercentage() {
 
     var value =
         Number(
-            get("percentageValue")
-                .value
+            get("percentageValue").value
         );
-
 
     var total =
         Number(
-            get("percentageTotal")
-                .value
+            get("percentageTotal").value
         );
-
 
     var result =
         get("percentageResult");
-
 
     if (total <= 0) {
 
@@ -4682,12 +4061,10 @@ function calculatePercentage() {
         return;
     }
 
-
     var percentage =
         value /
         total *
         100;
-
 
     result.innerHTML = `
 
@@ -4696,7 +4073,6 @@ function calculatePercentage() {
         </strong>
 
     `;
-
 }
 
 
@@ -4707,13 +4083,10 @@ function calculatePercentage() {
 function calculateAge() {
 
     var value =
-        get("birthDate")
-            .value;
-
+        get("birthDate").value;
 
     var result =
         get("ageResult");
-
 
     if (!value) {
 
@@ -4723,14 +4096,11 @@ function calculateAge() {
         return;
     }
 
-
     var birth =
         new Date(value);
 
-
     var today =
         new Date();
-
 
     if (birth > today) {
 
@@ -4740,26 +4110,21 @@ function calculateAge() {
         return;
     }
 
-
     var years =
         today.getFullYear() -
         birth.getFullYear();
-
 
     var months =
         today.getMonth() -
         birth.getMonth();
 
-
     var days =
         today.getDate() -
         birth.getDate();
 
-
     if (days < 0) {
 
         months--;
-
 
         var previous =
             new Date(
@@ -4768,21 +4133,16 @@ function calculateAge() {
                 0
             );
 
-
         days +=
             previous.getDate();
-
     }
-
 
     if (months < 0) {
 
         years--;
 
         months += 12;
-
     }
-
 
     result.innerHTML = `
 
@@ -4797,7 +4157,6 @@ function calculateAge() {
         </strong>
 
     `;
-
 }
 
 
@@ -4809,28 +4168,21 @@ function calculateEMI() {
 
     var principal =
         Number(
-            get("loanAmount")
-                .value
+            get("loanAmount").value
         );
-
 
     var annualRate =
         Number(
-            get("interestRate")
-                .value
+            get("interestRate").value
         );
-
 
     var years =
         Number(
-            get("loanYears")
-                .value
+            get("loanYears").value
         );
-
 
     var result =
         get("emiResult");
-
 
     if (
         principal <= 0 ||
@@ -4844,31 +4196,23 @@ function calculateEMI() {
         return;
     }
 
-
     var months =
         years * 12;
-
 
     var monthlyRate =
         annualRate /
         12 /
         100;
 
-
     var emi;
 
-
-    if (
-        monthlyRate === 0
-    ) {
+    if (monthlyRate === 0) {
 
         emi =
             principal /
             months;
 
-    }
-
-    else {
+    } else {
 
         emi =
             principal *
@@ -4884,19 +4228,15 @@ function calculateEMI() {
                     months
                 ) - 1
             );
-
     }
-
 
     var total =
         emi *
         months;
 
-
     var interest =
         total -
         principal;
-
 
     result.innerHTML = `
 
@@ -4916,7 +4256,6 @@ function calculateEMI() {
         ₹${total.toFixed(2)}
 
     `;
-
 }
 
 
@@ -4928,21 +4267,16 @@ function quickGST() {
 
     var amount =
         Number(
-            get("quickGSTAmount")
-                .value
+            get("quickGSTAmount").value
         );
-
 
     var rate =
         Number(
-            get("quickGSTRate")
-                .value
+            get("quickGSTRate").value
         );
-
 
     var result =
         get("quickGSTResult");
-
 
     if (
         amount <= 0 ||
@@ -4955,12 +4289,10 @@ function quickGST() {
         return;
     }
 
-
     var gst =
         amount *
         rate /
         100;
-
 
     result.innerHTML = `
 
@@ -4972,13 +4304,11 @@ function quickGST() {
         Total:
         <strong>
             ₹${(
-                amount +
-                gst
+                amount + gst
             ).toFixed(2)}
         </strong>
 
     `;
-
 }
 
 
@@ -4990,21 +4320,16 @@ function quickPercentage() {
 
     var value =
         Number(
-            get("quickPercentValue")
-                .value
+            get("quickPercentValue").value
         );
-
 
     var total =
         Number(
-            get("quickPercentTotal")
-                .value
+            get("quickPercentTotal").value
         );
-
 
     var result =
         get("quickPercentResult");
-
 
     if (total <= 0) {
 
@@ -5014,7 +4339,6 @@ function quickPercentage() {
         return;
     }
 
-
     result.innerHTML =
         "<strong>" +
         (
@@ -5023,7 +4347,6 @@ function quickPercentage() {
             100
         ).toFixed(2) +
         "%</strong>";
-
 }
 
 
@@ -5033,35 +4356,31 @@ function quickPercentage() {
 
 document.addEventListener(
     "DOMContentLoaded",
-    function() {
+    function () {
 
         var search =
             get("searchInput");
-
 
         if (!search) {
             return;
         }
 
-
         search.addEventListener(
             "input",
-            function() {
+            function () {
 
                 var query =
                     search.value
                         .toLowerCase()
                         .trim();
 
-
                 var cards =
                     document.querySelectorAll(
                         ".tool-card"
                     );
 
-
                 cards.forEach(
-                    function(card) {
+                    function (card) {
 
                         var text =
                             (
@@ -5074,13 +4393,11 @@ document.addEventListener(
                             )
                             .toLowerCase();
 
-
                         card.style.display =
                             !query ||
                             text.includes(query)
                                 ? ""
                                 : "none";
-
                     }
                 );
 
@@ -5092,7 +4409,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   UTILITY FUNCTIONS
+   DOWNLOAD BLOB
 ========================================================= */
 
 function downloadBlob(
@@ -5110,18 +4427,15 @@ function downloadBlob(
             }
         );
 
-
     var url =
         URL.createObjectURL(
             blob
         );
 
-
     var a =
         document.createElement(
             "a"
         );
-
 
     a.href =
         url;
@@ -5129,22 +4443,18 @@ function downloadBlob(
     a.download =
         filename;
 
-
     document.body.appendChild(
         a
     );
 
-
     a.click();
-
 
     document.body.removeChild(
         a
     );
 
-
     setTimeout(
-        function() {
+        function () {
 
             URL.revokeObjectURL(
                 url
@@ -5153,7 +4463,6 @@ function downloadBlob(
         },
         1000
     );
-
 }
 
 
@@ -5167,18 +4476,19 @@ function parsePageList(value) {
         return [];
     }
 
-
     var result = [];
-
 
     value
         .split(",")
         .forEach(
-            function(part) {
+            function (part) {
 
                 part =
                     part.trim();
 
+                if (!part) {
+                    return;
+                }
 
                 if (
                     part.includes("-")
@@ -5187,18 +4497,17 @@ function parsePageList(value) {
                     var range =
                         part.split("-");
 
-
                     var start =
                         parseInt(
-                            range[0]
+                            range[0],
+                            10
                         );
-
 
                     var end =
                         parseInt(
-                            range[1]
+                            range[1],
+                            10
                         );
-
 
                     if (
                         !isNaN(start) &&
@@ -5210,33 +4519,25 @@ function parsePageList(value) {
                                 ? 1
                                 : -1;
 
-
                         for (
-                            var i =
-                                start;
+                            var i = start;
                             step > 0
                                 ? i <= end
                                 : i >= end;
                             i += step
                         ) {
 
-                            result.push(
-                                i
-                            );
-
+                            result.push(i);
                         }
-
                     }
 
-                }
-
-                else {
+                } else {
 
                     var number =
                         parseInt(
-                            part
+                            part,
+                            10
                         );
-
 
                     if (
                         !isNaN(number)
@@ -5245,17 +4546,12 @@ function parsePageList(value) {
                         result.push(
                             number
                         );
-
                     }
-
                 }
-
             }
         );
 
-
     return result;
-
 }
 
 
@@ -5286,7 +4582,6 @@ function escapeHTML(text) {
             /'/g,
             "&#039;"
         );
-
 }
 
 
@@ -5295,5 +4590,5 @@ function escapeHTML(text) {
 ========================================================= */
 
 console.log(
-    "AB Digital Utility loaded successfully."
+    "AB Digital Utility - Complete Script Loaded Successfully."
 );
