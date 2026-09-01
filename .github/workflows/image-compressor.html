@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Image Compressor Online – Free JPG & PNG Compressor | AB Digital Utility</title>
+
+  <meta name="description"
+        content="Compress JPG and PNG images online for free. Reduce image file size while controlling image quality. Fast, simple and works directly in your browser.">
+
+  <meta name="robots" content="index, follow">
+
+  <meta name="author" content="AB Digital Utility">
+
+  <link rel="canonical"
+        href="https://bharat2791991.github.io/ab-digital-utility/image-compressor.html">
+
+  <meta property="og:title"
+        content="Free Image Compressor Online | AB Digital Utility">
+
+  <meta property="og:description"
+        content="Compress JPG and PNG images online for free with AB Digital Utility.">
+
+  <meta property="og:type" content="website">
+
+  <meta property="og:url"
+        content="https://bharat2791991.github.io/ab-digital-utility/image-compressor.html">
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+  <div class="container nav">
+
+    <a href="index.html" class="logo">
+      AB <span>Digital Utility</span>
+    </a>
+
+    <nav>
+
+      <a href="index.html">Home</a>
+
+      <a href="index.html#tools">Tools</a>
+
+      <a href="index.html#calculators">Calculators</a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<section class="section">
+
+  <div class="container">
+
+
+    <div class="heading">
+
+      <div>
+
+        <h1>Image Compressor Online</h1>
+
+        <p>
+          Compress JPG and PNG images online for free.
+          Reduce image file size quickly without installing software.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- COMPRESSOR -->
+
+    <div class="tool-window">
+
+      <h2>🗜️ Compress Your Image</h2>
+
+      <p>
+        Select a JPG or PNG image and choose the compression quality.
+      </p>
+
+
+      <input
+        id="compressFile"
+        type="file"
+        accept="image/jpeg,image/png"
+      >
+
+
+      <br><br>
+
+
+      <label for="quality">
+        Quality:
+      </label>
+
+
+      <input
+        id="quality"
+        type="range"
+        min="0.1"
+        max="1"
+        value="0.7"
+        step="0.1"
+      >
+
+
+      <span id="qualityValue">
+        0.7
+      </span>
+
+
+      <br><br>
+
+
+      <button onclick="compressImage()">
+        Compress Image
+      </button>
+
+
+      <div
+        id="compressResult"
+        class="result">
+      </div>
+
+    </div>
+
+
+    <!-- GUIDE -->
+
+    <div class="guide-card">
+
+      <h2>How to compress an image?</h2>
+
+      <p>
+        You can reduce JPG or PNG image size directly from your browser
+        using our free image compressor.
+      </p>
+
+      <ol>
+
+        <li>Select a JPG or PNG image.</li>
+
+        <li>Choose the desired image quality.</li>
+
+        <li>Click <strong>Compress Image</strong>.</li>
+
+        <li>Download the compressed image.</li>
+
+      </ol>
+
+
+      <h2>Why compress images?</h2>
+
+      <p>
+        Large images take more storage space and can take longer
+        to upload or share. Compressing images can help reduce
+        their file size.
+      </p>
+
+
+      <h2>Features</h2>
+
+      <ul>
+
+        <li>Free online image compressor</li>
+
+        <li>JPG and PNG image support</li>
+
+        <li>Adjustable image quality</li>
+
+        <li>No software installation required</li>
+
+        <li>Works directly in your browser</li>
+
+        <li>Mobile and desktop friendly</li>
+
+      </ul>
+
+
+      <h2>Frequently Asked Questions</h2>
+
+
+      <h3>Is this image compressor free?</h3>
+
+      <p>
+        Yes. The image compressor is free to use.
+      </p>
+
+
+      <h3>Can I compress JPG images?</h3>
+
+      <p>
+        Yes. JPG images are supported.
+      </p>
+
+
+      <h3>Can I compress PNG images?</h3>
+
+      <p>
+        Yes. PNG images can also be selected.
+      </p>
+
+
+      <h3>Do I need to install an app?</h3>
+
+      <p>
+        No. The compressor works directly in your web browser.
+      </p>
+
+
+      <h3>Can I use this on my phone?</h3>
+
+      <p>
+        Yes. You can use the image compressor from a mobile browser.
+      </p>
+
+    </div>
+
+
+    <p style="margin-top:30px;">
+
+      <a href="index.html">
+        ← Back to AB Digital Utility
+      </a>
+
+    </p>
+
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div class="container footer">
+
+    <div>
+
+      <div class="logo">
+        AB <span>Digital Utility</span>
+      </div>
+
+      <p>
+        Free online tools for everyday digital work.
+      </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="about.html">About</a>
+
+      <a href="privacy.html">Privacy</a>
+
+      <a href="terms.html">Terms</a>
+
+      <a href="contact.html">Contact</a>
+
+    </div>
+
+  </div>
+
+
+  <div class="copyright">
+
+    © 2026 AB Digital Utility. All rights reserved.
+
+  </div>
+
+</footer>
+
+
+<script>
+
+const quality = document.getElementById("quality");
+
+const qualityValue = document.getElementById("qualityValue");
+
+quality.addEventListener("input", function () {
+
+  qualityValue.textContent = this.value;
+
+});
+
+
+function compressImage() {
+
+  const input = document.getElementById("compressFile");
+
+  const result = document.getElementById("compressResult");
+
+  const qualityValueNumber =
+    Number(document.getElementById("quality").value);
+
+
+  if (!input.files.length) {
+
+    result.innerHTML =
+      "Please select an image first.";
+
+    return;
+
+  }
+
+
+  const file = input.files[0];
+
+
+  const reader = new FileReader();
+
+
+  reader.onload = function(event) {
+
+    const img = new Image();
+
+
+    img.onload = function() {
+
+      const canvas =
+        document.createElement("canvas");
+
+      const ctx =
+        canvas.getContext("2d");
+
+
+      canvas.width = img.width;
+
+      canvas.height = img.height;
+
+
+      ctx.drawImage(
+        img,
+        0,
+        0,
+        img.width,
+        img.height
+      );
+
+
+      const compressedData =
+        canvas.toDataURL(
+          "image/jpeg",
+          qualityValueNumber
+        );
+
+
+      const link =
+        document.createElement("a");
+
+      link.href = compressedData;
+
+      link.download =
+        "AB-Digital-Utility-compressed.jpg";
+
+
+      const originalSize =
+        (file.size / 1024).toFixed(1);
+
+
+      const base64Length =
+        compressedData.length -
+        "data:image/jpeg;base64,".length;
+
+
+      const compressedSize =
+        (base64Length * 0.75 / 1024).toFixed(1);
+
+
+      result.innerHTML = `
+
+        <p>
+          <strong>✅ Image compressed successfully!</strong>
+        </p>
+
+        <p>
+          Original size:
+          ${originalSize} KB
+        </p>
+
+        <p>
+          Approx. compressed size:
+          ${compressedSize} KB
+        </p>
+
+        <br>
+
+        <button id="downloadCompressed">
+          Download Compressed Image
+        </button>
+
+      `;
+
+
+      document
+        .getElementById("downloadCompressed")
+        .onclick = function() {
+
+          link.click();
+
+        };
+
+    };
+
+
+    img.onerror = function() {
+
+      result.innerHTML =
+        "Unable to process this image.";
+
+    };
+
+
+    img.src = event.target.result;
+
+  };
+
+
+  reader.onerror = function() {
+
+    result.innerHTML =
+      "Unable to read the selected image.";
+
+  };
+
+
+  reader.readAsDataURL(file);
+
+}
+
+</script>
+
+
+</body>
+</html>
