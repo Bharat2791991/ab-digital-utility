@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<url>
-  <loc>https://bharat2791991.github.io/ab-digital-utility/jpg-to-pdf.html</loc>
-</url>
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
     <loc>https://bharat2791991.github.io/ab-digital-utility/</loc>
-    <lastmod>2026-08-21</lastmod>
   </url>
 
   <url>
     <loc>https://bharat2791991.github.io/ab-digital-utility/about.html</loc>
-    <lastmod>2026-08-21</lastmod>
-  </url>
-
-  <url>
-    <loc>https://bharat2791991.github.io/ab-digital-utility/contact.html</loc>
-    <lastmod>2026-08-21</lastmod>
   </url>
 
   <url>
     <loc>https://bharat2791991.github.io/ab-digital-utility/privacy.html</loc>
-    <lastmod>2026-08-21</lastmod>
   </url>
 
   <url>
     <loc>https://bharat2791991.github.io/ab-digital-utility/terms.html</loc>
-    <lastmod>2026-08-21</lastmod>
+  </url>
+
+  <url>
+    <loc>https://bharat2791991.github.io/ab-digital-utility/contact.html</loc>
+  </url>
+
+  <url>
+    <loc>https://bharat2791991.github.io/ab-digital-utility/jpg-to-pdf.html</loc>
   </url>
 
 </urlset>
