@@ -91,33 +91,26 @@
 </div>
 </div>
 </section>
-<section class="section pdf-section" id="pdfTools">
+<section class="section" id="pdfTools">
 <div class="container">
-<div class="heading"><h2>📚 PDF Core</h2><p>Complete PDF tools in one place.</p></div>
-<div class="pdf-tools-grid">
-<button onclick="window.location.href='jpg-to-pdf.html?v=3'" class="pdf-tool-active">📄<br>JPG → PDF</button>
-<button onclick="window.location.href='pdf-to-jpg.html?v=3'">🖼️<br>PDF → JPG</button>
-<button onclick="window.location.href='word-to-pdf.html?v=4'">📝<br>Word → PDF</button>
-<button onclick="showComingSoon('PDF to Word')">📝<br>PDF → Word</button>
-<button onclick="showComingSoon('Excel to PDF')">📊<br>Excel → PDF</button>
-<button onclick="showComingSoon('PDF to Excel')">📊<br>PDF → Excel</button>
-<button onclick="showComingSoon('PowerPoint to PDF')">📽️<br>PowerPoint → PDF</button>
-<button onclick="showComingSoon('PDF to PowerPoint')">📽️<br>PDF → PowerPoint</button>
-<button onclick="showComingSoon('HTML to PDF')">🌐<br>HTML → PDF</button>
-<button onclick="showComingSoon('Merge PDF')">🔗<br>Merge PDF</button>
-<button onclick="showComingSoon('Split PDF')">✂️<br>Split PDF</button>
-<button onclick="showComingSoon('Remove Pages')">🗑️<br>Remove Pages</button>
-<button onclick="showComingSoon('Extract Pages')">📑<br>Extract Pages</button>
-<button onclick="showComingSoon('Rotate PDF')">🔄<br>Rotate PDF</button>
-<button onclick="showComingSoon('Reorder Pages')">↕️<br>Reorder Pages</button>
-<button onclick="showComingSoon('Duplicate Pages')">📄<br>Duplicate Pages</button>
-<button onclick="showComingSoon('Page Numbers')">🔢<br>Page Numbers</button>
-<button onclick="showComingSoon('Watermark PDF')">💧<br>Watermark PDF</button>
-<button onclick="showComingSoon('Compress PDF')">🗜️<br>Compress PDF</button>
-<button onclick="showComingSoon('OCR PDF')">🔎<br>OCR PDF</button>
-<button onclick="showComingSoon('Protect PDF')">🔐<br>Protect PDF</button>
-<button onclick="showComingSoon('Unlock PDF')">🔓<br>Unlock PDF</button>
-<button onclick="showComingSoon('PDF Preview')">👁️<br>PDF Preview</button>
+<div class="heading"><h2>🏢 Business Services</h2><p>Quick apply services - GST, PAN, EPF & Digital Signature</p></div>
+<div class="tools-grid">
+<article class="tool-card" data-search="gst apply registration">
+<div class="tool-icon yellow">🧾</div><h3>GST Apply</h3><p>New GST registration, return filing & GST related services.</p>
+<button onclick="showComingSoon('GST Apply')">Apply Now →</button>
+</article>
+<article class="tool-card" data-search="pan apply card">
+<div class="tool-icon blue">💳</div><h3>PAN Apply</h3><p>Apply for new PAN card, correction & reprint service.</p>
+<button onclick="showComingSoon('PAN Apply')">Apply Now →</button>
+</article>
+<article class="tool-card" data-search="epf esic apply registration">
+<div class="tool-icon green">🏦</div><h3>EPF & ESIC Apply</h3><p>EPF, ESIC registration for business & employees.</p>
+<button onclick="showComingSoon('EPF & ESIC Apply')">Apply Now →</button>
+</article>
+<article class="tool-card" data-search="digital signature dsc apply">
+<div class="tool-icon purple">🔏</div><h3>Digital Signature Apply</h3><p>Class 3 Digital Signature for GST, tender & MCA.</p>
+<button onclick="showComingSoon('Digital Signature Apply')">Apply Now →</button>
+</article>
 </div>
 </div>
 </section>
@@ -190,7 +183,6 @@ function showComingSoon(tool){
 function closeTool(){ document.getElementById('workspace').style.display='none'; }
 function quickGST(){ var a=parseFloat(document.getElementById('quickGSTAmount').value)||0; var r=parseFloat(document.getElementById('quickGSTRate').value)||0; var gst=a*r/100; document.getElementById('quickGSTResult').innerHTML='GST: ₹'+gst.toFixed(2)+'<br>Total: ₹'+(a+gst).toFixed(2); }
 function quickPercentage(){ var v=parseFloat(document.getElementById('quickPercentValue').value)||0; var t=parseFloat(document.getElementById('quickPercentTotal').value)||0; var res=t? (v/t*100).toFixed(2)+'%' : '0%'; document.getElementById('quickPercentResult').innerHTML=res; }
-// search filter
 document.getElementById('searchInput')?.addEventListener('input', function(e){ var q=e.target.value.toLowerCase(); document.querySelectorAll('.tool-card').forEach(function(card){ var s=card.getAttribute('data-search')||''; card.style.display=s.includes(q) || card.innerText.toLowerCase().includes(q) ? '' : 'none'; }); });
 </script>
 <script src="script.js"></script>
