@@ -90,6 +90,13 @@
             id="imageInput"
             accept="image/*"
         >
+        <!-- Preview Box Start -->
+<div id="preview-box" style="display:none; margin-top:20px; text-align:center; background:#f9f9f9; padding:15px; border-radius:10px; border:1px dashed #aaa;">
+  <p style="margin:0 0 10px; font-weight:bold;">Selected Image Preview:</p>
+  <img id="original-preview" style="max-width:250px; max-height:250px; border-radius:8px; border:1px solid #ddd;">
+  <p id="size-info" style="font-size:13px; color:#555; margin-top:8px;"></p>
+</div>
+<!-- Preview Box End -->
 
         <br><br>
 
@@ -627,7 +634,23 @@ function getExtension(format) {
     return "jpg";
 
 }
-
+// --- Preview Code Start ---
+const imageInput = document.getElementById('imageInput');
+if(imageInput){
+  imageInput.addEventListener('change', function(e){
+    const file = e.target.files[0];
+    if(file){
+      const reader = new FileReader();
+      reader.onload = function(ev){
+        document.getElementById('preview-box').style.display = 'block';
+        document.getElementById('original-preview').src = ev.target.result;
+        document.getElementById('size-info').innerText = Size: ${(file.size/1024).toFixed(2)} KB;
+      }
+      reader.readAsDataURL(file);
+    }
+  });
+}
+// --- Preview Code End ---
 </script>
 
 
